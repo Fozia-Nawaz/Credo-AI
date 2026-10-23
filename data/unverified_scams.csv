@@ -1,0 +1,3 @@
+scam_id,scholarship_id,title,suspicious_domain,fake_portal_url,fee_demanded,fee_currency,scam_reason
+SCAM_101,SCH_001,HEC Fully Funded Direct Grant - Fast Track Approval,hec-scholarship-apply-now.xyz,https://hec-scholarship-apply-now.xyz/register,15,USD,Non-institutional .xyz domain requesting $15 processing fee for free government scheme.
+SCAM_102,SCH_002,Fulbright Fast-Track Guarantee Fee Portal,usefp-fulbright-grant.top,https://usefp-fulbright-grant.top/pay-fee,25,USD,Fake domain requiring $25 documentation review fee.

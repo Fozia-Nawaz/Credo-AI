@@ -1,0 +1,4 @@
+scholarship_id,title,provider,official_domain,eligible_majors,min_cgpa,deadline,application_fee,is_official
+SCH_001,HEC Overseas Scholarship 2026,Higher Education Commission Pakistan,hec.gov.pk,"CS, EE, Data Science, AI",3.0,2026-11-30,0,True
+SCH_002,Fulbright Master's and PhD Program,USEFP,usefp.org,"All Majors, Linguistics, CS, Social Sciences",3.2,2026-12-15,0,True
+SCH_003,Chevening UK Scholarship,UK Government,chevening.org,"CS, Software Engineering, AI, Business",2.8,2026-11-05,0,True
