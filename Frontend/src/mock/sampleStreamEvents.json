@@ -1,0 +1,27 @@
+[
+  { "stage": "PLANNER", "message": "Parsing student profile criteria..." },
+  { "stage": "PLANNER", "message": "Parsed profile criteria -> Major: COMPUTER SCIENCE, CGPA: 3.8" },
+  { "stage": "RECONCILER", "message": "Querying Zetaris multi-source tables (Official, Aggregator, Scams)..." },
+  { "stage": "RECONCILER", "message": "Detected conflict for HEC Overseas Scholarship 2026: Reconciled to official source." },
+  { "stage": "RECONCILER", "message": "Detected conflict for Fulbright Master's and PhD Program: Reconciled to official source." },
+  { "stage": "TRUST_CRITIC", "message": "Evaluating domain authenticity, fee traps, and assigning trust badges..." },
+  { "stage": "TRUST_CRITIC", "message": "Assigned Badge: CONFLICTING_DATES for HEC Overseas Scholarship 2026 due to date mismatch across aggregators." },
+  { "stage": "TRUST_CRITIC", "message": "Assigned Badge: VERIFIED for Chevening UK Scholarship - Official record confirmed." },
+  { "stage": "TRUST_CRITIC", "message": "REJECTED SCAM: HEC Fully Funded Direct Grant - Fast Track Approval -> Requested $15 fee on domain hec-scholarship-apply-now.xyz." },
+  { "stage": "REPORTER", "message": "Compiling evidence proofs and final JSON payload..." },
+  {
+    "stage": "COMPLETE",
+    "message": "Pipeline execution complete.",
+    "final_data": {
+      "status": "success",
+      "total_opportunities_found": 5,
+      "results": [
+        { "title": "Chevening UK Scholarship", "scholarship_id": "SCH_003", "domain": "chevening.org", "badge": "VERIFIED", "trust_score": 100, "deadline": "2026-11-05", "application_fee": 0, "audit_proof": "Domain chevening.org verified against official database. Fee verified as $0." },
+        { "title": "HEC Overseas Scholarship 2026", "scholarship_id": "SCH_001", "domain": "hec.gov.pk", "badge": "CONFLICTING_DATES", "trust_score": 85, "deadline": "2026-11-30", "application_fee": 0, "audit_proof": "Domain hec.gov.pk verified against official database. Fee verified as $0." },
+        { "title": "Fulbright Master's and PhD Program", "scholarship_id": "SCH_002", "domain": "usefp.org", "badge": "CONFLICTING_DATES", "trust_score": 85, "deadline": "2026-12-15", "application_fee": 0, "audit_proof": "Domain usefp.org verified against official database. Fee verified as $0." },
+        { "title": "HEC Fully Funded Direct Grant - Fast Track Approval", "scholarship_id": "SCH_001", "domain": "hec-scholarship-apply-now.xyz", "badge": "SCAM_REJECTED", "trust_score": 0, "deadline": "N/A", "application_fee": 15, "audit_proof": "REJECTED: Domain hec-scholarship-apply-now.xyz requested $15 processing fee. Non-institutional .xyz domain requesting $15 processing fee for free government scheme." },
+        { "title": "Fulbright Fast-Track Guarantee Fee Portal", "scholarship_id": "SCH_002", "domain": "usefp-fulbright-grant.top", "badge": "SCAM_REJECTED", "trust_score": 0, "deadline": "N/A", "application_fee": 25, "audit_proof": "REJECTED: Domain usefp-fulbright-grant.top requested $25 processing fee. Fake domain requiring $25 documentation review fee." }
+      ]
+    }
+  }
+]
