@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { RefreshCw } from "lucide-react";
 import { runVerification } from "./services/api";
 import Navbar from "./components/Navbar";
 import StudentForm from "./components/StudentForm";
@@ -13,12 +14,14 @@ export default function App() {
   const [error, setError] = useState("");
   const [selected, setSelected] = useState(null);
   const stopRef = useRef(() => {});
+  const lastProfileRef = useRef(null);
 
   // Stop any open stream when the page closes.
   useEffect(() => () => stopRef.current(), []);
 
   function handleSubmit(profile) {
     stopRef.current(); // stop a previous run, if any
+    lastProfileRef.current = profile; // remembered for "Try again"
     setEvents([]);
     setResults([]);
     setError("");
@@ -35,10 +38,15 @@ export default function App() {
         }
       },
       (err) => {
+        stopRef.current(); // make sure nothing keeps running
         setError(err.message);
         setStatus("error");
       }
     );
+  }
+
+  function handleRetry() {
+    if (lastProfileRef.current) handleSubmit(lastProfileRef.current);
   }
 
   return (
@@ -48,9 +56,20 @@ export default function App() {
       <main className="mx-auto max-w-7xl space-y-6 px-6 py-6">
         <StudentForm onSubmit={handleSubmit} disabled={status === "running"} />
 
-        {error && (
-          <div className="rounded-lg border border-scam/40 bg-scam/10 p-4 text-scam">
-            Something went wrong: {error}. Check that the backend is running and try again.
+        {status === "error" && (
+          <div
+            role="alert"
+            className="flex flex-wrap items-center justify-between gap-3 rounded-lg border border-scam/40 bg-scam/10 p-4"
+          >
+            <p className="text-scam">{error}</p>
+            <button
+              type="button"
+              onClick={handleRetry}
+              className="inline-flex items-center gap-2 rounded-lg bg-scam/20 px-4 py-2 text-sm font-semibold text-scam hover:bg-scam/30"
+            >
+              <RefreshCw size={16} />
+              Try again
+            </button>
           </div>
         )}
 
