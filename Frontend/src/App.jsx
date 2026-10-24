@@ -106,7 +106,7 @@ export default function App() {
 
       <main className="mx-auto max-w-7xl space-y-6 px-6 py-8">
         {showForm ? (
-          <>
+          <div className="mx-auto max-w-2xl space-y-6">
             <div>
               <h1 className="text-3xl font-bold text-white">Build your student profile</h1>
               <p className="mt-1 text-slate-400">
@@ -114,7 +114,7 @@ export default function App() {
               </p>
             </div>
             <StudentForm onSubmit={handleSubmit} disabled={status === "running"} />
-          </>
+          </div>
         ) : (
           <div className="flex flex-wrap items-start justify-between gap-4">
             <div>
@@ -192,6 +192,18 @@ export default function App() {
               <option value="trust">Rank: Trust score</option>
               <option value="deadline">Rank: Deadline</option>
             </select>
+            {(query || statusFilter !== "ALL") && (
+              <button
+                type="button"
+                onClick={() => {
+                  setQuery("");
+                  setStatusFilter("ALL");
+                }}
+                className="rounded-lg border border-slate-700 px-3 py-2 text-sm text-slate-300 hover:bg-navy-800"
+              >
+                Clear filters
+              </button>
+            )}
           </div>
         )}
 

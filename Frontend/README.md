@@ -1,16 +1,14 @@
-# React + Vite
+# Credo AI Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React + Vite + Tailwind UI for the Credo AI verification API.
 
-Currently, two official plugins are available:
+## Run
+1. Start the backend (see the repository README), with FRONTEND_ORIGIN allowing http://localhost:5173.
+2. In this folder: `npm install`
+3. Copy `.env.example` to `.env` (VITE_API_BASE_URL=http://127.0.0.1:8000, VITE_USE_MOCK=false)
+4. `npm run dev`, then open http://localhost:5173
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Notes
+- Results and trace events come from the backend. Nothing is computed in the browser.
+- VITE_USE_MOCK=true plays a recorded sample of the pipeline output for UI work only.
+- Times in the trace show when each event reached the browser.
