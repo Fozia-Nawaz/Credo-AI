@@ -8,6 +8,7 @@ const STAGE_COLORS = {
   TRUST_CRITIC: "text-trust",
   REPORTER: "text-purple-400",
   COMPLETE: "text-trust",
+  FAILED: "text-scam",
 };
 
 function isRejected(text) {
@@ -18,6 +19,12 @@ function messageColor(text) {
   if (isRejected(text)) return "text-scam";
   if (text.toUpperCase().includes("CONFLICT")) return "text-warning";
   return "text-slate-200";
+}
+
+// Some backend messages already start with a tag like "[PLANNER] ".
+// We show our own tag, so remove the duplicate.
+function cleanMessage(text) {
+  return text.replace(/^\[[A-Za-z _]+\]\s*/, "");
 }
 
 function formatTime(ms) {
@@ -61,13 +68,14 @@ export default function LiveLogTerminal({ events, status }) {
         {events.length === 0 && <p className="text-slate-500">Waiting for a request...</p>}
 
         {events.map((e, i) => {
-          const rejected = e.stage === "TRUST_CRITIC" && isRejected(e.message);
+          const message = cleanMessage(e.message || "");
+          const rejected = e.stage === "TRUST_CRITIC" && isRejected(message);
           const tagColor = rejected ? "text-scam" : STAGE_COLORS[e.stage] || "text-slate-400";
           return (
             <p key={i} className="leading-5">
               <span className="text-slate-500">{formatTime(e.receivedAt)}</span>{" "}
               <span className={tagColor}>[{e.stage.replace("_", " ")}]</span>{" "}
-              <span className={messageColor(e.message)}>{e.message}</span>
+              <span className={messageColor(message)}>{message}</span>
               {e.model && <span className="ml-2 text-xs text-slate-500">({e.model})</span>}
             </p>
           );

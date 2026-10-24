@@ -7,7 +7,7 @@ const inputClass =
 export default function StudentForm({ onSubmit, disabled }) {
   const [cgpa, setCgpa] = useState("");
   const [major, setMajor] = useState("");
-  const [country, setCountry] = useState("Pakistan / Global");
+  const [domicile, setDomicile] = useState("");
   const [degree, setDegree] = useState("Masters");
   const [need, setNeed] = useState("Yes");
   const [errors, setErrors] = useState({});
@@ -16,21 +16,25 @@ export default function StudentForm({ onSubmit, disabled }) {
     e.preventDefault();
     const next = {};
     const cgpaNumber = Number(cgpa);
-    if (!major.trim()) next.major = "Enter your field of study.";
+    if (major.trim().length < 2) next.major = "Enter your field of study.";
     if (cgpa === "" || Number.isNaN(cgpaNumber) || cgpaNumber < 0 || cgpaNumber > 4) {
       next.cgpa = "Enter a CGPA between 0 and 4.";
     }
-    if (!country.trim()) next.country = "Enter your country or domicile.";
+    if (domicile.trim() && domicile.trim().length < 2) {
+      next.domicile = "Enter at least 2 characters.";
+    }
     setErrors(next);
     if (Object.keys(next).length > 0) return;
 
-    onSubmit({
+    // These field names match the backend's profile schema exactly.
+    const payload = {
       major: major.trim(),
       cgpa: cgpaNumber,
-      target_country: country.trim(),
-      degree_level: degree,
-      financial_need: need,
-    });
+      target_degree: degree,
+      financial_need: need === "Yes" ? 1 : 0,
+    };
+    if (domicile.trim()) payload.domicile = domicile.trim();
+    onSubmit(payload);
   }
 
   return (
@@ -49,9 +53,9 @@ export default function StudentForm({ onSubmit, disabled }) {
         </label>
 
         <label className="text-sm text-slate-300">
-          Country / domicile
-          <input className={inputClass} value={country} onChange={(e) => setCountry(e.target.value)} />
-          {errors.country && <span className="text-xs text-scam">{errors.country}</span>}
+          Domicile (optional)
+          <input className={inputClass} value={domicile} onChange={(e) => setDomicile(e.target.value)} placeholder="e.g. Islamabad" />
+          {errors.domicile && <span className="text-xs text-scam">{errors.domicile}</span>}
         </label>
 
         <label className="text-sm text-slate-300">

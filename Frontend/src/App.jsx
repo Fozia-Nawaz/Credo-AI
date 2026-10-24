@@ -124,7 +124,7 @@ export default function App() {
               </p>
               {profile && (
                 <p className="mt-3 inline-block rounded-full border border-slate-700 bg-navy-800 px-3 py-1 text-xs text-slate-300">
-                  Profile: {profile.degree_level} · {profile.major} · CGPA {profile.cgpa}
+                  Profile: {profile.target_degree} · {profile.major} · CGPA {profile.cgpa}
                 </p>
               )}
             </div>
@@ -219,9 +219,29 @@ export default function App() {
               <p className="text-slate-400">No results match your search or filter.</p>
             )}
 
-            {visible.map((item) => (
-              <OpportunityCard key={item.domain + item.title} item={item} onOpen={setSelected} />
-            ))}
+                        {done && results.length > 0 && !results.some((r) => r.badge !== "SCAM_REJECTED") && (
+              <div className="rounded-lg border border-warning/40 bg-warning/10 p-4 text-warning">
+                No trusted opportunities matched this profile. The listings below were excluded because they showed scam signals.
+              </div>
+            )}
+
+            {visible
+              .filter((item) => item.badge !== "SCAM_REJECTED")
+              .map((item) => (
+                <OpportunityCard key={item.domain + item.title} item={item} onOpen={setSelected} />
+              ))}
+
+            {visible.some((item) => item.badge === "SCAM_REJECTED") && (
+              <h3 className="pt-2 text-sm font-semibold uppercase tracking-wide text-slate-400">
+                Excluded from recommendations
+              </h3>
+            )}
+
+            {visible
+              .filter((item) => item.badge === "SCAM_REJECTED")
+              .map((item) => (
+                <OpportunityCard key={item.domain + item.title} item={item} onOpen={setSelected} />
+              ))}
           </section>
 
           <aside className="lg:col-span-5 lg:sticky lg:top-24 lg:self-start">
