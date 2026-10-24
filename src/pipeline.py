@@ -113,6 +113,20 @@ def run_pipeline_stream(user_prompt: str, session_id: str = "session_001"):
     
     yield json.dumps({"step": "COMPLETE", "model": model_id, "payload": final_payload})
 
+
+class MultiAgentPipeline:
+    """Class wrapper expected by app/services/pipeline_bridge.py"""
+    def __init__(self):
+        self.engine = HMemEngine()
+
+    def run_stream(self, prompt: str, session_id: str = "session_001"):
+        return run_pipeline_stream(prompt, session_id=session_id)
+
+    def run(self, prompt: str, session_id: str = "session_001"):
+        events = list(run_pipeline_stream(prompt, session_id=session_id))
+        return events
+
+
 if __name__ == "__main__":
     for event in run_pipeline_stream("I have 3.8 CGPA in CS. Find scholarships in UK."):
         print(event)
