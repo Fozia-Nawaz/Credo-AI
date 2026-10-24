@@ -11,16 +11,25 @@ const STATUS = {
 export default function Navbar({ status }) {
   const s = STATUS[status] || STATUS.idle;
   return (
-    <header className="sticky top-0 z-10 border-b border-white/10 bg-navy-900/90 backdrop-blur">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3">
-        <div className="flex items-center gap-2">
-          <ShieldCheck className="text-trust" size={24} />
-          <span className="text-lg font-bold text-white">Credo AI</span>
-          <span className="text-sm text-slate-400">by Team Dynasty</span>
+    <header className="sticky top-0 z-10 border-b border-slate-700 bg-navy-900/95 backdrop-blur">
+      <div className="mx-auto flex h-[72px] max-w-7xl items-center justify-between px-6">
+        <div className="flex items-center gap-3">
+          <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-slate-700 bg-navy-800">
+            <ShieldCheck className="text-electric" size={22} />
+          </div>
+          <div className="leading-tight">
+            <p className="text-lg font-bold text-white">
+              Credo <span className="text-electric">AI</span>
+            </p>
+            <p className="text-xs text-slate-400">The Explainable Trust Engine</p>
+          </div>
         </div>
-        <span className={clsx("rounded-full px-3 py-1 text-xs font-semibold", s.className)}>
-          {s.label}
-        </span>
+        <div className="flex items-center gap-4">
+          <span className="hidden text-sm text-slate-400 sm:block">Team Dynasty</span>
+          <span className={clsx("rounded-full px-3 py-1 text-xs font-semibold", s.className)}>
+            {s.label}
+          </span>
+        </div>
       </div>
     </header>
   );
