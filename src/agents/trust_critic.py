@@ -1,10 +1,13 @@
+from src.nightshift_client import NightshiftClient
+
 class TrustCriticAgent:
     def __init__(self):
         self.agent_name = "Trust Critic Agent"
+        self.nightshift = NightshiftClient()
 
     def evaluate(self, reconciler_output: dict) -> dict:
         """
-        Performs scam detection, domain verification, and assigns Trust Badges.
+        Performs scam detection, domain verification, and assigns Trust Badges with Nightshift LLM proofs.
         """
         reconciled_opps = reconciler_output.get("reconciled_opportunities", [])
         scams_pool = reconciler_output.get("detected_scams_pool", [])
@@ -27,6 +30,10 @@ class TrustCriticAgent:
             else:
                 logs.append(f"[TRUST CRITIC] Assigned Badge: {badge} for {official['title']} - Official record confirmed.")
 
+            # Generate reasoning proof via Nightshift
+            prompt = f"Audit scholarship {official['title']} on domain {official['official_domain']} with fee ${official['application_fee']}."
+            llm_proof = self.nightshift.generate_reasoning(prompt, system_role="TRUST CRITIC AGENT")
+
             evaluated_results.append({
                 "title": official["title"],
                 "scholarship_id": official["scholarship_id"],
@@ -35,7 +42,7 @@ class TrustCriticAgent:
                 "trust_score": trust_score,
                 "deadline": official["deadline"],
                 "application_fee": official["application_fee"],
-                "audit_proof": f"Domain {official['official_domain']} verified against official database. Fee verified as $0."
+                "audit_proof": f"Domain {official['official_domain']} verified against official database. Fee verified as $0. Reason: {llm_proof}"
             })
 
         # 2. Evaluate & Flag Scam Items
