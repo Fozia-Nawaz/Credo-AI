@@ -8,6 +8,12 @@ const BAR_COLOR = {
   SCAM_REJECTED: "bg-scam",
 };
 
+const TAG = {
+  VERIFIED: { text: "Official criteria match", cls: "border-trust/30 bg-trust/10 text-trust" },
+  CONFLICTING_DATES: { text: "Reconciliation discrepancy found", cls: "border-warning/30 bg-warning/10 text-warning" },
+  SCAM_REJECTED: { text: "Suspicious listing flagged", cls: "border-scam/30 bg-scam/10 text-scam" },
+};
+
 function Field({ label, children, className }) {
   return (
     <div className="min-w-0">
@@ -17,14 +23,17 @@ function Field({ label, children, className }) {
   );
 }
 
-export default function OpportunityCard({ item, index = 0, onOpen }) {
+export default function OpportunityCard({ item, onOpen }) {
   const fee = Number(item.application_fee) || 0;
   const excluded = item.badge === "SCAM_REJECTED";
   const conflict = item.badge === "CONFLICTING_DATES";
   const score = Math.max(0, Math.min(100, Number(item.trust_score) || 0));
+  const match = typeof item.eligibility_match === "number" ? Math.max(0, Math.min(100, item.eligibility_match)) : null;
   const aggDeadline = item.aggregator_matches?.[0]?.listed_deadline;
   const deadline = item.deadline === "N/A" || !item.deadline ? "Not listed" : item.deadline;
   const funding = item.funding_amount || item.funding || "Not listed";
+  const tag = TAG[item.badge];
+  const id = item.scholarship_id || item.official_record?.scholarship_id;
 
   return (
     <button
@@ -37,11 +46,20 @@ export default function OpportunityCard({ item, index = 0, onOpen }) {
     >
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
-          <p className="text-[11px] font-semibold uppercase tracking-wider text-slate-500">
-            Candidate #{String(index + 1).padStart(2, "0")}
-            {conflict && <span className="ml-2 normal-case text-warning">· Aggregator discrepancy</span>}
+          <p className="flex flex-wrap items-center gap-2">
+            {tag && (
+              <span
+                className={clsx(
+                  "rounded border px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider",
+                  tag.cls
+                )}
+              >
+                {tag.text}
+              </span>
+            )}
+            {id && <span className="font-mono text-[11px] text-slate-500">ID: {id}</span>}
           </p>
-          <h3 className="mt-1 text-lg font-semibold text-white">{item.title}</h3>
+          <h3 className="mt-2 text-lg font-semibold text-white">{item.title}</h3>
           {item.provider && <p className="text-sm text-slate-400">{item.provider}</p>}
         </div>
         <TrustBadge badge={item.badge} />
@@ -65,17 +83,31 @@ export default function OpportunityCard({ item, index = 0, onOpen }) {
         </Field>
       </div>
 
-      <div className="mt-4">
-        <div className="mb-1 flex justify-between text-xs text-slate-400">
-          <span>Trust score</span>
-          <span>{score}%</span>
+      <div className="mt-4 space-y-3">
+        <div>
+          <div className="mb-1 flex justify-between text-xs text-slate-400">
+            <span>Trust score</span>
+            <span>{score}%</span>
+          </div>
+          <div className="h-1.5 w-full rounded-full bg-navy-900">
+            <div
+              className={clsx("h-1.5 rounded-full", BAR_COLOR[item.badge] || "bg-slate-400")}
+              style={{ width: `${score}%` }}
+            />
+          </div>
         </div>
-        <div className="h-1.5 w-full rounded-full bg-navy-900">
-          <div
-            className={clsx("h-1.5 rounded-full", BAR_COLOR[item.badge] || "bg-slate-400")}
-            style={{ width: `${score}%` }}
-          />
-        </div>
+
+        {match !== null && (
+          <div>
+            <div className="mb-1 flex justify-between text-xs text-slate-400">
+              <span>Eligibility match</span>
+              <span className="text-electric">{match}%</span>
+            </div>
+            <div className="h-1.5 w-full rounded-full bg-navy-900">
+              <div className="h-1.5 rounded-full bg-electric" style={{ width: `${match}%` }} />
+            </div>
+          </div>
+        )}
       </div>
 
       <p className={clsx("mt-3 text-sm", conflict ? "text-warning" : "text-slate-400")}>{item.audit_proof}</p>

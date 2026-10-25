@@ -5,6 +5,7 @@ import { runVerification } from "./services/api";
 import Navbar from "./components/Navbar";
 import Landing from "./components/Landing";
 import StudentForm from "./components/StudentForm";
+import AuthScreen from "./components/AuthScreen";
 import OpportunityCard from "./components/OpportunityCard";
 import LiveLogTerminal from "./components/LiveLogTerminal";
 import PipelineProgress from "./components/PipelineProgress";
@@ -25,18 +26,22 @@ function deadlineTime(value) {
   return Number.isNaN(t) ? Number.POSITIVE_INFINITY : t;
 }
 
-function Stat({ label, value, tone }) {
+function Stat({ label, value, sub, tone }) {
   const tones = { default: "text-white", warning: "text-warning", scam: "text-scam", trust: "text-trust" };
   return (
     <div className="min-w-[8.5rem] rounded-lg border border-slate-700 bg-navy-800 px-4 py-3">
       <p className="text-[11px] font-semibold uppercase tracking-wider text-slate-400">{label}</p>
-      <p className={clsx("mt-1 text-2xl font-bold", tones[tone] || tones.default)}>{value}</p>
+      <p className="mt-1 flex items-baseline gap-1.5">
+        <span className={clsx("text-2xl font-bold", tones[tone] || tones.default)}>{value}</span>
+        {sub && <span className="text-xs text-slate-500">{sub}</span>}
+      </p>
     </div>
   );
 }
 
 export default function App() {
-  const [view, setView] = useState("landing"); // landing | form | dashboard
+  const [view, setView] = useState("landing"); // landing | form | dashboard | signin | account
+  const [user, setUser] = useState(null); // simulated demo account only
   const [status, setStatus] = useState("idle"); // idle | running | done | error
   const [events, setEvents] = useState([]);
   const [results, setResults] = useState([]);
@@ -50,6 +55,20 @@ export default function App() {
 
   // Stop any open stream when the page closes.
   useEffect(() => () => stopRef.current(), []);
+
+  const running = status === "running";
+
+  function go(next) {
+    if (running) return; // don't interrupt a running search
+    setView(next);
+    window.scrollTo({ top: 0 });
+  }
+
+  function goHow() {
+    if (running) return;
+    setView("landing");
+    setTimeout(() => document.getElementById("how-it-works")?.scrollIntoView({ behavior: "smooth" }), 60);
+  }
 
   function handleSubmit(p) {
     stopRef.current(); // stop a previous run, if any
@@ -84,10 +103,8 @@ export default function App() {
     if (profile) handleSubmit(profile);
   }
 
-  function goHome() {
-    if (status === "running") return; // don't interrupt a running search
-    setView("landing");
-  }
+  const hasMatch = results.some((r) => typeof r.eligibility_match === "number");
+  const effectiveSort = sortBy === "match" && !hasMatch ? "trust" : sortBy;
 
   const visible = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -96,14 +113,13 @@ export default function App() {
         (statusFilter === "ALL" || r.badge === statusFilter) &&
         (!q || r.title.toLowerCase().includes(q) || (r.domain || "").toLowerCase().includes(q))
     );
-    return [...list].sort((a, b) =>
-      sortBy === "deadline"
-        ? deadlineTime(a.deadline) - deadlineTime(b.deadline)
-        : b.trust_score - a.trust_score
-    );
-  }, [results, query, statusFilter, sortBy]);
+    return [...list].sort((a, b) => {
+      if (effectiveSort === "deadline") return deadlineTime(a.deadline) - deadlineTime(b.deadline);
+      if (effectiveSort === "match") return (b.eligibility_match ?? 0) - (a.eligibility_match ?? 0);
+      return b.trust_score - a.trust_score;
+    });
+  }, [results, query, statusFilter, effectiveSort]);
 
-  const running = status === "running";
   const done = status === "done";
   const verified = results.filter((r) => r.badge === "VERIFIED").length;
   const conflicts = results.filter((r) => r.badge === "CONFLICTING_DATES").length;
@@ -111,6 +127,10 @@ export default function App() {
   const trusted = visible.filter((item) => item.badge !== "SCAM_REJECTED");
   const excluded = visible.filter((item) => item.badge === "SCAM_REJECTED");
   const runId = events.find((e) => e.run_id)?.run_id;
+
+  // Reads the real data-layer mode from the backend's Zetaris event, e.g. "Local CSV Engine".
+  const zetarisMsg = events.find((e) => e.stage === "ZETARIS_FETCH")?.message || "";
+  const zetarisMode = zetarisMsg.match(/\(([^)]+)\)/)?.[1];
 
   const headline = running
     ? "Finding and checking opportunities"
@@ -128,10 +148,40 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-navy-900 text-slate-200">
-      <Navbar status={status} onHome={goHome} />
+      <Navbar
+        status={status}
+        user={user}
+        busy={running}
+        onHome={() => go("landing")}
+        onDiscover={() => go("form")}
+        onHow={goHow}
+        onStart={() => go("form")}
+        onSignIn={() => go("signin")}
+        onSignOut={() => {
+          setUser(null);
+          go("landing");
+        }}
+        onProfile={() => go("form")}
+      />
 
       <main className="mx-auto max-w-7xl space-y-6 px-6 py-8">
         {view === "landing" && <Landing onStart={() => setView("form")} />}
+
+        {view === "signin" && (
+          <AuthScreen
+            mode="signin"
+            onSignIn={() => {
+              setUser({ name: "Demo account" });
+              setView("account");
+            }}
+            onGetStarted={() => setView("form")}
+            onBack={() => setView("landing")}
+          />
+        )}
+
+        {view === "account" && (
+          <AuthScreen mode="signedin" onContinue={() => setView("form")} />
+        )}
 
         {view === "form" && (
           <div className="mx-auto max-w-2xl space-y-6">
@@ -144,53 +194,62 @@ export default function App() {
                 Tell us about your academic background and funding needs to find relevant opportunities.
               </p>
             </div>
-            <StudentForm onSubmit={handleSubmit} disabled={status === "running"} />
+            <StudentForm onSubmit={handleSubmit} disabled={running} />
           </div>
         )}
 
         {view === "dashboard" && (
           <>
-            <div className="flex flex-wrap items-start justify-between gap-4">
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <span className="inline-flex items-center gap-2 rounded-full border border-slate-700 bg-navy-800 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-slate-300">
+                <span className="h-1.5 w-1.5 rounded-full bg-electric" />
+                Track 02 · The agent that can explain why
+              </span>
+              <div className="flex flex-wrap items-center gap-2">
+                {profile && (
+                  <span className="rounded-lg border border-slate-700 bg-navy-800 px-3 py-2 text-xs text-slate-300">
+                    Profile: <span className="font-semibold text-white">{profile.target_degree} · {profile.major} · CGPA {profile.cgpa}</span>
+                  </span>
+                )}
+                <button
+                  type="button"
+                  onClick={() => go("form")}
+                  disabled={running}
+                  className="inline-flex items-center gap-2 rounded-lg border border-slate-700 bg-navy-800 px-4 py-2 text-sm font-semibold text-white hover:bg-navy-800/70 disabled:opacity-50"
+                >
+                  <Pencil size={14} />
+                  Update profile
+                </button>
+              </div>
+            </div>
+
+            <div className="flex flex-wrap items-start justify-between gap-4 border-b border-slate-800 pb-6">
               <div>
-                <div className="flex flex-wrap items-center gap-2">
-                  {profile && (
-                    <span className="rounded-full border border-slate-700 bg-navy-800 px-3 py-1 text-xs text-slate-300">
-                      Profile: {profile.target_degree} · {profile.major} · CGPA {profile.cgpa}
-                    </span>
-                  )}
+                <h1 className="text-3xl font-bold text-white">{headline}</h1>
+                <p className="mt-1 max-w-xl text-slate-400">{subline}</p>
+                <div className="mt-3 flex flex-wrap items-center gap-2">
+                  <span
+                    className={clsx(
+                      "inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-semibold",
+                      running && "border-electric/40 bg-electric/10 text-electric",
+                      done && "border-trust/40 bg-trust/10 text-trust",
+                      status === "error" && "border-scam/40 bg-scam/10 text-scam"
+                    )}
+                  >
+                    <span className={clsx("h-1.5 w-1.5 rounded-full bg-current", running && "animate-pulse")} />
+                    {running ? "Verification in progress" : done ? "All agent phases complete" : "Stopped"}
+                  </span>
                   {runId && (
                     <span className="rounded-full border border-slate-700 bg-navy-800 px-3 py-1 font-mono text-xs text-electric">
                       Run {runId.slice(0, 8)}
                     </span>
                   )}
                 </div>
-                <h1 className="mt-3 text-3xl font-bold text-white">{headline}</h1>
-                <p className="mt-1 max-w-xl text-slate-400">{subline}</p>
-                <span
-                  className={clsx(
-                    "mt-3 inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-semibold",
-                    running && "border-electric/40 bg-electric/10 text-electric",
-                    done && "border-trust/40 bg-trust/10 text-trust",
-                    status === "error" && "border-scam/40 bg-scam/10 text-scam"
-                  )}
-                >
-                  <span className={clsx("h-1.5 w-1.5 rounded-full bg-current", running && "animate-pulse")} />
-                  {running ? "Verification in progress" : done ? "All agent phases complete" : "Stopped"}
-                </span>
               </div>
               <div className="flex flex-wrap items-center gap-3">
-                <Stat label="Candidates found" value={done ? results.length : "–"} />
-                <Stat label="Discrepancy" value={done ? conflicts : "–"} tone="warning" />
-                <Stat label="Scam quarantine" value={done ? rejected : "–"} tone="scam" />
-                <button
-                  type="button"
-                  onClick={() => setView("form")}
-                  disabled={running}
-                  className="inline-flex items-center gap-2 rounded-lg border border-slate-700 px-4 py-2 text-sm font-semibold text-white hover:bg-navy-800 disabled:opacity-50"
-                >
-                  <Pencil size={16} />
-                  Update profile
-                </button>
+                <Stat label="Candidate feed" value={done ? results.length : "–"} sub="records" />
+                <Stat label="Discrepancy" value={done ? conflicts : "–"} sub="flagged" tone="warning" />
+                <Stat label="Scam quarantine" value={done ? rejected : "–"} sub="blocked" tone="scam" />
               </div>
             </div>
 
@@ -212,7 +271,7 @@ export default function App() {
             )}
 
             {done && (
-              <div className="flex flex-wrap items-center gap-3">
+              <div className="flex flex-wrap items-center gap-3 rounded-xl border border-slate-700 bg-navy-800/60 p-3">
                 <div className="relative min-w-[16rem] flex-1">
                   <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" />
                   <input
@@ -235,13 +294,14 @@ export default function App() {
                   ))}
                 </select>
                 <select
-                  value={sortBy}
+                  value={effectiveSort}
                   onChange={(e) => setSortBy(e.target.value)}
                   className={controlClass}
                   aria-label="Sort results"
                 >
                   <option value="trust">Rank: Trust score</option>
                   <option value="deadline">Rank: Deadline</option>
+                  {hasMatch && <option value="match">Rank: Match score</option>}
                 </select>
                 {(query || statusFilter !== "ALL") && (
                   <button
@@ -255,6 +315,10 @@ export default function App() {
                     Clear filters
                   </button>
                 )}
+                <span className="ml-auto inline-flex items-center gap-2 rounded-md border border-slate-700 bg-navy-900 px-3 py-2 text-xs text-slate-300">
+                  <span className="h-1.5 w-1.5 rounded-full bg-trust" />
+                  Zetaris data layer{zetarisMode ? `: ${zetarisMode}` : ""}
+                </span>
               </div>
             )}
 
@@ -292,8 +356,8 @@ export default function App() {
                   </div>
                 )}
 
-                {trusted.map((item, i) => (
-                  <OpportunityCard key={item.domain + item.title} item={item} index={i} onOpen={setSelected} />
+                {trusted.map((item) => (
+                  <OpportunityCard key={item.domain + item.title} item={item} onOpen={setSelected} />
                 ))}
 
                 {excluded.length > 0 && (
@@ -302,13 +366,8 @@ export default function App() {
                   </h3>
                 )}
 
-                {excluded.map((item, i) => (
-                  <OpportunityCard
-                    key={item.domain + item.title}
-                    item={item}
-                    index={trusted.length + i}
-                    onOpen={setSelected}
-                  />
+                {excluded.map((item) => (
+                  <OpportunityCard key={item.domain + item.title} item={item} onOpen={setSelected} />
                 ))}
               </section>
 
