@@ -116,21 +116,22 @@ export default function EvidenceModal({ item, events = [], onClose }) {
                   </tr>
                 </thead>
                 <tbody>
-                  {item.sources.map((s, i) => (
-                    <tr key={i} className="border-t border-slate-700">
-                      <td className="py-1.5 pr-3 text-white">{s.name}</td>
-                      <td className="py-1.5 pr-3 text-slate-200">{s.deadline}</td>
-                      <td className="py-1.5">
-                        {s.url ? (
-                          <a href={s.url} target="_blank" rel="noreferrer" className="text-electric underline">
-                            open
-                          </a>
-                        ) : (
-                          "-"
-                        )}
-                      </td>
-                    </tr>
-                  ))}
+                 {item.sources.map((s, i) => {
+                    const src = typeof s === "string" ? { name: s } : s;
+                      return (
+                      <tr key={i} className="border-t border-slate-700">
+                         <td className="py-1.5 pr-3 text-white">{src.name}</td>
+                         <td className="py-1.5 pr-3 text-slate-200">{src.deadline || "-"}</td>
+                         <td className="py-1.5">
+                           {src.url ? (
+                             <a href={src.url} target="_blank" rel="noreferrer" className="text-electric underline">open</a>
+                           ) : (
+                             "-"
+                           )}
+                         </td>
+                      </tr>
+                     );
+                  })}
                 </tbody>
               </table>
             </div>

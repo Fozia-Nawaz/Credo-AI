@@ -41,7 +41,7 @@ export default function OpportunityCard({ item, onOpen }) {
         <span className={clsx("inline-flex items-center gap-1.5", fee > 0 && "text-scam")}>
           <Banknote size={14} /> {fee > 0 ? `Fee requested: $${fee}` : "No fee"}
         </span>
-        {item.funding_amount && <span>Funding: {item.funding_amount}</span>}
+            {(item.funding_amount || item.funding) && <span>Funding: {item.funding_amount || item.funding}</span>}
       </div>
 
       <div className="mt-4">
