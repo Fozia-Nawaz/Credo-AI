@@ -282,6 +282,119 @@ def test_sse_replays_completed_real_pipeline_and_reporter_payload(client):
     assert status_response.json()["result"] == complete["final_data"]
 
 
+def test_trust_critic_preserves_evidence_fields_for_genuine_scholarship():
+    item = {
+        "title": "HEC Overseas Scholarship 2026",
+        "provider": "Higher Education Commission",
+        "funding": "Full Tuition + Stipend",
+        "official_record": {
+            "title": "HEC Overseas Scholarship 2026",
+            "provider": "Higher Education Commission",
+            "funding": "Full Tuition + Stipend",
+            "scholarship_id": "off_001",
+            "official_domain": "hec.gov.pk",
+            "application_fee": 0,
+            "deadline": "2026-12-31",
+        },
+        "aggregator_matches": [{"title": "HEC Overseas Scholarship 2026", "listed_deadline": "2026-10-28"}],
+        "conflict_details": ["Deadline Conflict: Official=2026-12-31 vs Aggregator (StudyAbroad Hub)=2026-10-28"],
+        "has_conflict": True,
+    }
+
+    result = verify_routes.verification_service.pipeline_bridge.pipeline.run_pipeline_stream if hasattr(verify_routes.verification_service.pipeline_bridge.pipeline, "run_pipeline_stream") else None
+    critic = __import__("src.agents.trust_critic", fromlist=["TrustCriticAgent"]).TrustCriticAgent()
+    evaluated = critic.evaluate({"reconciled_opportunities": [item], "detected_scams_pool": []})
+    assert evaluated["evaluated_results"][0]["official_record"]["provider"] == "Higher Education Commission"
+    assert evaluated["evaluated_results"][0]["provider"] == "Higher Education Commission"
+    assert evaluated["evaluated_results"][0]["funding"] == "Full Tuition + Stipend"
+    assert evaluated["evaluated_results"][0]["funding_amount"] == "Full Tuition + Stipend"
+    assert evaluated["evaluated_results"][0]["aggregator_matches"][0]["title"] == "HEC Overseas Scholarship 2026"
+    assert evaluated["evaluated_results"][0]["conflict_details"] == item["conflict_details"]
+
+
+def test_reporter_preserves_evidence_fields_in_final_results():
+    planner = {"search_params": {"major": "CS", "min_cgpa": 3.8}}
+    critic = {
+        "evaluated_results": [{
+            "title": "Test Scholarship",
+            "provider": "Official Provider",
+            "funding": "Full Tuition",
+            "funding_amount": "Full Tuition",
+            "official_record": {"title": "Test Scholarship", "provider": "Official Provider", "funding": "Full Tuition"},
+            "aggregator_matches": [{"title": "Test Scholarship"}],
+            "conflict_details": ["Deadline conflict"],
+            "trust_score": 95,
+        }]
+    }
+    report = __import__("src.agents.reporter", fromlist=["ReporterAgent"]).ReporterAgent().generate_report(planner, critic, [])
+    result = report["results"][0]
+    assert result["official_record"]["provider"] == "Official Provider"
+    assert result["aggregator_matches"][0]["title"] == "Test Scholarship"
+    assert result["conflict_details"] == ["Deadline conflict"]
+    assert result["provider"] == "Official Provider"
+    assert result["funding"] == "Full Tuition"
+    assert result["funding_amount"] == "Full Tuition"
+
+
+def test_pipeline_completion_payload_keeps_evidence_fields():
+    bridge = PipelineBridge()
+    profiles = [ApplicantProfile(major="CS", cgpa=3.5)]
+    final_result = bridge.run(profiles[0], "run-333", RunManager())
+    assert final_result["results"]
+    first = final_result["results"][0]
+    assert "official_record" in first
+    assert "aggregator_matches" in first
+    assert "conflict_details" in first
+    assert "provider" in first
+    assert "funding" in first
+    assert "funding_amount" in first
+
+
+def test_no_unrelated_aggregator_match_is_attached():
+    reconciler = __import__("src.agents.reconciler", fromlist=["ReconcilerAgent"]).ReconcilerAgent()
+    official = {"title": "HEC Overseas Scholarship 2026", "provider": "Higher Education Commission", "scholarship_id": "off_001", "deadline": "2026-12-31"}
+    aggregator_list = [
+        {"title": "Global Business Leadership Award", "provider": "Unregistered MBA Forum", "scholarship_id": "agg_006", "listed_deadline": "2026-10-20"},
+        {"title": "HEC Overseas Scholarship 2026", "provider": "StudyAbroad Hub", "scholarship_id": "off_001", "listed_deadline": "2026-10-28"},
+    ]
+    matches = reconciler._match_aggregators(official, aggregator_list)
+    assert len(matches) == 1
+    assert matches[0]["title"] == "HEC Overseas Scholarship 2026"
+
+
+def test_scam_evidence_is_preserved_without_fabricated_official_record():
+    scam = {
+        "title": "Global Tech Fellowship Scam",
+        "provider": "Unknown Tech Hub",
+        "scholarship_id": "scam_001",
+        "is_scam": True,
+        "suspicious_domain": "http://pay-fee-get-scholarship.com",
+        "fee_demanded": 15,
+        "scam_reason": "Fake payment demand.",
+    }
+    critic = __import__("src.agents.trust_critic", fromlist=["TrustCriticAgent"]).TrustCriticAgent()
+    result = critic.evaluate({"reconciled_opportunities": [], "detected_scams_pool": [scam]})
+    scam_result = result["evaluated_results"][0]
+    assert scam_result["badge"] == "SCAM_REJECTED"
+    assert scam_result["official_record"] is None
+    assert scam_result["domain"] == "http://pay-fee-get-scholarship.com"
+    assert scam_result["application_fee"] == 15
+    assert "Fake payment demand." in scam_result["audit_proof"]
+
+
+def test_eligibility_filters_only_when_source_fields_exist():
+    reconciler = __import__("src.agents.reconciler", fromlist=["ReconcilerAgent"]).ReconcilerAgent()
+    official = {"title": "Test Scholarship", "provider": "Sample Provider", "scholarship_id": "test_001", "deadline": "2026-10-31", "major": "COMPUTER SCIENCE", "min_cgpa": 3.0, "funding": "Full Tuition"}
+    assert reconciler._match_aggregators(official, []) == []
+    assert official["major"] == "COMPUTER SCIENCE"
+    assert official["min_cgpa"] == 3.0
+
+
+def test_sample_mode_is_not_reported_as_live_data():
+    import app.config as config_module
+    assert config_module.settings.sample_mode is True
+
+
 def test_failed_pipeline_emits_safe_failure_event_and_terminal_status(monkeypatch):
     class FailingPipeline:
         def run_pipeline_stream(self, _profile):
