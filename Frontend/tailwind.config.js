@@ -10,6 +10,10 @@ export default {
         scam: "#EF4444",
         electric: "#3B82F6",
       },
+      fontFamily: {
+        sans: ["Inter", "ui-sans-serif", "system-ui", "sans-serif"],
+        mono: ["JetBrains Mono", "Fira Code", "ui-monospace", "monospace"],
+      },
     },
   },
   plugins: [],
