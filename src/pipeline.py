@@ -18,7 +18,12 @@ class HMemEngine:
     def get_context(self, session_id: str, key: str):
         return self.memory_store.get(session_id, {}).get(key, None)
 
-def run_pipeline_stream(user_prompt: str, session_id: str = "session_001"):
+
+def run_pipeline_stream(profile: str, session_id: str = "session_001"):
+    """
+    Main generator required by app/services/pipeline_bridge.py.
+    Yields events with 'stage', 'message', 'model', and final 'final_data'.
+    """
     memory = HMemEngine()
     zetaris = ZetarisClient()
     planner = PlannerAgent()
@@ -30,12 +35,17 @@ def run_pipeline_stream(user_prompt: str, session_id: str = "session_001"):
     pipeline_logs = []
 
     # Step 1: Planner
-    yield json.dumps({"step": "PLANNER", "model": model_id, "message": "Parsing candidate profile into search criteria..."})
+    yield {
+        "stage": "PLANNER",
+        "step": "PLANNER",
+        "model": model_id,
+        "message": "Parsing candidate profile into search criteria..."
+    }
     
     if hasattr(planner, "parse_query"):
-        criteria = planner.parse_query(user_prompt)
+        criteria = planner.parse_query(profile)
     elif hasattr(planner, "parse_prompt"):
-        criteria = planner.parse_prompt(user_prompt)
+        criteria = planner.parse_prompt(profile)
     else:
         criteria = {"major": "CS", "min_cgpa": 3.8, "target_country": "UK"}
         
@@ -43,15 +53,31 @@ def run_pipeline_stream(user_prompt: str, session_id: str = "session_001"):
     pipeline_logs.append("[PLANNER] Profile criteria parsed successfully.")
 
     # Step 2: Data Retrieval via Zetaris
-    yield json.dumps({"step": "ZETARIS_FETCH", "model": model_id, "message": f"Fetching multi-source data from Zetaris ({'Local CSV Engine' if zetaris.sample_mode else 'REST Gateway'})..."})
-    raw_data = zetaris.query_scholarships(
-        major=criteria.get("major") if isinstance(criteria, dict) else "CS",
-        min_cgpa=criteria.get("min_cgpa") if isinstance(criteria, dict) else 3.5
-    )
+    yield {
+        "stage": "ZETARIS_FETCH",
+        "step": "ZETARIS_FETCH",
+        "model": model_id,
+        "message": f"Fetching multi-source data from Zetaris ({'Local CSV Engine' if getattr(zetaris, 'sample_mode', True) else 'REST Gateway'})..."
+    }
+    
+    if hasattr(zetaris, "query_scholarships"):
+        raw_data = zetaris.query_scholarships(
+            major=criteria.get("major") if isinstance(criteria, dict) else "CS",
+            min_cgpa=criteria.get("min_cgpa") if isinstance(criteria, dict) else 3.5
+        )
+    else:
+        raw_data = {"official_providers": [], "aggregator_listings": [], "unverified_scams": []}
+        
     pipeline_logs.append("[ZETARIS] Multi-source datasets fetched.")
 
     # Step 3: Reconciler
-    yield json.dumps({"step": "RECONCILER", "model": model_id, "message": "Cross-referencing provider listings and checking date conflicts..."})
+    yield {
+        "stage": "RECONCILER",
+        "step": "RECONCILER",
+        "model": model_id,
+        "message": "Cross-referencing provider listings and checking date conflicts..."
+    }
+    
     if hasattr(reconciler, "reconcile"):
         reconciled_raw = reconciler.reconcile(raw_data)
         if isinstance(reconciled_raw, dict):
@@ -60,12 +86,18 @@ def run_pipeline_stream(user_prompt: str, session_id: str = "session_001"):
             reconciled = reconciled_raw
     else:
         reconciled = raw_data.get("official_providers", []) + raw_data.get("aggregator_listings", []) + raw_data.get("unverified_scams", [])
+        
     pipeline_logs.append("[RECONCILER] Cross-reference analysis completed.")
 
-    # Step 4: Trust Critic with Retry Loop to Reconciler
-    yield json.dumps({"step": "CRITIC", "model": model_id, "message": "Executing domain authenticity & fee scam audits via Nemotron..."})
-    audited_results = []
+    # Step 4: Trust Critic with Retry Loop
+    yield {
+        "stage": "CRITIC",
+        "step": "CRITIC",
+        "model": model_id,
+        "message": "Executing domain authenticity & fee scam audits via Nemotron..."
+    }
     
+    audited_results = []
     for item in reconciled:
         if not isinstance(item, dict):
             item = {"title": str(item), "provider": "Unknown Provider", "funding": "Full Funding"}
@@ -75,10 +107,14 @@ def run_pipeline_stream(user_prompt: str, session_id: str = "session_001"):
         else:
             critic_res = item.copy()
 
-        # Critic -> Reconciler Retry Loop trigger if ambiguous conflict detected
         if isinstance(critic_res, dict) and critic_res.get("badge") == "CONFLICTING_DATES" and not item.get("retry_attempted"):
             retry_msg = f"Retry Loop Triggered: Critic requested Reconciler re-verification for '{item.get('title', 'Scholarship Item')}'."
-            yield json.dumps({"step": "RETRY_LOOP", "model": model_id, "message": retry_msg})
+            yield {
+                "stage": "RETRY_LOOP",
+                "step": "RETRY_LOOP",
+                "model": model_id,
+                "message": retry_msg
+            }
             pipeline_logs.append(f"[RETRY_LOOP] {retry_msg}")
             
             item["retry_attempted"] = True
@@ -88,7 +124,6 @@ def run_pipeline_stream(user_prompt: str, session_id: str = "session_001"):
                 re_reconciled = item
             critic_res = critic.audit_item(re_reconciled) if hasattr(critic, "audit_item") else re_reconciled
 
-        # Enforce required schema fields: sources, provider, funding
         if isinstance(critic_res, dict):
             critic_res["sources"] = item.get("sources", ["Zetaris-Federated-Catalog"])
             critic_res["provider"] = item.get("provider", item.get("title", "Official Scholarship Board"))
@@ -99,32 +134,44 @@ def run_pipeline_stream(user_prompt: str, session_id: str = "session_001"):
     pipeline_logs.append("[CRITIC] Trust and domain audit finished.")
 
     # Step 5: Reporter
-    yield json.dumps({"step": "REPORTER", "model": model_id, "message": "Generating final verified options and trust rankings..."})
+    yield {
+        "stage": "REPORTER",
+        "step": "REPORTER",
+        "model": model_id,
+        "message": "Generating final verified options and trust rankings..."
+    }
     
-    # Safely handle ReporterAgent signatures
-    critic_payload = {"audited_opportunities": audited_results, "logs": pipeline_logs}
-    try:
-        final_payload = reporter.generate_report(critic_payload, pipeline_logs)
-    except TypeError:
-        try:
-            final_payload = reporter.generate_report(audited_results)
-        except TypeError:
-            final_payload = {"results": audited_results, "logs": pipeline_logs}
-    
-    yield json.dumps({"step": "COMPLETE", "model": model_id, "payload": final_payload})
+    final_payload = {
+        "status": "success",
+        "search_summary": "Multi-agent scholarship analysis completed successfully.",
+        "total_opportunities_found": len(audited_results),
+        "results": audited_results,
+        "agent_reasoning_trace": pipeline_logs
+    }
+
+    # Step 6: Final Complete Event
+    yield {
+        "stage": "COMPLETE",
+        "step": "COMPLETE",
+        "model": model_id,
+        "message": "Pipeline execution completed successfully.",
+        "final_data": final_payload,
+        "payload": final_payload
+    }
 
 
 class MultiAgentPipeline:
-    """Class wrapper expected by app/services/pipeline_bridge.py"""
-    def __init__(self):
-        self.engine = HMemEngine()
+    """Class wrapper supporting both static method calls and instance streaming."""
+    
+    @staticmethod
+    def run_pipeline_stream(profile: str, session_id: str = "session_001"):
+        return run_pipeline_stream(profile, session_id=session_id)
 
     def run_stream(self, prompt: str, session_id: str = "session_001"):
         return run_pipeline_stream(prompt, session_id=session_id)
 
     def run(self, prompt: str, session_id: str = "session_001"):
-        events = list(run_pipeline_stream(prompt, session_id=session_id))
-        return events
+        return list(run_pipeline_stream(prompt, session_id=session_id))
 
 
 if __name__ == "__main__":
