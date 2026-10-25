@@ -38,6 +38,17 @@ class VerificationEvent(BaseModel):
     final_data: Optional[dict[str, Any]] = None
 
 
+class ScholarshipEvidence(BaseModel):
+    model_config = ConfigDict(extra="allow")
+
+    official_record: Optional[dict[str, Any]] = None
+    aggregator_matches: list[dict[str, Any]] = Field(default_factory=list)
+    conflict_details: list[str] = Field(default_factory=list)
+    provider: Optional[str] = None
+    funding: Optional[str] = None
+    funding_amount: Optional[str] = None
+
+
 class VerificationResponse(BaseModel):
     run_id: str
     status: Literal["success", "error"]

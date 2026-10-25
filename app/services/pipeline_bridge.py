@@ -42,6 +42,17 @@ class PipelineBridge:
         pipeline_input = self.build_pipeline_input(profile)
         final_data = None
 
+        if run_manager is not None and run_id not in run_manager._runs:
+            run_manager._runs[run_id] = {
+                "run_id": run_id,
+                "status": "running",
+                "events": [],
+                "result": None,
+                "error": None,
+                "created_at": __import__("time").time(),
+                "updated_at": __import__("time").time(),
+            }
+
         try:
             for event in self.pipeline.run_pipeline_stream(pipeline_input):
                 if run_manager is not None:
@@ -50,6 +61,8 @@ class PipelineBridge:
                     final_data = event.get("final_data")
                     break
         except Exception as exc:
+            if run_manager is not None and run_id in run_manager._runs:
+                run_manager.fail_run(run_id, "Verification pipeline failed.")
             raise PipelineExecutionError("Pipeline execution failed.") from exc
 
         if final_data is None:

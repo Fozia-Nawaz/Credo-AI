@@ -114,7 +114,7 @@ def run_pipeline_stream(profile: str, session_id: str = "session_001"):
         "model": model_id,
         "message": "Executing domain authenticity & fee scam audits via NVIDIA Nemotron..."
     }
-    
+
     audited_results = []
     for item in reconciled:
         if not isinstance(item, dict):
@@ -125,7 +125,6 @@ def run_pipeline_stream(profile: str, session_id: str = "session_001"):
         else:
             critic_res = item.copy()
 
-        # Retry loop logic for conflicting dates or unverified listings
         if isinstance(critic_res, dict) and critic_res.get("badge") == "CONFLICTING_DATES" and not item.get("retry_attempted"):
             retry_msg = f"Retry Loop Triggered: Critic requested Reconciler re-verification for '{item.get('title', 'Scholarship Item')}'."
             yield {
@@ -135,7 +134,7 @@ def run_pipeline_stream(profile: str, session_id: str = "session_001"):
                 "message": retry_msg
             }
             pipeline_logs.append(f"[RETRY_LOOP] {retry_msg}")
-            
+
             item["retry_attempted"] = True
             if hasattr(reconciler, "re_verify_item"):
                 re_reconciled = reconciler.re_verify_item(item)
@@ -143,12 +142,15 @@ def run_pipeline_stream(profile: str, session_id: str = "session_001"):
                 re_reconciled = item
             critic_res = critic.audit_item(re_reconciled) if hasattr(critic, "audit_item") else re_reconciled
 
-        # Single Normalized Formatting Block (Fixes Duplication & Map Badges)
         if isinstance(critic_res, dict):
+            official_record = critic_res.get("official_record") if isinstance(critic_res.get("official_record"), dict) else None
+            if official_record is None and isinstance(item, dict):
+                official_record = item.get("official_record") if isinstance(item.get("official_record"), dict) else None
+
             title_str = critic_res.get("title") or item.get("title") or item.get("name") or "Scholarship Opportunity"
-            provider_str = critic_res.get("provider") or item.get("provider") or "Scholarship Board"
-            
-            # Read exact status from CSV or Critic
+            provider_str = critic_res.get("provider") or item.get("provider") or (official_record or {}).get("provider") or "Scholarship Board"
+            funding_value = critic_res.get("funding") or item.get("funding") or (official_record or {}).get("funding") or "Tuition / Stipend"
+            deadline_value = critic_res.get("deadline") or item.get("deadline") or (official_record or {}).get("deadline") or "2026-12-31"
             status_val = str(item.get("status") or critic_res.get("status") or critic_res.get("badge") or "VERIFIED").upper()
             raw_score = item.get("trust_score") or critic_res.get("trust_score") or critic_res.get("score")
 
@@ -168,12 +170,16 @@ def run_pipeline_stream(profile: str, session_id: str = "session_001"):
                 "trust_score": int(raw_score),
                 "badge": status_val,
                 "status": status_val,
-                "funding": critic_res.get("funding") or item.get("funding") or "Tuition / Stipend",
-                "amount": critic_res.get("funding") or item.get("funding") or "Fully Funded",
-                "deadline": critic_res.get("deadline") or item.get("deadline") or "2026-12-31",
+                "funding": funding_value,
+                "funding_amount": funding_value,
+                "amount": funding_value,
+                "deadline": deadline_value,
                 "sources": critic_res.get("sources") or item.get("sources") or ["Zetaris-Federated-Catalog"],
-                "discrepancy_details": critic_res.get("discrepancy_details") or ("Suspicious fee required" if status_val == "SCAM_QUARANTINE" else ("Date conflict across portals" if status_val == "DISCREPANCY" else "Verified official record.")),
-                "is_scam": True if status_val == "SCAM_QUARANTINE" or item.get("is_scam") else False
+                "discrepancy_details": critic_res.get("conflict_details") or critic_res.get("discrepancy_details") or ("Suspicious fee required" if status_val == "SCAM_QUARANTINE" else ("Date conflict across portals" if status_val == "DISCREPANCY" else "Verified official record.")),
+                "official_record": official_record or item.get("official_record"),
+                "aggregator_matches": critic_res.get("aggregator_matches") or item.get("aggregator_matches") or [],
+                "conflict_details": critic_res.get("conflict_details") or item.get("conflict_details") or [],
+                "is_scam": True if status_val == "SCAM_QUARANTINE" or item.get("is_scam") else False,
             }
             audited_results.append(formatted_item)
 
