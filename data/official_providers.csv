@@ -1,4 +1,20 @@
-scholarship_id,title,provider,official_domain,eligible_majors,min_cgpa,deadline,application_fee,is_official
-SCH_001,HEC Overseas Scholarship 2026,Higher Education Commission Pakistan,hec.gov.pk,"CS, EE, Data Science, AI",3.0,2026-11-30,0,True
-SCH_002,Fulbright Master's and PhD Program,USEFP,usefp.org,"All Majors, Linguistics, CS, Social Sciences",3.2,2026-12-15,0,True
-SCH_003,Chevening UK Scholarship,UK Government,chevening.org,"CS, Software Engineering, AI, Business",2.8,2026-11-05,0,True
+id,title,provider,major,min_cgpa,funding,deadline,status,trust_score,is_scam,country,official_link
+off_001,HEC Overseas Scholarship 2026,Higher Education Commission,CS,3.5,Full Tuition + Stipend,2026-12-31,VERIFIED,94,false,UK,https://hec.gov.pk/scholarships
+off_002,Fulbright Postgraduate Award,USEFP,CS,3.6,Full Funding,2026-11-15,VERIFIED,98,false,USA,https://usefp.org/fulbright
+off_003,Chevening UK Scholarship,UK Foreign Office,ANY,3.3,Full Tuition + Flights,2026-11-30,VERIFIED,96,false,UK,https://chevening.org
+off_004,CSU Data Center & Cloud Computing Award,California State University,CS,3.2,Full Tuition + Lab Access,2026-11-20,VERIFIED,95,false,USA,https://calstate.edu/datacenter-grant
+off_005,CSU Data Center Student Tech Grant,California State University,DATA SCIENCE,3.0,$8000 Annual Stipend,2026-12-05,VERIFIED,92,false,USA,https://calstate.edu/tech-fellowships
+off_006,Global Data Analytics Fellowship,MIT Data Lab,DATA SCIENCE,3.4,Full Tuition,2026-12-10,VERIFIED,97,false,USA,https://mit.edu/data-grant
+off_007,Stanford Data Science Excellence Award,Stanford University,DATA SCIENCE,3.5,Full Accommodation + Stipend,2026-11-28,VERIFIED,96,false,USA,https://stanford.edu/ds-fellowship
+off_008,MEXT Japanese Government Scholarship,MEXT Japan,AI,3.5,Full Tuition + Stipend,2026-12-15,VERIFIED,97,false,Japan,https://mext.go.jp/english
+off_009,OpenAI Artificial Intelligence Grant,OpenAI Research,AI,3.6,$15000 Annual Stipend,2026-11-22,VERIFIED,98,false,USA,https://openai.com/grants
+off_010,DeepMind AI Research Fellowship,DeepMind Foundation,AI,3.5,Full Tuition + Research Fund,2026-12-01,VERIFIED,96,false,UK,https://deepmind.com/fellowships
+off_011,DAAD German Engineering Scholarship,DAAD Germany,ENGINEERING,3.2,Monthly Stipend,2026-12-20,VERIFIED,94,false,Germany,https://daad.de/en
+off_012,ETH Zurich Robotics & Engineering Grant,ETH Zurich,ENGINEERING,3.5,Full Tuition,2026-11-18,VERIFIED,95,false,Switzerland,https://ethz.ch/engineering
+off_013,Australia Awards Fellowship,Australian Govt,ANY,3.4,Full Tuition + Travel,2026-11-05,VERIFIED,95,false,Australia,https://australiaawards.gov.au
+off_014,WHO Global Health Leadership Grant,World Health Organization,MEDICAL,3.5,Full Accommodation + Stipend,2026-11-18,VERIFIED,96,false,Switzerland,https://who.int/careers/scholarships
+off_015,Harvard Medical Research Fellowship,Harvard Medical School,MEDICAL,3.6,Full Tuition + Lab Allowance,2026-12-12,VERIFIED,97,false,USA,https://hms.harvard.edu/grants
+off_016,LUMS MBA Leaders Scholarship,LUMS Business School,BUSINESS,3.4,100% Tuition Waiver,2026-11-25,VERIFIED,91,false,Pakistan,https://lums.edu.pk/financial-aid
+off_017,INSEAD International Business Grant,INSEAD Business School,BUSINESS,3.3,$20000 Tuition Waiver,2026-12-08,VERIFIED,93,false,France,https://insead.edu/scholarships
+off_018,Rotary International Peace Fellowship,Rotary Foundation,HUMANITIES,3.2,Full Tuition + Travel,2026-12-05,VERIFIED,93,false,USA,https://rotary.org/fellowships
+off_019,Vanier Canada Graduate Scholarships,Government of Canada,ANY,3.7,$50000 Per Year,2026-11-08,VERIFIED,99,false,Canada,https://vanier.gc.ca

@@ -1,3 +1,7 @@
-scam_id,scholarship_id,title,suspicious_domain,fake_portal_url,fee_demanded,fee_currency,scam_reason
-SCAM_101,SCH_001,HEC Fully Funded Direct Grant - Fast Track Approval,hec-scholarship-apply-now.xyz,https://hec-scholarship-apply-now.xyz/register,15,USD,Non-institutional .xyz domain requesting $15 processing fee for free government scheme.
-SCAM_102,SCH_002,Fulbright Fast-Track Guarantee Fee Portal,usefp-fulbright-grant.top,https://usefp-fulbright-grant.top/pay-fee,25,USD,Fake domain requiring $25 documentation review fee.
+id,title,provider,major,min_cgpa,funding,deadline,status,trust_score,is_scam,country,suspicious_url
+scam_001,Global Tech Fellowship Scam,Unknown Tech Hub,CS,2.5,$5000 Direct Cash,2026-10-01,SCAM_QUARANTINE,15,true,Global,http://pay-fee-get-scholarship.com
+scam_002,Data Science Instant Cash Scheme,Unverified Registry,DATA SCIENCE,2.0,Pay Processing Fee First,2026-10-08,SCAM_QUARANTINE,12,true,Global,http://instant-ds-bursary.net
+scam_003,AI Direct Cash Bursary,Unknown Registry,AI,2.0,Pay $50 Registration Fee,2026-10-05,SCAM_QUARANTINE,10,true,Global,http://cash-ai-claim.org
+scam_004,Medical Overseas Education Portal Scam,Unverified Health Org,MEDICAL,2.8,Pay Application Advance,2026-10-12,SCAM_QUARANTINE,18,true,Global,http://medical-grant-direct.com
+scam_005,Engineering Guaranteed Grant Fraud,Fake Education Trust,ENGINEERING,2.2,Pay $100 Processing Fee,2026-10-15,SCAM_QUARANTINE,11,true,Global,http://engineering-grant-scam.com
+scam_006,Fake Overseas Education Fund,Unverified Portal,ANY,2.0,Pay Processing Fee First,2026-10-10,SCAM_QUARANTINE,10,true,Global,http://instant-approval-bursary.net
