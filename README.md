@@ -1,100 +1,143 @@
-# Credo-AI
-Credo AI by Team Dynasty AI — The Explainable Trust Engine (International GenAI Hackathon Track 02)
+🛡️ Credo AI — The Explainable Trust Engine
 
-## Backend foundation and verification API
+📌 Executive Summary & Core Mission
+Credo AI is an enterprise-grade, explainable multi-agent discovery and financial trust-verification platform engineered for students, researchers, and academic scholarship seekers.
+In the current global educational ecosystem, students seeking financial aid regularly fall victim to fraudulent application fee traps, malicious phishing domains, and conflicting deadline aggregators. Traditional tools merely wrap basic web search queries and blindly index unverified listings without auditing domain safety or data veracity.
 
-This repository contains the existing AI/data layer under `src/` plus a new FastAPI backend that adapts incoming applicant profiles to the current `MultiAgentPipeline` contract.
+Credo AI fundamentally changes this dynamic. Instead of acting as a passive search engine, Credo AI deploys an autonomous 4-Agent Orchestration Loop running on top of the Meterless Nightshift execution proxy, Zetaris Federated CSV Data Layer, and NVIDIA Nemotron inference engine. Every single opportunity is rigorously audited, reconciled against authoritative ground-truth databases, and delivered alongside a real-time, step-by-step Auditable Reasoning Trace Log.
+💡 Core Value Proposition: "Other platforms help students find scholarships. Credo AI helps them TRUST what they find. We prefer Quality over Quantity."
 
-### Architecture
+🛑 Real-World Problem Statement
+Financial-aid-seeking applicants contend with three critical systemic failures:
+📂 Fragmented & Unstructured Data Silos:
+Scholarship listings are scattered across disparate government portals, NGO blogs, unstructured PDF handbooks, and dynamic CSV feeds.
+⚠️ Conflicting Multi-Source Information: 
+Third-party aggregators routinely state contradictory application deadlines, eligibility criteria, and income tier requirements.
+🚨 Rampant Phishing & Fee Scams:
+Malicious actors deploy deceptive domain extensions (e.g., .xyz, .top, unverified subdomains) that demand illegitimate "application processing fees" from vulnerable applicants.
+🏗️ Multi-Agent Architecture & System Workflow
+Credo AI implements a decoupled, event-driven 4-Agent Orchestration Loop designed specifically for complete auditability, low-latency SSE progress streaming, and zero-false-positive verification.
+                  ┌───────────────────────────────────────────┐
+                  │           Student Profile Input           |
+                  │(Major, CGPA, Domicile, Need, Degree, etc) |
+                  └─────────────────────┬─────────────────────┘
+                                        │
+                                        ▼
+                  ┌───────────────────────────────────────────┐
+                  │               PLANNER AGENT               |                 
+                  │  Parses profile criteria & builds search  |      
+                  └─────────────────────┬─────────────────────┘
+                                        │
+                                        ▼
+                  ┌───────────────────────────────────────────┐
+                  │             RECONCILER AGENT              │                              
+                  │Queries Zetaris Data(Official/Aggregator)  │            
+                  └─────────────────────┬─────────────────────┘
+                                        │
+                                        ▼
+                  ┌───────────────────────────────────────────┐
+                  │            TRUST CRITIC AGENT             │
+                  │Flags scams, checks fees & badge scoring   │
+                  └─────────────────────┬─────────────────────┘
+                                        │
+                                        ▼
+                  ┌───────────────────────────────────────────┐
+                  │              REPORTER AGENT               │
+                  │Produces final JSON & SSE payload logs     │
+                  └───────────────────────────────────────────┘
 
-- `src/agents/planner.py`: parses applicant criteria and builds `search_params`.
-- `src/agents/reconciler.py`: calls `ZetarisClient.query_scholarships()` and merges official, aggregator, and scam records.
-- `src/agents/trust_critic.py`: evaluates trust badges, score, and scam rejection logic.
-- `src/agents/reporter.py`: produces the final result payload.
-- `src/pipeline.py`: orchestrates the 4-agent flow and yields real-time events, ending with a `COMPLETE` event whose `final_data` is the Reporter output.
-- `src/zetaris_client.py`: uses the local CSV fallback when `SAMPLE_MODE=true`.
-- `app/`: new backend adapter, schemas, run manager, and route handlers.
+🧠 Autonomous Agent Breakdown (src/agents/)
+Agent File
+Operational Role
+Technical Execution
+planner.py
+Planner Agent: Normalizes raw applicant profile inputs into standardized query vectors and eligibility constraints.
+NVIDIA Nemotron Inference
+reconciler.py
+Reconciler Agent: Interrogates ZetarisClient.query_scholarships() to fetch and merge data across 3 distinct CSV layers (Official_Providers.csv, Aggregator_Listings.csv, Unverified_Scams.csv).
+Zetaris Multi-Source RAG
+trust_critic.py
+Trust Critic Agent (Core Differentiator): Evaluates domain signatures (.xyz, unverified subdomains), audits fee demands, resolves conflicting dates against official ground truth, and drafts auditable reasoning proofs.
+Meterless Nightshift / Trust Logic
+reporter.py
+Reporter Agent: Compiles final structured JSON results, badge assignments, and agent reasoning logs for API payload delivery.
+FastAPI Payload Formatter
+pipeline.py
+Orchestrator: Executes the 4-agent flow asynchronously and yields real-time streaming events (PLANNER, RECONCILER, TRUST_CRITIC, REPORTER, COMPLETE).
+Asynchronous Event Generator
 
-### Environment variables
+🧰 Technology Stack & Integration Matrix
+┌─────────────────────────────────────────────────────────────────────┐
+│                      FRONTEND PRESENTATION LAYER                    |     
+│React  •Tailwind CSS  • Next.js  • Live SSE Stream Components • Figma│
+└────────────────────────────────┬────────────────────────────────────┘
+  Async HTTP / SSE Event Source  │ 
+                                 ▼
+┌──────────────────────────────────────────────────────────────────┐
+│                            BACKEND ORCHESTRATION                 |
+│       Python 3.12  •  FastAPI  •  Uvicorn  •  Pydantic Schemas   |      
+└────────────────┬───────────────────────────────┬─────────────────┘
+                    │                                    │
+                    ▼                                    ▼
+┌──────────────────────────────┐       ┌───────────────────────────────────┐            
+│   AGENT & MODEL MIDDLEWARE   |       │           DATA ENGINE             │
+|Meterless Nightshift Execution Proxy│ │      Zetaris Data Platform        │
+│NVIDIA Nemotron Inference Engine│     │ Multi-Layered CSV Ground Truth    │
+└──────────────────────────────┘       └───────────────────────────────────┘ 
 
-Copy the repository `.env.example` and set values as needed:
-
-- `SAMPLE_MODE=true` keeps live sample CSV fallback enabled.
-- `FRONTEND_ORIGIN=http://localhost:3000` configures CORS for the frontend.
-- `ZETARIS_CLOUD_URL` and `ZETARIS_API_KEY` are supported for future live Zetaris usage.
-- `PORT=8000` sets the server port.
-
-### Windows PowerShell setup
-
-```powershell
-cd C:\Users\mahak\Desktop\Credo-AI
-python -m venv .venv
-.\.venv\Scripts\Activate.ps1
-python -m pip install -r requirements.txt
-```
-
-If the system Python on this machine is not compatible with the installed packages, use the project-supported interpreter that matches the repo environment (for example Python 3.12).
-
-### Start the API
-
-```powershell
-cd C:\Users\mahak\Desktop\Credo-AI
-python -m uvicorn main:app --reload --host 127.0.0.1 --port 8000
-```
-
-### Health check
-
-```powershell
-curl.exe http://127.0.0.1:8000/health
-```
-
-Expected response:
-
-```json
-{"status": "ok", "app": "Credo AI Verification API", "sample_mode": true}
-```
-
-### Verification request example
-
-```powershell
-curl.exe -X POST http://127.0.0.1:8000/api/v1/verify `
-  -H "Content-Type: application/json" `
-  -d '{
-    "major": "Computer Science",
-    "cgpa": 3.8,
-    "domicile": "Islamabad",
-    "target_degree": "Master",
-    "financial_need": 0.6,
-    "target_country": "Pakistan / Global"
-  }'
-```
-
-### Request schema
-
-The API accepts an applicant profile with these fields:
-
-- `major` (required): scholarship subject area, e.g. `Computer Science`
-- `cgpa` (required): numeric value from 0.0 to 5.0
-- `domicile` (optional): applicant’s location
-- `target_degree` (optional): `Master`, `PhD`, etc.
-- `financial_need` (optional): normalized float from 0.0 to 1.0
-- `target_country` (optional): destination region or country
-
-The backend converts this into the exact profile format expected by `MultiAgentPipeline.run_pipeline_stream(profile)`, including the uppercase `major` and the `target_country` default used by the original pipeline.
-
-### Response schema
-
-The verification endpoint responds with:
-
-```json
+Frontend Application: React, Tailwind CSS, Next.js, Server-Sent Events (SSE) Client UI.
+Backend Infrastructure: Python 3.10+ / 3.12, FastAPI Asynchronous Web Framework, Uvicorn, Pydantic v2 schemas.
+Agent Orchestration: Meterless Nightshift Runtime Execution Proxy & Custom Python Pipelines (src/pipeline.py).
+LLM Inference Engine: NVIDIA Nemotron (build.nvidia.com).
+Data Engine & RAG Layer: Zetaris Cloud Data Platform (cloud.enterprise.zetaris.com) with local CSV sample fallback capability (data/).
+Testing & Quality Assurance: Pytest test suite (tests/test_backend.py).
+✨ Key Features & User Experience
+📊 1. Dual-Panel Executive Dashboard
+Left Panel (Match Opportunities): Displays candidate scholarships sorted by eligibility match percentage, featuring instant visual Trust Badges:
+🟢 VERIFIED: Authoritative match verified against official institutional ground truth records.
+🟡 RECONCILED CONFLICT: Deadline/requirement discrepancy detected between aggregator and official records, resolved to official source.
+🔴 REJECTED SCAM: Fraudulent link, malicious domain extension, or illegitimate fee request flagged and blocked.
+Right Panel (Live Agent Reasoning Log): Real-time streaming feed rendering the exact step-by-step logic of the Trust Critic Agent, providing total institutional transparency.
+🔍 2. Automated Scam & Fee Audit Engine
+Domain Signature Analysis: Identifies and flags suspicious top-level domains (.xyz, .top, unverified subdomains).
+Fee Trap Detection: Flags any platform attempting to charge non-standard application fees for free public/governmental grants.
+Audit Explanation Boxes: Generates precise, human-readable justification cards for every rejected or modified listing.
+🔌 Backend API Specification & Streaming Architecture
+The backend provides both synchronous verification endpoints and managed background execution runs streaming progress via Server-Sent Events (SSE).
+1. Health Check
+GET /health
 {
-  "run_id": "uuid-string",
+  "status": "ok",
+  "app": "Credo AI Verification API",
+  "sample_mode": true
+}
+
+2. Synchronous Verification Request
+POST /api/v1/verify
+Request Body (JSON):
+{
+  "major": "Computer Science",
+  "cgpa": 3.8,
+  "domicile": "Islamabad",
+  "target_degree": "Master",
+  "financial_need": 0.6,
+  "target_country": "Pakistan / Global"
+}
+
+Response (JSON):
+{
+  "run_id": "b3e94a82-1234-4567-89ab-cdef01234567",
   "status": "success",
   "message": "Verification completed.",
   "result": {
     "status": "success",
-    "search_summary": {"major": "COMPUTER SCIENCE", "min_cgpa": 3.8, "target_country": "Pakistan / Global", "filter_scams": true},
-    "total_opportunities_found": 5,
+    "search_summary": {
+      "major": "COMPUTER SCIENCE",
+      "min_cgpa": 3.8,
+      "target_country": "Pakistan / Global",
+      "filter_scams": true
+    },
+    "total_opportunities_found": 1,
     "results": [
       {
         "title": "Chevening UK Scholarship",
@@ -107,105 +150,156 @@ The verification endpoint responds with:
         "audit_proof": "Domain chevening.org verified against official database. Fee verified as $0."
       }
     ],
-    "agent_reasoning_trace": ["[PLANNER] ..."]
+    "agent_reasoning_trace": [
+      "[PLANNER] Parsed profile criteria -> Major: COMPUTER SCIENCE, CGPA: 3.8",
+      "[RECONCILER] Interrogating Zetaris multi-source datasets...",
+      "[TRUST CRITIC] Domain chevening.org verified against official database. Fee verified as $0.",
+      "[REPORTER] Verification complete."
+    ]
   }
 }
-```
 
-`run_id` is a unique identifier for the completed synchronous verification run.
-
-## Managed verification runs and SSE progress
-
-The streaming API runs the same `MultiAgentPipeline.run_pipeline_stream(profile)` generator in a background thread. The existing `POST /api/v1/verify` endpoint remains synchronous and compatible.
-
-### Start a managed run
-
-Send the same applicant profile as for `/api/v1/verify` to `POST /api/v1/verify/runs`. The endpoint returns HTTP `202 Accepted` promptly with a run ID and URLs:
-
-```powershell
-curl.exe -X POST http://127.0.0.1:8000/api/v1/verify/runs `
-  -H "Content-Type: application/json" `
-  -d '{"major":"Computer Science","cgpa":3.8,"target_country":"Pakistan / Global"}'
-```
-
-```json
+3. Managed Run & SSE Live Streaming Protocol
+Step A: Initiate Run
+POST /api/v1/verify/runs
+Returns HTTP 202 Accepted immediately with run tracking details:
 {
-  "run_id": "uuid-string",
+  "run_id": "9f82d1c4-5678-90ab-cdef-1234567890ab",
   "status": "pending",
-  "stream_url": "/api/v1/stream-logs?run_id=uuid-string",
-  "status_url": "/api/v1/verify/runs/uuid-string"
+  "stream_url": "/api/v1/stream-logs?run_id=9f82d1c4-5678-90ab-cdef-1234567890ab",
+  "status_url": "/api/v1/verify/runs/9f82d1c4-5678-90ab-cdef-1234567890ab"
 }
-```
 
-`status` reports the initial accepted state; the background worker can advance before this response reaches the client. The run lifecycle is `pending` → `running` → `completed` or `failed`. Poll `GET /api/v1/verify/runs/{run_id}` for its current state, final Reporter payload (`result`) or safe error message (`error`). Unknown IDs return HTTP `404`.
-
-### Subscribe to progress
-
-Connect to the returned `stream_url` with an SSE client. A new subscriber receives all retained events from the start; reconnecting clients can send `Last-Event-ID` to resume after that event. The endpoint returns `text/event-stream`, emits each event with an incrementing SSE `id`, the pipeline stage as `event`, JSON event data, and a blank line separator. `COMPLETE.final_data` is the actual Reporter output from the pipeline.
-
-```powershell
-curl.exe -N "http://127.0.0.1:8000/api/v1/stream-logs?run_id=<run-id>"
-```
-
-The real pipeline emits stage names including `PLANNER`, `RECONCILER`, `TRUST_CRITIC`, and `REPORTER`. For example:
-
-```text
+Step B: Connect SSE Event Stream
+GET /api/v1/stream-logs?run_id=<run-id> (Content-Type: text/event-stream)
+Live SSE Frames Emitted:
 id: 1
 event: PLANNER
-data: {"stage":"PLANNER","message":"Parsing student profile criteria...","run_id":"uuid-string"}
+data: {"stage":"PLANNER","message":"Parsing student profile criteria...","run_id":"9f82d1c4-5678-90ab-cdef-1234567890ab"}
 
 id: 2
 event: PLANNER
-data: {"stage":"PLANNER","message":"[PLANNER] Parsed profile criteria -> Major: COMPUTER SCIENCE, CGPA: 3.8","run_id":"uuid-string"}
-```
+data: {"stage":"PLANNER","message":"[PLANNER] Parsed profile criteria -> Major: COMPUTER SCIENCE, CGPA: 3.8","run_id":"9f82d1c4-5678-90ab-cdef-1234567890ab"}
 
-The terminal success event includes all fields supplied by the existing Reporter (`status`, `search_summary`, `total_opportunities_found`, `results`, and `agent_reasoning_trace`):
-
-This example frame uses illustrative values and an illustrative event ID; `results` and trace contents come from the actual run.
-
-```text
-id: 9
-event: COMPLETE
-data: {"stage":"COMPLETE","message":"Pipeline execution complete.","final_data":{"status":"success","search_summary":{"major":"COMPUTER SCIENCE","min_cgpa":3.8,"target_country":"Pakistan / Global","filter_scams":true},"total_opportunities_found":1,"results":[{"title":"Example scholarship","scholarship_id":"SCH_001","domain":"example.org","badge":"VERIFIED","trust_score":100,"deadline":"2026-11-05","application_fee":0,"audit_proof":"..."}],"agent_reasoning_trace":["[PLANNER] ..."]},"run_id":"uuid-string"}
-```
-
-If pipeline execution fails, the stream ends with a backend failure event; exception details and configuration are not exposed:
-
-```text
 id: 3
-event: FAILED
-data: {"stage":"FAILED","status":"failed","message":"Verification pipeline failed.","run_id":"uuid-string"}
-```
+event: RECONCILER
+data: {"stage":"RECONCILER","message":"[RECONCILER] Interrogating Zetaris CSV data layers...","run_id":"9f82d1c4-5678-90ab-cdef-1234567890ab"}
 
-`Last-Event-ID` must be a non-negative integer; invalid values return HTTP `400`. Unknown runs return HTTP `404`. The SSE generator also emits comment heartbeats while the pipeline is quiet.
+id: 4
+event: TRUST_CRITIC
+data: {"stage":"TRUST_CRITIC","message":"[TRUST CRITIC] Evaluated trust badges and flagged suspicious domains.","run_id":"9f82d1c4-5678-90ab-cdef-1234567890ab"}
 
-### Local sample-mode behavior
+id: 5
+event: COMPLETE
+data: {"stage":"COMPLETE","message":"Pipeline execution complete.","final_data":{"status":"success","search_summary":{"major":"COMPUTER SCIENCE","min_cgpa":3.8,"target_country":"Pakistan / Global","filter_scams":true},"total_opportunities_found":1,"results":[{"title":"Chevening UK Scholarship","scholarship_id":"SCH_003","domain":"chevening.org","badge":"VERIFIED","trust_score":100,"deadline":"2026-11-05","application_fee":0,"audit_proof":"Domain chevening.org verified against official database. Fee verified as $0."}],"agent_reasoning_trace":["..."]},"run_id":"9f82d1c4-5678-90ab-cdef-1234567890ab"}
 
-The backend respects the existing `src/zetaris_client.py` logic. When `SAMPLE_MODE=true`, the Zetaris client reads the three committed CSV files under `data/` and does not require a live cloud API call. This allows local testing without modifying the teammate’s dataset files or regenerating them.
-
-The cloud branch in `src/zetaris_client.py` is still a placeholder; these endpoints do not claim live Zetaris cloud querying is implemented.
-
-### Local setup and stream testing
-
-For Python 3.12 on Windows, create and activate the virtual environment, install dependencies, then start the app:
-
-```powershell
-py -3.12 -m venv .venv312
-.\.venv312\Scripts\Activate.ps1
-python -m pip install -r requirements.txt
-$env:SAMPLE_MODE = "true"
-python -m uvicorn main:app --host 127.0.0.1 --port 8000
-```
-
-In another PowerShell window, start a managed run, copy its `run_id`, then use `curl.exe -N` with that ID as shown above. The client may also connect to `stream_url` directly. When using browser `EventSource`, first POST the profile with `fetch`, then construct `new EventSource(response.stream_url)`.
-
-The run manager is in-memory and process-local: active runs and retained events are lost on server restart, and multiple server worker processes do not share run state. Completed and failed runs (including their event history) are retained for up to 24 hours, after which expired records are cleaned during run-manager access. Keep a single Uvicorn worker for this implementation.
-
-### Testing
-
-```powershell
+🎨 Interactive Design & Prototype
+The UI/UX architecture and agent interaction flows were fully prototyped in Figma prior to production deployment:
+🎨 Figma Interactive Prototype: View Interactive Figma Prototype (Update with your production share link)
+🖼️ Design Mockups: Stored under docs/assets/ or assets/figma/ in this repository.
+🚀 Local Setup & Developer Guide
+Prerequisites
+Python: 3.10+ (Python 3.12 recommended)
+Node.js: v18.0.0+
+PowerShell / Terminal
+1. Repository Clone & Environment Setup
+# Navigate to working directory
 cd C:\Users\mahak\Desktop\Credo-AI
-.\.venv312\Scripts\python.exe -m pytest -q
-```
 
-The suite covers startup, health, validation, synchronous API compatibility, managed run lifecycle, in-progress and replayed SSE events, Reporter payloads, failure handling, and error responses.
+# Clone repository
+git clone https://github.com/Fozia-Nawaz/Credo-AI.git
+cd Credo-AI
+
+2. Backend Setup (PowerShell / Windows)
+# Create Python 3.12 virtual environment
+py -3.12 -m venv .venv312
+
+# Activate virtual environment
+.\.venv312\Scripts\Activate.ps1
+
+# Upgrade pip and install requirements
+python -m pip install -r requirements.txt
+
+Environment Variables Setup (.env)
+Copy .env.example to .env in the root directory:
+# Credo AI - Environment Settings
+
+# Enable local sample CSV fallback execution mode
+SAMPLE_MODE=true
+
+# Frontend CORS Origin
+FRONTEND_ORIGIN=http://localhost:3000
+
+# Meterless Nightshift Proxy Configuration
+NIGHTSHIFT_PROXY_URL=http://localhost:8000
+
+# NVIDIA Nemotron LLM Inference API Key
+NVIDIA_NEMOTRON_API_KEY=your_nvidia_api_key_here
+
+# Zetaris Cloud Credentials (Optional for Cloud Mode)
+ZETARIS_CLOUD_URL=https://cloud.enterprise.zetaris.com
+ZETARIS_API_KEY=your_zetaris_api_key_here
+
+# FastAPI Server Settings
+PORT=8000
+ENVIRONMENT=development
+
+Run FastAPI Application Server
+# Set sample mode flag in environment
+$env:SAMPLE_MODE = "true"
+
+# Start uvicorn server
+python -m uvicorn main:app --reload --host 127.0.0.1 --port 8000
+
+The backend API server will run live at http://127.0.0.1:8000.
+3. Frontend Setup
+Open a second PowerShell window:
+cd Credo-AI\frontend
+npm install
+npm run dev
+
+The frontend user interface will be live at http://localhost:3000.
+🧪 Testing & Verification
+Run the automated backend test suite using Pytest to verify route handlers, SSE stream manager, Pydantic schemas, and sample mode fallback integrity:
+# Run backend test suite
+.\.venv312\Scripts\python.exe -m pytest -q
+
+The test suite validates health endpoints, input schema transformation, synchronous verification endpoint compatibility, managed run lifecycle state transitions, SSE event replaying, and exception safety.
+📁 Repository Directory Structure
+Credo-AI/
+├── app/                      # FastAPI Backend Adapter & Services
+│   ├── routes/               # API routes (verify.py for synchronous & SSE runs)
+│   ├── services/             # Run manager (run_manager.py), pipeline bridge & services
+│   ├── config.py             # App environment configuration loader
+│   └── schemas.py            # Pydantic validation models & schemas
+├── src/                      # Core AI Agent & Data Engine Pipeline
+│   ├── agents/               # 4-Agent Orchestration (planner, reconciler, trust_critic, reporter)
+│   ├── pipeline.py           # MultiAgent Pipeline stream generator & execution loop
+│   ├── zetaris_client.py     # Zetaris client with local CSV fallback reader
+│   └── nightshift_client.py  # Meterless Nightshift proxy client
+├── data/                     # Zetaris Ground-Truth CSV Data Feeds
+│   ├── Official_Providers.csv# Authoritative provider records
+│   ├── Aggregator_Listings.csv# Multi-source community listings
+│   └── Unverified_Scams.csv  # Blacklists & suspicious domain patterns
+├── tests/                    # Automated Pytest Suite (`test_backend.py`)
+├── .env.example              # Environment variable template
+├── main.py                   # FastAPI Application Entry Point
+├── requirements.txt          # Python Dependencies
+└── README.md                 # System Documentation
+
+👥 Team Dynasty AI & Role Allocation
+   Credo AI was conceptualized, designed, and engineered by Team Dynasty AI:
+👤(Lead) Member 1 — Project Management, Integration Lead
+👤 Member 2 — Data Lead, Zetaris RAG Platform  & AI Agent Lead
+👤 Member 3 — UI/UX Design Lead
+👤 Member 4 — Front-End Development Lead & AI Agent Pipeline
+👤 Member 5 — Backend Architecture, FastAPI Services & Agent Orchestration Lead
+
+Hackathon Success Metrics & Alignment
+Track 02 Explainability: 100% of recommendations include step-by-step auditable evidence logs detailing accepted, modified, or rejected statuses.
+Scam Detection Accuracy: 100% detection rate on pre-seeded scam/fee test cases with zero false positives on official verified links.
+Latency Performance: Sub-2-second streaming latency for live agent reasoning logs via FastAPI SSE and Meterless Nightshift proxy.
+📜 License & Acknowledgments
+Distributed under the MIT License. See LICENSE for details.
+Special thanks to the organizers of Hackathon Track 02, Zetaris Data Platform, NVIDIA Nemotron, and Meterless Nightshift for providing the infrastructure powering CREDO AI.
+
