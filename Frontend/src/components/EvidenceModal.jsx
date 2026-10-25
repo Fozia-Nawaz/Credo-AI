@@ -2,6 +2,7 @@ import { useEffect, useRef } from "react";
 import { X, CheckCircle2, AlertTriangle, XCircle, Activity, ChevronRight } from "lucide-react";
 import clsx from "clsx";
 import TrustBadge from "./TrustBadge";
+import { riskSignals } from "./AuditDetails";
 
 const BANNER = {
   VERIFIED: {
@@ -33,8 +34,8 @@ function deadlineText(d) {
 }
 
 // "15 days earlier" / "5 days later", or null if the dates can't be compared.
-function dayDiff(official, other) {
-  const a = Date.parse(official);
+function dayDiff(officialDate, other) {
+  const a = Date.parse(officialDate);
   const b = Date.parse(other);
   if (Number.isNaN(a) || Number.isNaN(b)) return null;
   const d = Math.round((b - a) / 86400000);
@@ -52,7 +53,7 @@ function Field({ label, children, className }) {
   );
 }
 
-export default function EvidenceModal({ item, events = [], onClose }) {
+export default function EvidenceModal({ item, official = null, events = [], onClose }) {
   const closeRef = useRef(null);
 
   useEffect(() => {
@@ -80,7 +81,8 @@ export default function EvidenceModal({ item, events = [], onClose }) {
   const match = typeof item.eligibility_match === "number" ? item.eligibility_match : null;
 
   const reasons = Array.isArray(item.conflict_details) ? item.conflict_details : [];
-  const whyLines = reasons.length > 0 ? reasons : item.audit_proof ? [item.audit_proof] : [];
+  const baseLines = reasons.length > 0 ? reasons : item.audit_proof ? [item.audit_proof] : [];
+  const whyLines = scam ? [...baseLines, ...riskSignals(item, official)] : baseLines;
 
   // Real trace events that mention this listing.
   const related = events
@@ -102,7 +104,9 @@ export default function EvidenceModal({ item, events = [], onClose }) {
       >
         <div className="flex items-start justify-between gap-3">
           <p className="flex flex-wrap items-center gap-1 text-xs text-slate-500">
-            Opportunities <ChevronRight size={12} /> <span className="text-slate-300">Verification details</span>
+            Opportunities <ChevronRight size={12} /> <span className="text-slate-300">{item.title}</span>{" "}
+            <ChevronRight size={12} />{" "}
+            <span className="text-slate-300">{scam ? "Evidence comparison" : "Verification details"}</span>
           </p>
           <button
             ref={closeRef}
@@ -231,22 +235,51 @@ export default function EvidenceModal({ item, events = [], onClose }) {
               })}
             </div>
             {aggregators.length === 0 && (
-              <p className="mt-3 text-sm text-slate-400">No other sources were found for this listing.</p>
+              <p className="mt-3 text-sm text-slate-400">
+                {conflict
+                  ? "This result is marked as conflicting dates, but the response did not include the per-source dates, so they can't be compared here."
+                  : "No aggregator records were included with this result."}
+              </p>
             )}
           </section>
         )}
 
-        {/* Suspicious listing (shows when the backend sends scam items) */}
+        {/* Rejected listing: compare against the official record from the same run */}
         {scam && (
-          <section className="mt-6 rounded-xl border border-scam/40 bg-scam/5 p-4">
-            <p className="text-[11px] font-semibold uppercase tracking-wider text-slate-300">Suspicious listing</p>
-            <Field label="Domain" className="font-semibold text-scam">
-              {item.domain || "Unknown"}
-            </Field>
-            <Field label="Reported fee" className={fee > 0 ? "font-semibold text-scam" : undefined}>
-              {fee > 0 ? `$${fee}` : "None listed"}
-            </Field>
-            <Field label="Deadline">{deadlineText(item.deadline)}</Field>
+          <section className="mt-6 space-y-3">
+            <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-400">Evidence comparison</h3>
+
+            <div className="rounded-xl border border-trust/40 bg-trust/5 p-4">
+              <p className="text-[11px] font-semibold uppercase tracking-wider text-slate-300">
+                Official provider reference
+              </p>
+              {official ? (
+                <>
+                  <Field label="Matched official record">{official.title}</Field>
+                  <Field label="Official domain">{official.domain}</Field>
+                  <Field label="Application fee">
+                    {Number(official.application_fee) > 0
+                      ? `$${Number(official.application_fee)}`
+                      : "No application fee listed"}
+                  </Field>
+                </>
+              ) : (
+                <p className="mt-2 text-sm text-slate-400">
+                  No official record with the same scholarship ID was returned in this run.
+                </p>
+              )}
+            </div>
+
+            <div className="rounded-xl border border-scam/40 bg-scam/5 p-4">
+              <p className="text-[11px] font-semibold uppercase tracking-wider text-slate-300">Suspicious listing</p>
+              <Field label="Domain" className="font-semibold text-scam">
+                {item.domain || "Unknown"}
+              </Field>
+              <Field label="Reported fee" className={fee > 0 ? "font-semibold text-scam" : undefined}>
+                {fee > 0 ? `$${fee}` : "None listed"}
+              </Field>
+              <Field label="Deadline">{deadlineText(item.deadline)}</Field>
+            </div>
           </section>
         )}
 
@@ -260,7 +293,10 @@ export default function EvidenceModal({ item, events = [], onClose }) {
               <li className="rounded-lg bg-navy-800 p-3 text-sm text-slate-400">No details were provided.</li>
             )}
             {whyLines.map((line, i) => (
-              <li key={i} className="flex items-start gap-2 rounded-lg border border-slate-700 bg-navy-800 p-3 text-sm text-slate-200">
+              <li
+                key={i}
+                className="flex items-start gap-2 rounded-lg border border-slate-700 bg-navy-800 p-3 text-sm text-slate-200"
+              >
                 {scam ? (
                   <XCircle size={16} className="mt-0.5 shrink-0 text-scam" />
                 ) : conflict ? (
@@ -294,7 +330,7 @@ export default function EvidenceModal({ item, events = [], onClose }) {
           onClick={onClose}
           className="mt-8 w-full rounded-lg bg-electric px-4 py-2.5 font-semibold text-white hover:bg-electric/90"
         >
-          Back to opportunities
+          {scam ? "Back to audit" : "Back to opportunities"}
         </button>
       </aside>
     </div>
