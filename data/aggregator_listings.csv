@@ -1,3 +1,9 @@
-scholarship_id,title,source_portal,source_domain,listed_deadline,listed_min_cgpa,notes
-SCH_001,HEC Foreign Phd & Master Grants 2026,PakScholarshipsPortal.com,pakscholarshipsportal.com,2026-11-15,3.2,Third-party community blog post with outdated dates.
-SCH_002,US Fulbright Scholarship Pakistan Loop,GlobalGrantsHub.net,globalgrantshub.net,2026-12-01,3.2,Aggregator listing updated 2 months ago.
+id,title,provider,major,min_cgpa,funding,deadline,status,trust_score,is_scam,country,source_url
+agg_001,Unverified CSU Data Center Grant Listing,Global Scholarship Aggregator,CS,2.8,Varies,2026-10-28,DISCREPANCY,68,false,USA,https://scholarship-finder-hub.com/csu
+agg_002,Global CS & Tech Portal Listing,StudyAbroad Hub,CS,3.0,Partial Funding,2026-11-02,DISCREPANCY,70,false,UK,https://studyabroad-hub.com/cs
+agg_003,Unverified Data Science Fellowships Hub,Data Science Portal,DATA SCIENCE,2.9,Varies,2026-10-30,DISCREPANCY,66,false,Global,https://datascience-portal.org
+agg_004,Unverified AI Research Award,AI Forum Portal,AI,3.0,Varies,2026-10-25,DISCREPANCY,65,false,Global,https://aiforum-listings.net/grant
+agg_005,Global AI Innovation Grant Listing,TechScholarships.net,AI,2.8,$3000 Stipend,2026-11-01,DISCREPANCY,71,false,USA,https://techscholarships.net/ai
+agg_006,Overseas Engineering Studies Aggregator,StudyAbroad Portal,ENGINEERING,3.0,Partial Tuition,2026-11-10,DISCREPANCY,70,false,Germany,https://studyabroad-hub.com/daad
+agg_007,Global Business Leadership Award,Unregistered MBA Forum,BUSINESS,2.5,Varies,2026-10-20,DISCREPANCY,72,false,Global,https://mbaleaders-portal.org
+agg_008,Humanities International Grant Portal,Global Arts Registry,HUMANITIES,2.8,Partial Stipend,2026-10-22,DISCREPANCY,67,false,USA,https://artsregistry.org
