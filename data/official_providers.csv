@@ -1,8 +1,8 @@
 id,title,provider,major,min_cgpa,funding,deadline,status,trust_score,is_scam,country,official_link
-off_001,HEC Overseas Scholarship 2026,Higher Education Commission,CS,3.5,Full Tuition + Stipend,2026-12-31,VERIFIED,94,false,UK,https://hec.gov.pk/scholarships
-off_002,Fulbright Postgraduate Award,USEFP,CS,3.6,Full Funding,2026-11-15,VERIFIED,98,false,USA,https://usefp.org/fulbright
+off_001,HEC Overseas Scholarship 2026,Higher Education Commission,COMPUTER SCIENCE,3.5,Full Tuition + Stipend,2026-12-31,VERIFIED,94,false,UK,https://hec.gov.pk/scholarships
+off_002,Fulbright Postgraduate Award,USEFP,COMPUTER SCIENCE,3.6,Full Funding,2026-11-15,VERIFIED,98,false,USA,https://usefp.org/fulbright
 off_003,Chevening UK Scholarship,UK Foreign Office,ANY,3.3,Full Tuition + Flights,2026-11-30,VERIFIED,96,false,UK,https://chevening.org
-off_004,CSU Data Center & Cloud Computing Award,California State University,CS,3.2,Full Tuition + Lab Access,2026-11-20,VERIFIED,95,false,USA,https://calstate.edu/datacenter-grant
+off_004,CSU Data Center & Cloud Computing Award,California State University,COMPUTER SCIENCE,3.2,Full Tuition + Lab Access,2026-11-20,VERIFIED,95,false,USA,https://calstate.edu/datacenter-grant
 off_005,CSU Data Center Student Tech Grant,California State University,DATA SCIENCE,3.0,$8000 Annual Stipend,2026-12-05,VERIFIED,92,false,USA,https://calstate.edu/tech-fellowships
 off_006,Global Data Analytics Fellowship,MIT Data Lab,DATA SCIENCE,3.4,Full Tuition,2026-12-10,VERIFIED,97,false,USA,https://mit.edu/data-grant
 off_007,Stanford Data Science Excellence Award,Stanford University,DATA SCIENCE,3.5,Full Accommodation + Stipend,2026-11-28,VERIFIED,96,false,USA,https://stanford.edu/ds-fellowship
@@ -18,3 +18,84 @@ off_016,LUMS MBA Leaders Scholarship,LUMS Business School,BUSINESS,3.4,100% Tuit
 off_017,INSEAD International Business Grant,INSEAD Business School,BUSINESS,3.3,$20000 Tuition Waiver,2026-12-08,VERIFIED,93,false,France,https://insead.edu/scholarships
 off_018,Rotary International Peace Fellowship,Rotary Foundation,HUMANITIES,3.2,Full Tuition + Travel,2026-12-05,VERIFIED,93,false,USA,https://rotary.org/fellowships
 off_019,Vanier Canada Graduate Scholarships,Government of Canada,ANY,3.7,$50000 Per Year,2026-11-08,VERIFIED,99,false,Canada,https://vanier.gc.ca
+off_020,Oxford Clarendon Postgraduate Fund,University of Oxford,COMPUTER SCIENCE,3.8,Full Tuition + Living Expenses,2026-12-18,VERIFIED,98,false,UK,https://ox.ac.uk/clarendon
+off_021,Cambridge International Trust Award,University of Cambridge,COMPUTER SCIENCE,3.7,Full Tuition Allowance,2026-11-30,VERIFIED,97,false,UK,https://cambridgetrust.org
+off_022,Imperial Tech Computing Excellence,Imperial College London,COMPUTER SCIENCE,3.5,$12000 Research Stipend,2026-12-10,VERIFIED,95,false,UK,https://imperial.ac.uk/grants
+off_023,Tsinghua Global Computer Fellowship,Tsinghua University,COMPUTER SCIENCE,3.4,Full Accommodation + Allowance,2026-11-22,VERIFIED,93,false,China,https://tsinghua.edu.cn/intl
+off_024,NUS School of Computing Fellowship,National University of Singapore,COMPUTER SCIENCE,3.6,Full Tuition Waiver,2026-12-05,VERIFIED,96,false,Singapore,https://comp.nus.edu.sg
+off_025,KAIST Global STEM Scholarship,KAIST South Korea,COMPUTER SCIENCE,3.3,Full Tuition + Monthly Allowance,2026-12-15,VERIFIED,94,false,South Korea,https://kaist.ac.kr/en
+off_026,EPFL Excellence Tech Master Award,EPFL Switzerland,COMPUTER SCIENCE,3.7,CHF 10000 Annual Stipend,2026-11-25,VERIFIED,97,false,Switzerland,https://epfl.ch/scholarships
+off_027,Toronto CS Graduate Award,University of Toronto,COMPUTER SCIENCE,3.5,$25000 Annual Grant,2026-12-01,VERIFIED,95,false,Canada,https://utoronto.ca/cs-awards
+off_028,Melbourne Tech Research Grant,University of Melbourne,COMPUTER SCIENCE,3.4,Full Fee Offset,2026-11-20,VERIFIED,94,false,Australia,https://unimelb.edu.au/grants
+off_029,KTH Royal Institute IT Grant,KTH Sweden,COMPUTER SCIENCE,3.2,Full Tuition Waiver,2026-12-22,VERIFIED,92,false,Sweden,https://kth.se/en/scholarships
+off_030,TUM German Tech Excellence Award,TU Munich,COMPUTER SCIENCE,3.3,Semester Allowance,2026-12-11,VERIFIED,95,false,Germany,https://tum.de/en/studies
+off_031,Berkeley Artificial Intelligence Research Award,UC Berkeley,AI,3.8,Full Funding + GPU Credits,2026-12-02,VERIFIED,99,false,USA,https://bair.berkeley.edu
+off_032,CMU AI & Neural Networks Fellowship,Carnegie Mellon University,AI,3.7,Full Tuition + Lab Access,2026-11-28,VERIFIED,98,false,USA,https://cmu.edu/ai-fellowship
+off_033,Alan Turing AI Institute Grant,Alan Turing Institute,AI,3.5,$20000 Annual Research Fund,2026-12-14,VERIFIED,96,false,UK,https://turing.ac.uk/grants
+off_034,Vector Institute AI Graduate Award,Vector Institute,AI,3.6,$17500 Annual Stipend,2026-11-19,VERIFIED,95,false,Canada,https://vectorinstitute.ai
+off_035,RIKEN Center AI Leadership Grant,RIKEN Japan,AI,3.4,Full Allowance + Housing,2026-12-08,VERIFIED,94,false,Japan,https://riken.jp/en
+off_036,ETH AI Center Doctoral Fellowship,ETH Zurich,AI,3.7,Full Salary + Travel Grant,2026-12-18,VERIFIED,97,false,Switzerland,https://ai.ethz.ch
+off_037,HKUST AI Innovation Fellowship,HKUST Hong Kong,AI,3.5,Full Tuition + Monthly Allowance,2026-11-23,VERIFIED,93,false,Hong Kong,https://hkust.edu.hk
+off_038,A*STAR Computing & AI Grant,A*STAR Singapore,AI,3.6,Full Tuition + Research Support,2026-12-04,VERIFIED,96,false,Singapore,https://a-star.edu.sg
+off_039,Max Planck AI Research Fellowship,Max Planck Institute,AI,3.8,Full Fellowship Stipend,2026-12-28,VERIFIED,99,false,Germany,https://mpg.de/en
+off_040,Columbia Data Science Institute Fellowship,Columbia University,DATA SCIENCE,3.6,Full Tuition Waiver,2026-11-17,VERIFIED,96,false,USA,https://datascience.columbia.edu
+off_041,NYU Center for Data Science Award,New York University,DATA SCIENCE,3.5,$22000 Annual Fellowship,2026-12-03,VERIFIED,95,false,USA,https://cds.nyu.edu
+off_042,Harvard Data Science Initiative Grant,Harvard University,DATA SCIENCE,3.7,Full Funding,2026-11-29,VERIFIED,98,false,USA,https://datascience.harvard.edu
+off_043,UCL Data Science Excellence Scholarship,University College London,DATA SCIENCE,3.4,Full Tuition Waiver,2026-12-12,VERIFIED,94,false,UK,https://ucl.ac.uk/datascience
+off_044,Monash Data Science International Award,Monash University,DATA SCIENCE,3.3,$10000 Annual Allowance,2026-11-21,VERIFIED,92,false,Australia,https://monash.edu
+off_045,Waterloo Data Science Leadership Award,University of Waterloo,DATA SCIENCE,3.5,$20000 Research Grant,2026-12-07,VERIFIED,95,false,Canada,https://uwaterloo.ca
+off_046,Johns Hopkins Medical Research Grant,Johns Hopkins University,MEDICAL,3.7,Full Tuition + Lab Stipend,2026-11-16,VERIFIED,98,false,USA,https://jhu.edu/medical-grants
+off_047,Mayo Clinic Medical Sciences Award,Mayo Clinic College,MEDICAL,3.8,Full Fellowship,2026-12-01,VERIFIED,99,false,USA,https://mayo.edu/education
+off_048,Karolinska Institute Health Fellowship,Karolinska Institute,MEDICAL,3.6,Full Tuition Waiver,2026-12-19,VERIFIED,97,false,Sweden,https://ki.se/en
+off_049,London School of Hygiene & Tropical Medicine Grant,LSHTM UK,MEDICAL,3.4,Full Tuition + Flights,2026-11-24,VERIFIED,95,false,UK,https://lshtm.ac.uk
+off_050,University of Sydney Medical Fellowship,University of Sydney,MEDICAL,3.5,Full Allowance + Housing,2026-12-14,VERIFIED,94,false,Australia,https://sydney.edu.au
+off_051,Eindhoven High-Tech Systems Grant,TU Eindhoven,ENGINEERING,3.3,Full Tuition Offset,2026-12-09,VERIFIED,93,false,Netherlands,https://tue.nl/en
+off_052,Delft University Engineering Excellence Award,TU Delft,ENGINEERING,3.6,Full Tuition + Living Expenses,2026-11-27,VERIFIED,96,false,Netherlands,https://tudelft.nl
+off_053,Nanyang Technological Engineering Award,NTU Singapore,ENGINEERING,3.5,Full Accommodation + Allowance,2026-12-06,VERIFIED,95,false,Singapore,https://ntu.edu.sg
+off_054,Tokyo Tech International Engineering Grant,Tokyo Tech,ENGINEERING,3.4,Full Tuition Waiver,2026-12-16,VERIFIED,94,false,Japan,https://titech.ac.jp/english
+off_055,London Business School MBA Grant,LBS UK,BUSINESS,3.5,$25000 Tuition Waiver,2026-11-18,VERIFIED,95,false,UK,https://london.edu
+off_056,HEC Paris International Business Fellowship,HEC Paris,BUSINESS,3.6,100% Tuition Waiver,2026-12-02,VERIFIED,96,false,France,https://hec.edu
+off_057,Rotterdam School of Management Award,Erasmus University,BUSINESS,3.3,Partial Tuition Waiver,2026-12-13,VERIFIED,92,false,Netherlands,https://rsm.nl
+off_058,Fulbright Humanities & Social Science Award,USEFP,HUMANITIES,3.2,Full Funding,2026-11-26,VERIFIED,96,false,USA,https://usefp.org
+off_059,DAAD Public Policy & Good Governance Grant,DAAD Germany,HUMANITIES,3.3,Monthly Stipend + Travel,2026-12-17,VERIFIED,95,false,Germany,https://daad.de
+off_060,Gates Cambridge International Scholarship,Bill & Melinda Gates Foundation,ANY,3.8,Full Funding + Family Allowance,2026-12-01,VERIFIED,99,false,UK,https://gatescambridge.org
+off_061,UCLA Computer Science Merit Scholarship,UCLA Engineering,COMPUTER SCIENCE,3.5,Full Tuition + Teaching Assistantship,2026-11-18,VERIFIED,96,false,USA,https://cs.ucla.edu
+off_062,UT Austin Software Engineering Fellowship,University of Texas Austin,COMPUTER SCIENCE,3.4,$18000 Stipend,2026-12-04,VERIFIED,94,false,USA,https://utexas.edu/cs
+off_063,Purdue Cyber Security Research Grant,Purdue University,COMPUTER SCIENCE,3.3,Full Tuition Offset,2026-12-15,VERIFIED,93,false,USA,https://purdue.edu/cs
+off_064,Georgia Tech Cloud Systems Award,Georgia Tech,COMPUTER SCIENCE,3.6,$22000 Annual Research Fund,2026-11-29,VERIFIED,97,false,USA,https://gatech.edu
+off_065,University of Washington Computer Systems Award,UW Seattle,COMPUTER SCIENCE,3.5,Full Tuition Waiver,2026-12-10,VERIFIED,95,false,USA,https://cs.washington.edu
+off_066,Cornell Tech Graduate Fellowship,Cornell University,COMPUTER SCIENCE,3.7,$30000 Stipend,2026-11-22,VERIFIED,98,false,USA,https://tech.cornell.edu
+off_067,UIUC Distributed Systems Grant,UIUC,COMPUTER SCIENCE,3.5,Full Tuition Waiver + RAship,2026-12-08,VERIFIED,96,false,USA,https://cs.illinois.edu
+off_068,USC Viterbi Computer Engineering Award,USC,COMPUTER SCIENCE,3.2,$15000 Tuition Award,2026-12-19,VERIFIED,91,false,USA,https://viterbischool.usc.edu
+off_069,UCSD Data Analytics Fellowship,UC San Diego,DATA SCIENCE,3.4,$20000 Annual Grant,2026-11-30,VERIFIED,94,false,USA,https://datascience.ucsd.edu
+off_070,Northwestern Data Science Excellence Grant,Northwestern University,DATA SCIENCE,3.5,Full Tuition,2026-12-12,VERIFIED,95,false,USA,https://northwestern.edu
+off_071,Duke University Data & AI Fellowship,Duke University,DATA SCIENCE,3.6,Full Funding + Health Insurance,2026-11-25,VERIFIED,97,false,USA,https://duke.edu
+off_072,Michigan Big Data & AI Grant,University of Michigan,DATA SCIENCE,3.5,$24000 Annual Award,2026-12-06,VERIFIED,96,false,USA,https://umich.edu
+off_073,Penn State Data Analytics Merit Award,Penn State,DATA SCIENCE,3.2,$12000 Tuition Waiver,2026-12-17,VERIFIED,91,false,USA,https://psu.edu
+off_074,Wisconsin Data Science Fellowship,UW Madison,DATA SCIENCE,3.3,Full Tuition Waiver,2026-11-28,VERIFIED,93,false,USA,https://wisc.edu
+off_075,Johns Hopkins AI in Healthcare Fellowship,JHU,AI,3.7,Full Tuition + Clinical Lab Access,2026-12-01,VERIFIED,98,false,USA,https://ai.jhu.edu
+off_076,Stanford Human-Centered AI Grant,Stanford HAI,AI,3.8,Full Funding + GPU Cluster Access,2026-11-20,VERIFIED,99,false,USA,https://hai.stanford.edu
+off_077,MIT Computer Science & AI Lab Fellowship,MIT CSAIL,AI,3.8,Full Salary + Research Expenses,2026-12-14,VERIFIED,99,false,USA,https://csail.mit.edu
+off_078,NYU Courant AI Leadership Fellowship,NYU Courant,AI,3.6,$28000 Annual Grant,2026-12-05,VERIFIED,96,false,USA,https://courant.nyu.edu
+off_079,Maryland AI & Vision Research Award,University of Maryland,AI,3.4,Full Tuition Waiver,2026-11-27,VERIFIED,94,false,USA,https://umd.edu
+off_080,Princeton AI & Machine Learning Fellowship,Princeton University,AI,3.8,Full Funding,2026-12-18,VERIFIED,99,false,USA,https://princeton.edu
+off_081,Yale Biomedical Research Award,Yale University,MEDICAL,3.7,Full Tuition + Living Allowance,2026-11-21,VERIFIED,98,false,USA,https://medicine.yale.edu
+off_082,Columbia Global Health Research Grant,Columbia Mailman,MEDICAL,3.5,Full Accommodation + Travel,2026-12-09,VERIFIED,95,false,USA,https://publichealth.columbia.edu
+off_083,Penn Medicine International Fellowship,Perelman School of Medicine,MEDICAL,3.8,Full Tuition Waiver,2026-11-19,VERIFIED,98,false,USA,https://med.upenn.edu
+off_084,UCSF Global Health Leadership Award,UC San Francisco,MEDICAL,3.6,Full Stipend + Health Insurance,2026-12-03,VERIFIED,97,false,USA,https://ucsf.edu
+off_085,University of Washington Medical Excellence Award,UW Medicine,MEDICAL,3.4,$20000 Research Support,2026-12-16,VERIFIED,94,false,USA,https://uwmedicine.org
+off_086,Vanderbilt Medical Sciences Fellowship,Vanderbilt University,MEDICAL,3.5,Full Tuition,2026-11-26,VERIFIED,95,false,USA,https://vanderbilt.edu
+off_087,Imperial Bioengineering Excellence Grant,Imperial College London,ENGINEERING,3.5,Full Tuition + Lab Access,2026-12-07,VERIFIED,96,false,UK,https://imperial.ac.uk/bioeng
+off_088,Oxford Engineering Science Award,University of Oxford,ENGINEERING,3.7,Full Living Expenses + Tuition,2026-11-17,VERIFIED,98,false,UK,https://eng.ox.ac.uk
+off_089,Cambridge Chemical Engineering Award,University of Cambridge,ENGINEERING,3.6,Full Funding,2026-12-11,VERIFIED,97,false,UK,https://ceb.cam.ac.uk
+off_090,Manchester Mechanical Engineering Grant,University of Manchester,ENGINEERING,3.2,$10000 Annual Waiver,2026-12-21,VERIFIED,91,false,UK,https://manchester.ac.uk
+off_091,Sheffield Robotics Engineering Fellowship,University of Sheffield,ENGINEERING,3.3,Full Tuition Waiver,2026-11-24,VERIFIED,93,false,UK,https://sheffield.ac.uk
+off_092,Harvard Business School Need-Based Grant,HBS,BUSINESS,3.5,Full Financial Aid,2026-12-02,VERIFIED,98,false,USA,https://hbs.edu
+off_093,Wharton Global Leadership Fellowship,University of Pennsylvania,BUSINESS,3.6,$30000 Annual Grant,2026-11-23,VERIFIED,97,false,USA,https://wharton.upenn.edu
+off_094,Stanford Graduate School of Business Fellowship,Stanford GSB,BUSINESS,3.7,Full Tuition Support,2026-12-13,VERIFIED,98,false,USA,https://gsb.stanford.edu
+off_095,Chicago Booth International MBA Award,University of Chicago,BUSINESS,3.4,$25000 Tuition Offset,2026-12-20,VERIFIED,94,false,USA,https://chicagobooth.edu
+off_096,Columbia Business School Enterprise Grant,Columbia University,BUSINESS,3.3,$18000 Waiver,2026-11-28,VERIFIED,92,false,USA,https://gsb.columbia.edu
+off_097,LSE Social Sciences Global Grant,London School of Economics,HUMANITIES,3.5,Full Tuition + Accommodation,2026-12-04,VERIFIED,96,false,UK,https://lse.ac.uk
+off_098,King's College Humanities Research Award,King's College London,HUMANITIES,3.3,Full Tuition Waiver,2026-12-15,VERIFIED,92,false,UK,https://kcl.ac.uk
+off_099,Edinburgh Global Humanities Scholarship,University of Edinburgh,HUMANITIES,3.4,£10000 Annual Stipend,2026-11-19,VERIFIED,94,false,UK,https://ed.ac.uk
+off_100,Commonwealth Doctoral Scholarship,Commonwealth Board,ANY,3.6,Full Living Expenses + Flights,2026-12-10,VERIFIED,97,false,UK,https://cscuk.fcdo.gov.uk

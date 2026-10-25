@@ -15,12 +15,17 @@ class ZetarisClient:
         cgpa_val = float(min_cgpa) if min_cgpa else 3.0
         major_filter = str(major).strip().upper() if major else "ANY"
 
-        def filter_dataset(file_path):
+        def filter_dataset(file_path, is_scam_or_agg=False):
             if not os.path.exists(file_path):
                 return []
             try:
                 df = pd.read_csv(file_path)
-                matched_df = df[df['min_cgpa'] <= cgpa_val]
+                # Apply CGPA filter mainly to official providers; for scams/aggregators include all matching major
+                if not is_scam_or_agg:
+                    matched_df = df[df['min_cgpa'] <= cgpa_val]
+                else:
+                    matched_df = df
+
                 if major_filter != "ANY":
                     matched_df = matched_df[
                         (matched_df['major'].str.upper() == major_filter) | 
@@ -32,7 +37,7 @@ class ZetarisClient:
                 return []
 
         return {
-            "official_providers": filter_dataset(official_path),
-            "aggregator_listings": filter_dataset(aggregator_path),
-            "unverified_scams": filter_dataset(scam_path)
+            "official_providers": filter_dataset(official_path, is_scam_or_agg=False),
+            "aggregator_listings": filter_dataset(aggregator_path, is_scam_or_agg=True),
+            "unverified_scams": filter_dataset(scam_path, is_scam_or_agg=True)
         }
