@@ -82,4 +82,4 @@ class ZetarisClient:
             "official_providers": filter_dataset(official_path, is_scam_or_agg=False),
             "aggregator_listings": filter_dataset(aggregator_path, is_scam_or_agg=True),
             "unverified_scams": filter_dataset(scam_path, is_scam_or_agg=True)
-        }
+        } 
