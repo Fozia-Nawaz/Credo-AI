@@ -69,23 +69,30 @@ def run_pipeline_stream(profile: str, session_id: str = "session_001"):
         criteria["major"] = parsed_json.get("major") or criteria.get("major", "CS")
         criteria["min_cgpa"] = parsed_json.get("cgpa") or criteria.get("min_cgpa", 3.0)
         criteria["target_country"] = parsed_json.get("target_country") or criteria.get("target_country", "Global")
-        criteria["funding_need"] = parsed_json.get("funding_need") or parsed_json.get("funding_need_category") or criteria.get("funding_need", "both")
+        criteria["funding_need"] = parsed_json.get("funding_need") or parsed_json.get("funding_category") or parsed_json.get("funding_need_category") or criteria.get("funding_need", "both")
     else:
         criteria["major"] = criteria.get("major", "CS")
         criteria["min_cgpa"] = criteria.get("min_cgpa", 3.0)
         criteria["funding_need"] = criteria.get("funding_need", "both")
 
-    user_need_category = str(criteria.get("funding_need", "both")).strip().upper()
+    raw_user_need = str(criteria.get("funding_need", "both")).strip().upper()
+    
+    if "NEED" in raw_user_need and "MERIT" not in raw_user_need:
+        user_need_category = "NEED"
+    elif "MERIT" in raw_user_need and "NEED" not in raw_user_need:
+        user_need_category = "MERIT"
+    else:
+        user_need_category = "BOTH"
 
     memory.store_context(session_id, "criteria", criteria)
-    pipeline_logs.append(f"[PLANNER] Search criteria set for Major: {criteria.get('major')}, Category Filter: {user_need_category}.")
+    pipeline_logs.append(f"[PLANNER] Search criteria set for Major: {criteria.get('major')}, Funding Filter: {user_need_category}.")
 
     # Step 2: Data Retrieval via Zetaris
     yield {
         "stage": "ZETARIS_FETCH",
         "step": "ZETARIS_FETCH",
         "model": model_id,
-        "message": "Step 2/5 (Zetaris Data Engine): Fetching multi-source dataset..."
+        "message": f"Step 2/5 (Zetaris Data Engine): Fetching multi-source dataset for {user_need_category} criteria..."
     }
     
     user_major = str(criteria.get("major", "CS")).strip().upper()
@@ -124,7 +131,7 @@ def run_pipeline_stream(profile: str, session_id: str = "session_001"):
     reconciled = officials + aggregators + scams
     pipeline_logs.append(f"[RECONCILER] Reconciled {len(reconciled)} total records across Official, Discrepancy, and Scam channels.")
 
-    # Step 4: Trust Critic Audit (Including Funding Category Filtering)
+    # Step 4: Trust Critic Audit (Strict Category Filtering Included)
     yield {
         "stage": "CRITIC",
         "step": "CRITIC",
@@ -138,18 +145,25 @@ def run_pipeline_stream(profile: str, session_id: str = "session_001"):
             item = {"title": str(item), "provider": "Official Provider Board", "funding": "Full Tuition / Stipend"}
 
         # ----------------------------------------------------
-        # FUNDING CATEGORY FILTERING LOGIC
+        # DYNAMIC FUNDING CATEGORY FILTERING LOGIC
         # ----------------------------------------------------
-        item_cat = str(item.get("funding_category") or item.get("category") or "BOTH").strip().upper()
-        
-        # User selection logic
-        if "NEED" in user_need_category and "MERIT" not in user_need_category:
+        item_cat = str(item.get("funding_category") or item.get("category") or "").strip().upper()
+        if not item_cat:
+            item_title_lower = str(item.get("title") or "").lower()
+            if "need" in item_title_lower or "financial aid" in item_title_lower:
+                item_cat = "NEED"
+            elif "fulbright" in item_title_lower or "chevening" in item_title_lower or "lums" in item_title_lower:
+                item_cat = "BOTH"
+            else:
+                item_cat = "MERIT"
+
+        if user_need_category == "NEED":
             if item_cat == "MERIT":
-                continue  # Skip purely merit-based scholarships
-        elif "MERIT" in user_need_category and "NEED" not in user_need_category:
+                continue  # Skip pure Merit scholarships when Need-based is selected
+        elif user_need_category == "MERIT":
             if item_cat == "NEED":
-                continue  # Skip purely need-based scholarships
-        # If user selects "EITHER / BOTH", no items are skipped.
+                continue  # Skip pure Need-based scholarships when Merit-based is selected
+        # If user_need_category is "BOTH", keep everything.
 
         status_val = str(item.get("true_badge") or item.get("badge") or item.get("status") or "").upper()
         
@@ -167,7 +181,7 @@ def run_pipeline_stream(profile: str, session_id: str = "session_001"):
 
         is_verified_domain = True
 
-        # Vanier, Commonwealth & Known Provider Domain Normalization
+        # Known Provider Domain Normalization
         if "vanier" in title_str or "canada graduate" in title_str:
             domain_str = "vanier.gc.ca"
         elif "commonwealth" in title_str or "cscuk" in provider_str:
@@ -187,7 +201,7 @@ def run_pipeline_stream(profile: str, session_id: str = "session_001"):
             domain_str = "Unverified Direct Entry"
             is_verified_domain = False
 
-        # Fee Formatting Fix ("$None listed" -> "Fee information unavailable")
+        # Fee Formatting Fix
         raw_fee = str(item.get("application_fee") or item.get("fee") or "").strip()
         if not raw_fee or raw_fee.lower() in ["none listed", "none", "n/a", "null", "unknown"]:
             fee_display = "None listed"
@@ -227,7 +241,6 @@ def run_pipeline_stream(profile: str, session_id: str = "session_001"):
                 details = f"Unverified domain origin ({domain_str}). Requires manual registry confirmation."
                 verdict_text = f"Unverified source: Domain verification required for {domain_str}."
 
-        # Unified Official Record Structure for Card & Evidence Modal
         official_record = {
             "source_domain": domain_str,
             "official_domain": domain_str,
@@ -277,7 +290,6 @@ def run_pipeline_stream(profile: str, session_id: str = "session_001"):
         "message": "Step 5/5 (Reporter): Compiling final verified options via 5-Step Verification Workflow..."
     }
     
-    # Exact Dashboard Total Count
     total_count = len(audited_results)
 
     final_payload = {
