@@ -1,6 +1,3 @@
-<p align="center">
-  <img src="D:\CredoAi\Credo-AI\assets" alt="Credo AI Banner" width="100%">
-</p>
 # 🛡️ Credo AI — The Explainable Trust Engine
 
 ## 📌 Executive Summary & Core Mission
@@ -15,7 +12,7 @@ In the current global educational ecosystem, students seeking financial aid regu
 
 ## 🛑 Real-World Problem Statement
 
-Financial-aid seeking applicants contend with three critical systemic failures:
+Financial-aid-seeking applicants contend with three critical systemic failures:
 
 1. 📂 **Fragmented & Unstructured Data Silos:** Scholarship listings are scattered across disparate government portals, NGO blogs, unstructured PDF handbooks, and dynamic CSV feeds.
 
@@ -30,7 +27,7 @@ Credo AI implements a decoupled, event-driven 4-Agent Orchestration Loop designe
 ```
                   ┌───────────────────────────────────────────┐
                   │           Student Profile Input           |
-                  │(Major,CGPA,Domicile,Need, Degree, etc)    |
+                  │(Major, CGPA, Domicile, Need, Degree, etc)    |
                   └─────────────────────┬─────────────────────┘
                                         │
                                         ▼
@@ -251,9 +248,7 @@ data: {"stage":"COMPLETE","message":"Pipeline execution complete.","final_data":
 
 The UI/UX architecture and agent interaction flows were fully prototyped in Figma prior to production deployment:
 
-* 🎨 **Figma Interactive Prototype:** [View Interactive Figma Prototype](https://www.figma.com) *(Update with your production share link)*
-
-* 🖼️ **Design Mockups:** Stored under `docs/assets/` or `assets/figma/` in this repository.
+* 🎨 **Figma Interactive Prototype:** [View Interactive Figma Prototype](https://www.figma.com/design/mNv9LKeJIxUUYSalfR0FKA/credo-ai--copy---prototype-?node-id=0-1&t=qSqPwigR6p2rofeT-1) 
 
 ## 🚀 Local Setup & Developer Guide
 
