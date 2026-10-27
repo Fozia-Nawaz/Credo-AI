@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/Credo AI README Banner.png" alt="Credo AI Banner" width="100%">
+  <img src="./assets/Credo AI README Banner.png" alt="Credo AI Banner" width="100%">
 </p>
 
 # 🛡️ Credo AI — The Explainable Trust Engine
