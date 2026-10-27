@@ -69,12 +69,16 @@ def run_pipeline_stream(profile: str, session_id: str = "session_001"):
         criteria["major"] = parsed_json.get("major") or criteria.get("major", "CS")
         criteria["min_cgpa"] = parsed_json.get("cgpa") or criteria.get("min_cgpa", 3.0)
         criteria["target_country"] = parsed_json.get("target_country") or criteria.get("target_country", "Global")
+        criteria["funding_need"] = parsed_json.get("funding_need") or parsed_json.get("funding_need_category") or criteria.get("funding_need", "both")
     else:
         criteria["major"] = criteria.get("major", "CS")
         criteria["min_cgpa"] = criteria.get("min_cgpa", 3.0)
+        criteria["funding_need"] = criteria.get("funding_need", "both")
+
+    user_need_category = str(criteria.get("funding_need", "both")).strip().upper()
 
     memory.store_context(session_id, "criteria", criteria)
-    pipeline_logs.append(f"[PLANNER] Search criteria set for Major: {criteria.get('major')}.")
+    pipeline_logs.append(f"[PLANNER] Search criteria set for Major: {criteria.get('major')}, Category Filter: {user_need_category}.")
 
     # Step 2: Data Retrieval via Zetaris
     yield {
@@ -120,18 +124,32 @@ def run_pipeline_stream(profile: str, session_id: str = "session_001"):
     reconciled = officials + aggregators + scams
     pipeline_logs.append(f"[RECONCILER] Reconciled {len(reconciled)} total records across Official, Discrepancy, and Scam channels.")
 
-    # Step 4: Trust Critic Audit
+    # Step 4: Trust Critic Audit (Including Funding Category Filtering)
     yield {
         "stage": "CRITIC",
         "step": "CRITIC",
         "model": model_id,
-        "message": "Step 4/5 (Trust Critic): Executing domain authenticity & fee scam audits via NVIDIA Nemotron..."
+        "message": f"Step 4/5 (Trust Critic): Executing domain authenticity & category filtering ({user_need_category}) via NVIDIA Nemotron..."
     }
     
     audited_results = []
     for item in reconciled:
         if not isinstance(item, dict):
             item = {"title": str(item), "provider": "Official Provider Board", "funding": "Full Tuition / Stipend"}
+
+        # ----------------------------------------------------
+        # FUNDING CATEGORY FILTERING LOGIC
+        # ----------------------------------------------------
+        item_cat = str(item.get("funding_category") or item.get("category") or "BOTH").strip().upper()
+        
+        # User selection logic
+        if "NEED" in user_need_category and "MERIT" not in user_need_category:
+            if item_cat == "MERIT":
+                continue  # Skip purely merit-based scholarships
+        elif "MERIT" in user_need_category and "NEED" not in user_need_category:
+            if item_cat == "NEED":
+                continue  # Skip purely need-based scholarships
+        # If user selects "EITHER / BOTH", no items are skipped.
 
         status_val = str(item.get("true_badge") or item.get("badge") or item.get("status") or "").upper()
         
@@ -216,7 +234,8 @@ def run_pipeline_stream(profile: str, session_id: str = "session_001"):
             "stated_deadline": deadline_str,
             "deadline": deadline_str,
             "application_fee": fee_display,
-            "provider_name": item.get("provider") or item.get("organization") or "Official Provider"
+            "provider_name": item.get("provider") or item.get("organization") or "Official Provider",
+            "funding_category": item_cat
         }
 
         formatted_item = {
@@ -230,6 +249,7 @@ def run_pipeline_stream(profile: str, session_id: str = "session_001"):
             "trust_badge": badge_val,
             "funding": item.get("funding") or "Tuition / Stipend",
             "amount": item.get("funding") or "Fully Funded",
+            "funding_category": item_cat,
             "deadline": deadline_str,
             "domain": domain_str,
             "source": domain_str,
@@ -247,7 +267,7 @@ def run_pipeline_stream(profile: str, session_id: str = "session_001"):
         audited_results.append(formatted_item)
 
     memory.store_context(session_id, "audited_results", audited_results)
-    pipeline_logs.append("[CRITIC] Trust and domain audit finished.")
+    pipeline_logs.append(f"[CRITIC] Trust and category ({user_need_category}) audit finished. Total matched: {len(audited_results)}.")
 
     # Step 5: Reporter
     yield {
@@ -262,7 +282,7 @@ def run_pipeline_stream(profile: str, session_id: str = "session_001"):
 
     final_payload = {
         "status": "success",
-        "search_summary": f"5-Step Verification Workflow completed successfully for {user_major}. [Demo Data — Illustrative Only]",
+        "search_summary": f"5-Step Verification Workflow completed successfully for {user_major} ({user_need_category}). [Demo Data — Illustrative Only]",
         "total_opportunities_found": total_count,
         "records_found": total_count,
         "results": audited_results,

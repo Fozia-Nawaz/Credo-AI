@@ -1,101 +1,101 @@
-id,title,provider,major,min_cgpa,funding,deadline,status,trust_score,is_scam,country,source_url
-agg_001,Unverified CSU Data Center Grant Listing,Global Scholarship Aggregator,COMPUTER SCIENCE,2.0,Varies,2026-10-28,DISCREPANCY,68,false,USA,https://scholarship-finder-hub.com/csu
-agg_002,Global CS & Tech Portal Listing,StudyAbroad Hub,COMPUTER SCIENCE,2.0,Partial Funding,2026-11-02,DISCREPANCY,70,false,UK,https://studyabroad-hub.com/cs
-agg_003,Unverified Data Science Fellowships Hub,Data Science Portal,DATA SCIENCE,2.0,Varies,2026-10-30,DISCREPANCY,66,false,Global,https://datascience-portal.org
-agg_004,Unverified AI Research Award,AI Forum Portal,AI,2.0,Varies,2026-10-25,DISCREPANCY,65,false,Global,https://aiforum-listings.net/grant
-agg_005,Overseas Engineering Studies Aggregator,StudyAbroad Portal,ENGINEERING,2.0,Partial Tuition,2026-11-10,DISCREPANCY,70,false,Germany,https://studyabroad-hub.com/daad
-agg_006,Global Business Leadership Award,Unregistered MBA Forum,BUSINESS,2.0,Varies,2026-10-20,DISCREPANCY,72,false,Global,https://mbaleaders-portal.org
-agg_007,Humanities International Grant Portal,Global Arts Registry,HUMANITIES,2.0,Partial Stipend,2026-10-22,DISCREPANCY,67,false,USA,https://artsregistry.org
-agg_008,UK Computing Excellence Listing,Global Academic Portal,COMPUTER SCIENCE,2.0,Varies,2026-11-12,DISCREPANCY,69,false,UK,https://academic-grants-hub.com
-agg_009,US CS Masters Scholarship Registry,EduSearch Gateway,COMPUTER SCIENCE,2.0,$10000 Stipend,2026-10-29,DISCREPANCY,71,false,USA,https://edusearch-portal.org
-agg_010,European Tech Fellowship Unverified Entry,EuroGrants Hub,COMPUTER SCIENCE,2.0,Partial Tuition,2026-11-04,DISCREPANCY,68,false,Germany,https://eurogrants-hub.net
-agg_011,Canada Software Engineering Award Listing,Scholarship Finder Network,COMPUTER SCIENCE,2.0,Varies,2026-10-31,DISCREPANCY,65,false,Canada,https://scholarship-network.ca
-agg_012,Australia Computing Talent Listing,Aussie Edu Portal,COMPUTER SCIENCE,2.0,Tuition Allowance,2026-11-08,DISCREPANCY,73,false,Australia,https://aussie-edu-portal.com
-agg_013,Asian CS Leadership Award Aggregator,Asia Study Directory,COMPUTER SCIENCE,2.0,Varies,2026-10-26,DISCREPANCY,67,false,Singapore,https://asia-study-dir.org
-agg_014,Japan IT & Robotics Fellowship Listing,MEXT Aggregator Hub,COMPUTER SCIENCE,2.0,Partial Accommodation,2026-11-15,DISCREPANCY,70,false,Japan,https://japan-mext-directory.com
-agg_015,Global Cloud Computing Award Directory,Cloud Tech Forum,COMPUTER SCIENCE,2.0,$5000 Grant,2026-11-01,DISCREPANCY,66,false,Global,https://cloudtechforum-listings.org
-agg_016,Unverified Big Data Fellowship Entry,Data Scientists Hub,DATA SCIENCE,2.0,Varies,2026-10-27,DISCREPANCY,68,false,USA,https://datascience-hub.net
-agg_017,Global AI Research Award Listing,AI Scholars Directory,AI,2.0,$8000 Research Support,2026-11-05,DISCREPANCY,69,false,UK,https://aischolars-directory.com
-agg_018,Neural Networks Research Grant Registry,AI Forum Portal,AI,2.0,Varies,2026-10-24,DISCREPANCY,64,false,USA,https://aiforum-listings.net
-agg_019,Machine Learning Global Award Aggregator,Tech Grants Hub,AI,2.0,Partial Stipend,2026-11-09,DISCREPANCY,72,false,Global,https://techgrants-hub.org
-agg_020,Deep Learning Excellence Unverified Entry,AI World Registry,AI,2.0,Varies,2026-10-30,DISCREPANCY,67,false,Canada,https://aiworld-registry.ca
-agg_021,Applied AI Innovation Fellowship Entry,Global Tech Portal,AI,2.0,$6000 Grant,2026-11-14,DISCREPANCY,70,false,Germany,https://globaltech-portal.de
-agg_022,NLP Research Grant Listing,AI Open Registry,AI,2.0,Varies,2026-10-23,DISCREPANCY,66,false,Global,https://ai-open-registry.org
-agg_023,Robotics & Perception Fellowship Aggregator,Robotics Forum,AI,2.0,Partial Tuition,2026-11-07,DISCREPANCY,71,false,Switzerland,https://robotics-forum-hub.ch
-agg_024,Medical Sciences Overseas Award Listing,Global Health Directory,MEDICAL,2.0,Varies,2026-10-28,DISCREPANCY,68,false,USA,https://globalhealth-dir.org
-agg_025,Unverified Clinical Research Grant Entry,MedGrants Portal,MEDICAL,2.0,Lab Allowance,2026-11-03,DISCREPANCY,65,false,UK,https://medgrants-portal.co.uk
-agg_026,Global Public Health Fellowship Listing,Health Study Hub,MEDICAL,2.0,Varies,2026-10-31,DISCREPANCY,70,false,Switzerland,https://healthstudy-hub.org
-agg_027,Biomedical Research Excellence Aggregator,BioTech Directory,MEDICAL,2.0,Partial Funding,2026-11-11,DISCREPANCY,72,false,Sweden,https://biotech-dir.se
-agg_028,International Surgery Leadership Entry,Medical Education Network,MEDICAL,2.0,Varies,2026-10-25,DISCREPANCY,67,false,Global,https://med-edu-network.org
-agg_029,Healthcare Management Fellowship Registry,Global Med Hub,MEDICAL,2.0,$7000 Stipend,2026-11-06,DISCREPANCY,69,false,USA,https://globalmed-hub.com
-agg_030,German Mechanical Engineering Unverified Grant,StudyInGermany Portal,ENGINEERING,2.0,Varies,2026-10-29,DISCREPANCY,68,false,Germany,https://studyingermany-portal.de
-agg_031,European Civil Engineering Award Listing,EuroEng Network,ENGINEERING,2.0,Partial Waiver,2026-11-13,DISCREPANCY,70,false,Netherlands,https://euroeng-network.nl
-agg_032,Global Electrical Engineering Award Registry,EngGrants Directory,ENGINEERING,2.0,Varies,2026-10-27,DISCREPANCY,66,false,USA,https://enggrants-dir.org
-agg_033,Robotics Engineering International Listing,Tech Eng Hub,ENGINEERING,2.0,$5000 Grant,2026-11-02,DISCREPANCY,73,false,Japan,https://tech-eng-hub.jp
-agg_034,Aerospace Research Fellowship Aggregator,Aero Eng Directory,ENGINEERING,2.0,Varies,2026-10-24,DISCREPANCY,65,false,UK,https://aero-eng-dir.co.uk
-agg_035,Chemical Engineering Excellence Listing,Global Eng Portal,ENGINEERING,2.0,Partial Stipend,2026-11-16,DISCREPANCY,69,false,Global,https://global-eng-portal.org
-agg_036,Unverified MBA Leaders Scholarship Entry,MBASearch Directory,BUSINESS,2.0,Varies,2026-10-28,DISCREPANCY,68,false,USA,https://mbasearch-dir.com
-agg_037,Global Finance & Accounting Grant Listing,Finance Study Hub,BUSINESS,2.0,$8000 Waiver,2026-11-05,DISCREPANCY,71,false,UK,https://financestudy-hub.co.uk
-agg_038,International Business Management Registry,BizScholarships Portal,BUSINESS,2.0,Varies,2026-10-22,DISCREPANCY,67,false,France,https://bizscholarships-portal.fr
-agg_039,Entrepreneurship Innovation Fellowship Aggregator,Startup Grants Hub,BUSINESS,2.0,Partial Funding,2026-11-10,DISCREPANCY,70,false,Global,https://startupgrants-hub.org
-agg_040,Global Supply Chain Management Listing,Logistics Study Network,BUSINESS,2.0,Varies,2026-10-31,DISCREPANCY,66,false,Netherlands,https://logistics-study-net.nl
-agg_041,Humanities Research Fellowship Registry,Arts & Social Portal,HUMANITIES,2.0,Partial Stipend,2026-10-26,DISCREPANCY,68,false,USA,https://arts-social-portal.org
-agg_042,Global Peace & Diplomacy Award Aggregator,Diplomacy Study Hub,HUMANITIES,2.0,Varies,2026-11-08,DISCREPANCY,72,false,UK,https://diplomacy-study-hub.co.uk
-agg_043,International Public Policy Award Listing,Policy Grants Directory,HUMANITIES,2.0,Partial Tuition,2026-10-29,DISCREPANCY,67,false,Germany,https://policy-grants-dir.de
-agg_044,Social Sciences Overseas Award Registry,Global Humanities Net,HUMANITIES,2.0,Varies,2026-11-12,DISCREPANCY,69,false,Canada,https://globalhumanities-net.ca
-agg_045,UK Software Architecture Award Listing,UK Tech Portal,COMPUTER SCIENCE,2.0,$6000 Grant,2026-11-01,DISCREPANCY,70,false,UK,https://uktech-portal.co.uk
-agg_046,US Cyber Security Excellence Listing,US Edu Registry,COMPUTER SCIENCE,2.0,Varies,2026-10-28,DISCREPANCY,68,false,USA,https://useduregistry.org
-agg_047,Canada AI & Computing Fellowship Aggregator,Canada Tech Hub,COMPUTER SCIENCE,2.0,Partial Stipend,2026-11-06,DISCREPANCY,72,false,Canada,https://canadatech-hub.ca
-agg_048,Australian IT Leadership Unverified Entry,Aussie Study Net,COMPUTER SCIENCE,2.0,Varies,2026-10-24,DISCREPANCY,66,false,Australia,https://aussiestudynet.com
-agg_049,European Distributed Systems Award Registry,EuroTech Directory,COMPUTER SCIENCE,2.0,Partial Tuition,2026-11-14,DISCREPANCY,69,false,Sweden,https://eurotech-dir.se
-agg_050,Global High Performance Computing Listing,HPC Forum Portal,COMPUTER SCIENCE,2.0,Varies,2026-10-30,DISCREPANCY,67,false,Global,https://hpcforum-portal.org
-agg_051,US Cloud Systems Research Grant Listing,US Grants Hub,COMPUTER SCIENCE,2.0,$7500 Award,2026-11-03,DISCREPANCY,71,false,USA,https://usgrantshub.org
-agg_052,UK Open Source Software Grant Aggregator,UK Open Tech Portal,COMPUTER SCIENCE,2.0,Varies,2026-10-27,DISCREPANCY,65,false,UK,https://ukopentech.co.uk
-agg_053,German Software Engineering Award Listing,Deutsch Tech Net,COMPUTER SCIENCE,2.0,Partial Waiver,2026-11-11,DISCREPANCY,70,false,Germany,https://deutschtechnet.de
-agg_054,Asian Data Engineering Fellowship Aggregator,Asia Data Hub,DATA SCIENCE,2.0,Varies,2026-10-25,DISCREPANCY,68,false,Singapore,https://asiadatahub.sg
-agg_055,Global Predictive Analytics Award Registry,Analytics World Portal,DATA SCIENCE,2.0,Partial Stipend,2026-11-09,DISCREPANCY,72,false,Global,https://analyticsworld-portal.org
-agg_056,US Big Data Research Fellowship Entry,US Data Net,DATA SCIENCE,2.0,Varies,2026-10-31,DISCREPANCY,66,false,USA,https://usdatanet.org
-agg_057,UK Business Analytics Grant Listing,UK Edu Network,DATA SCIENCE,2.0,$5000 Waiver,2026-11-15,DISCREPANCY,69,false,UK,https://ukedunetwork.co.uk
-agg_058,Canada Data Visualization Award Aggregator,Canada Study Hub,DATA SCIENCE,2.0,Varies,2026-10-28,DISCREPANCY,67,false,Canada,https://canadastudyhub.ca
-agg_059,European Health Data Science Registry,Euro Med Data Net,DATA SCIENCE,2.0,Partial Funding,2026-11-04,DISCREPANCY,71,false,Switzerland,https://euromeddatanet.ch
-agg_060,Global Reinforcement Learning Award Listing,AI World Network,AI,2.0,Varies,2026-10-29,DISCREPANCY,68,false,USA,https://aiworldnet.org
-agg_061,UK Autonomous Systems Fellowship Aggregator,UK Robotics Net,AI,2.0,$9000 Grant,2026-11-07,DISCREPANCY,72,false,UK,https://ukroboticsnet.co.uk
-agg_062,German Computer Vision Fellowship Registry,German AI Hub,AI,2.0,Varies,2026-10-26,DISCREPANCY,65,false,Germany,https://germanaihub.de
-agg_063,Japan Speech Recognition Award Listing,Japan AI Portal,AI,2.0,Partial Stipend,2026-11-12,DISCREPANCY,70,false,Japan,https://japanaiportal.jp
-agg_064,US Neural Computation Award Aggregator,US AI Directory,AI,2.0,Varies,2026-10-23,DISCREPANCY,67,false,USA,https://usaidirectory.org
-agg_065,Global Generative AI Research Grant Registry,GenAI Portal,AI,2.0,Partial Funding,2026-11-16,DISCREPANCY,73,false,Global,https://genaiportal.org
-agg_066,UK Biomedical Sciences Award Aggregator,UK Med Portal,MEDICAL,2.0,Varies,2026-10-30,DISCREPANCY,68,false,UK,https://ukmedportal.co.uk
-agg_067,US Clinical Oncology Fellowship Listing,US Cancer Research Hub,MEDICAL,2.0,$10000 Research Grant,2026-11-05,DISCREPANCY,71,false,USA,https://uscancerresearchhub.org
-agg_068,European Neurological Research Registry,Euro Neuro Net,MEDICAL,2.0,Varies,2026-10-27,DISCREPANCY,66,false,Sweden,https://euroneuronet.se
-agg_069,Global Infectious Diseases Award Listing,World Med Grants,MEDICAL,2.0,Partial Waiver,2026-11-08,DISCREPANCY,69,false,Switzerland,https://worldmedgrants.org
-agg_070,Canada Health Informatics Grant Aggregator,Canada Med Hub,MEDICAL,2.0,Varies,2026-10-24,DISCREPANCY,67,false,Canada,https://canadamedhub.ca
-agg_071,German Renewable Energy Grant Listing,German Eng Directory,ENGINEERING,2.0,$6000 Award,2026-11-10,DISCREPANCY,70,false,Germany,https://germanengdirectory.de
-agg_072,US Nano Technology Fellowship Aggregator,US Nano Tech Net,ENGINEERING,2.0,Varies,2026-10-28,DISCREPANCY,68,false,USA,https://usnanotechnet.org
-agg_073,UK Structural Engineering Award Registry,UK Eng Network,ENGINEERING,2.0,Partial Waiver,2026-11-02,DISCREPANCY,71,false,UK,https://ukengnetwork.co.uk
-agg_074,Japan Mechatronics Leadership Listing,Japan Eng Hub,ENGINEERING,2.0,Varies,2026-10-31,DISCREPANCY,66,false,Japan,https://japanenghub.jp
-agg_075,Global Environmental Eng Award Aggregator,Green Tech Portal,ENGINEERING,2.0,Partial Stipend,2026-11-14,DISCREPANCY,72,false,Global,https://greentechportal.org
-agg_076,US Financial Engineering Fellowship Entry,US Business Net,BUSINESS,2.0,Varies,2026-10-26,DISCREPANCY,67,false,USA,https://usbusinessnet.org
-agg_077,UK Corporate Strategy Award Aggregator,UK Biz Directory,BUSINESS,2.0,$7000 Waiver,2026-11-06,DISCREPANCY,70,false,UK,https://ukbizdirectory.co.uk
-agg_078,European Digital Marketing Grant Registry,Euro Biz Hub,BUSINESS,2.0,Varies,2026-10-29,DISCREPANCY,65,false,France,https://eurobizhub.fr
-agg_079,Global Risk Management Award Listing,Risk Study Portal,BUSINESS,2.0,Partial Funding,2026-11-13,DISCREPANCY,69,false,Global,https://riskstudyportal.org
-agg_080,Canada FinTech Innovation Grant Aggregator,Canada Biz Net,BUSINESS,2.0,Varies,2026-10-25,DISCREPANCY,68,false,Canada,https://canadabiznet.ca
-agg_081,US International Relations Award Listing,US Humanities Net,HUMANITIES,2.0,Partial Stipend,2026-11-01,DISCREPANCY,71,false,USA,https://ushumanitiesnet.org
-agg_082,UK History & Heritage Grant Registry,UK Arts Hub,HUMANITIES,2.0,Varies,2026-10-28,DISCREPANCY,66,false,UK,https://ukartshub.co.uk
-agg_083,European Philosophy Research Award Listing,Euro Arts Directory,HUMANITIES,2.0,$5000 Grant,2026-11-07,DISCREPANCY,70,false,Germany,https://euroartsdirectory.de
-agg_084,Global Journalism Fellowship Aggregator,World Press Network,HUMANITIES,2.0,Varies,2026-10-23,DISCREPANCY,67,false,Global,https://worldpressnetwork.org
-agg_085,Canada Applied Linguistics Award Registry,Canada Arts Hub,HUMANITIES,2.0,Partial Tuition,2026-11-15,DISCREPANCY,69,false,Canada,https://canadaartshub.ca
-agg_086,US Software Systems Award Listing,US Tech Directory,COMPUTER SCIENCE,2.0,Varies,2026-10-30,DISCREPANCY,68,false,USA,https://ustechdirectory.org
-agg_087,UK Game Development Grant Aggregator,UK Gaming Net,COMPUTER SCIENCE,2.0,$8000 Stipend,2026-11-04,DISCREPANCY,72,false,UK,https://ukgamingnet.co.uk
-agg_088,Germany Embedded Systems Award Registry,German IT Network,COMPUTER SCIENCE,2.0,Varies,2026-10-27,DISCREPANCY,65,false,Germany,https://germanitnetwork.de
-agg_089,Japan Human Computer Interaction Listing,Japan Tech Hub,COMPUTER SCIENCE,2.0,Partial Funding,2026-11-08,DISCREPANCY,71,false,Japan,https://japantechhub.jp
-agg_090,Global Quantum Computing Award Aggregator,Quantum Study Net,COMPUTER SCIENCE,2.0,Varies,2026-10-24,DISCREPANCY,67,false,Global,https://quantumstudynet.org
-agg_091,US Data Mining Research Award Registry,US Analytics Hub,DATA SCIENCE,2.0,$6000 Grant,2026-11-12,DISCREPANCY,70,false,USA,https://usanalyticshub.org
-agg_092,UK Spatial Data Analytics Fellowship Entry,UK Data Portal,DATA SCIENCE,2.0,Varies,2026-10-29,DISCREPANCY,66,false,UK,https://ukdataportal.co.uk
-agg_093,European Bioinformatics Grant Aggregator,Euro Bio Data Net,DATA SCIENCE,2.0,Partial Waiver,2026-11-03,DISCREPANCY,69,false,Switzerland,https://eurobiodatanet.ch
-agg_094,Global Statistical Modeling Award Listing,Stats World Net,DATA SCIENCE,2.0,Varies,2026-10-26,DISCREPANCY,68,false,Global,https://statsworldnet.org
-agg_095,Canada Time Series Research Grant Registry,Canada Analytics Net,DATA SCIENCE,2.0,Partial Stipend,2026-11-10,DISCREPANCY,71,false,Canada,https://canadaanalyticsnet.ca
-agg_096,US Deep Learning Vision Award Aggregator,US Vision Portal,AI,2.0,Varies,2026-10-28,DISCREPANCY,67,false,USA,https://usvisionportal.org
-agg_097,UK Ethics in AI Research Grant Registry,UK AI Ethics Hub,AI,2.0,$7500 Award,2026-11-01,DISCREPANCY,73,false,UK,https://ukaiethics hub.co.uk
-agg_098,German Intelligent Systems Fellowship Entry,German Tech Portal,AI,2.0,Varies,2026-10-25,DISCREPANCY,65,false,Germany,https://germantechportal.de
-agg_099,Global Cognitive Computing Award Aggregator,Cognitive Net,AI,2.0,Partial Funding,2026-11-06,DISCREPANCY,70,false,Global,https://cognitivenet.org
-agg_100,Japan AI Robotics Leadership Listing,Japan Robotics Net,AI,2.0,Varies,2026-10-31,DISCREPANCY,68,false,Japan,https://japanroboticsnet.jp
+id,title,provider,major,min_cgpa,funding_category,funding,deadline,status,trust_score,is_scam,country,source_url
+agg_001,Unverified CSU Data Center Grant Listing,Global Scholarship Aggregator,COMPUTER SCIENCE,2.0,NEED,Varies,2026-10-28,DISCREPANCY,68,false,USA,https://scholarship-finder-hub.com/csu
+agg_002,Global CS & Tech Portal Listing,StudyAbroad Hub,COMPUTER SCIENCE,2.0,MERIT,Partial Funding,2026-11-02,DISCREPANCY,70,false,UK,https://studyabroad-hub.com/cs
+agg_003,Unverified Data Science Fellowships Hub,Data Science Portal,DATA SCIENCE,2.0,BOTH,Varies,2026-10-30,DISCREPANCY,66,false,Global,https://datascience-portal.org
+agg_004,Unverified AI Research Award,AI Forum Portal,AI,2.0,NEED,Varies,2026-10-25,DISCREPANCY,65,false,Global,https://aiforum-listings.net/grant
+agg_005,Overseas Engineering Studies Aggregator,StudyAbroad Portal,ENGINEERING,2.0,MERIT,Partial Tuition,2026-11-10,DISCREPANCY,70,false,Germany,https://studyabroad-hub.com/daad
+agg_006,Global Business Leadership Award,Unregistered MBA Forum,BUSINESS,2.0,BOTH,Varies,2026-10-20,DISCREPANCY,72,false,Global,https://mbaleaders-portal.org
+agg_007,Humanities International Grant Portal,Global Arts Registry,HUMANITIES,2.0,NEED,Partial Stipend,2026-10-22,DISCREPANCY,67,false,USA,https://artsregistry.org
+agg_008,UK Computing Excellence Listing,Global Academic Portal,COMPUTER SCIENCE,2.0,MERIT,Varies,2026-11-12,DISCREPANCY,69,false,UK,https://academic-grants-hub.com
+agg_009,US CS Masters Scholarship Registry,EduSearch Gateway,COMPUTER SCIENCE,2.0,BOTH,$10000 Stipend,2026-10-29,DISCREPANCY,71,false,USA,https://edusearch-portal.org
+agg_010,European Tech Fellowship Unverified Entry,EuroGrants Hub,COMPUTER SCIENCE,2.0,NEED,Partial Tuition,2026-11-04,DISCREPANCY,68,false,Germany,https://eurogrants-hub.net
+agg_011,Canada Software Engineering Award Listing,Scholarship Finder Network,COMPUTER SCIENCE,2.0,MERIT,Varies,2026-10-31,DISCREPANCY,65,false,Canada,https://scholarship-network.ca
+agg_012,Australia Computing Talent Listing,Aussie Edu Portal,COMPUTER SCIENCE,2.0,BOTH,Tuition Allowance,2026-11-08,DISCREPANCY,73,false,Australia,https://aussie-edu-portal.com
+agg_013,Asian CS Leadership Award Aggregator,Asia Study Directory,COMPUTER SCIENCE,2.0,NEED,Varies,2026-10-26,DISCREPANCY,67,false,Singapore,https://asia-study-dir.org
+agg_014,Japan IT & Robotics Fellowship Listing,MEXT Aggregator Hub,COMPUTER SCIENCE,2.0,MERIT,Partial Accommodation,2026-11-15,DISCREPANCY,70,false,Japan,https://japan-mext-directory.com
+agg_015,Global Cloud Computing Award Directory,Cloud Tech Forum,COMPUTER SCIENCE,2.0,BOTH,$5000 Grant,2026-11-01,DISCREPANCY,66,false,Global,https://cloudtechforum-listings.org
+agg_016,Unverified Big Data Fellowship Entry,Data Scientists Hub,DATA SCIENCE,2.0,NEED,Varies,2026-10-27,DISCREPANCY,68,false,USA,https://datascience-hub.net
+agg_017,Global AI Research Award Listing,AI Scholars Directory,AI,2.0,MERIT,$8000 Research Support,2026-11-05,DISCREPANCY,69,false,UK,https://aischolars-directory.com
+agg_018,Neural Networks Research Grant Registry,AI Forum Portal,AI,2.0,BOTH,Varies,2026-10-24,DISCREPANCY,64,false,USA,https://aiforum-listings.net
+agg_019,Machine Learning Global Award Aggregator,Tech Grants Hub,AI,2.0,NEED,Partial Stipend,2026-11-09,DISCREPANCY,72,false,Global,https://techgrants-hub.org
+agg_020,Deep Learning Excellence Unverified Entry,AI World Registry,AI,2.0,MERIT,Varies,2026-10-30,DISCREPANCY,67,false,Canada,https://aiworld-registry.ca
+agg_021,Applied AI Innovation Fellowship Entry,Global Tech Portal,AI,2.0,BOTH,$6000 Grant,2026-11-14,DISCREPANCY,70,false,Germany,https://globaltech-portal.de
+agg_022,NLP Research Grant Listing,AI Open Registry,AI,2.0,NEED,Varies,2026-10-23,DISCREPANCY,66,false,Global,https://ai-open-registry.org
+agg_023,Robotics & Perception Fellowship Aggregator,Robotics Forum,AI,2.0,MERIT,Partial Tuition,2026-11-07,DISCREPANCY,71,false,Switzerland,https://robotics-forum-hub.ch
+agg_024,Medical Sciences Overseas Award Listing,Global Health Directory,MEDICAL,2.0,BOTH,Varies,2026-10-28,DISCREPANCY,68,false,USA,https://globalhealth-dir.org
+agg_025,Unverified Clinical Research Grant Entry,MedGrants Portal,MEDICAL,2.0,NEED,Lab Allowance,2026-11-03,DISCREPANCY,65,false,UK,https://medgrants-portal.co.uk
+agg_026,Global Public Health Fellowship Listing,Health Study Hub,MEDICAL,2.0,MERIT,Varies,2026-10-31,DISCREPANCY,70,false,Switzerland,https://healthstudy-hub.org
+agg_027,Biomedical Research Excellence Aggregator,BioTech Directory,MEDICAL,2.0,BOTH,Partial Funding,2026-11-11,DISCREPANCY,72,false,Sweden,https://biotech-dir.se
+agg_028,International Surgery Leadership Entry,Medical Education Network,MEDICAL,2.0,NEED,Varies,2026-10-25,DISCREPANCY,67,false,Global,https://med-edu-network.org
+agg_029,Healthcare Management Fellowship Registry,Global Med Hub,MEDICAL,2.0,MERIT,$7000 Stipend,2026-11-06,DISCREPANCY,69,false,USA,https://globalmed-hub.com
+agg_030,German Mechanical Engineering Unverified Grant,StudyInGermany Portal,ENGINEERING,2.0,BOTH,Varies,2026-10-29,DISCREPANCY,68,false,Germany,https://studyingermany-portal.de
+agg_031,European Civil Engineering Award Listing,EuroEng Network,ENGINEERING,2.0,NEED,Partial Waiver,2026-11-13,DISCREPANCY,70,false,Netherlands,https://euroeng-network.nl
+agg_032,Global Electrical Engineering Award Registry,EngGrants Directory,ENGINEERING,2.0,MERIT,Varies,2026-10-27,DISCREPANCY,66,false,USA,https://enggrants-dir.org
+agg_033,Robotics Engineering International Listing,Tech Eng Hub,ENGINEERING,2.0,BOTH,$5000 Grant,2026-11-02,DISCREPANCY,73,false,Japan,https://tech-eng-hub.jp
+agg_034,Aerospace Research Fellowship Aggregator,Aero Eng Directory,ENGINEERING,2.0,NEED,Varies,2026-10-24,DISCREPANCY,65,false,UK,https://aero-eng-dir.co.uk
+agg_035,Chemical Engineering Excellence Listing,Global Eng Portal,ENGINEERING,2.0,MERIT,Partial Stipend,2026-11-16,DISCREPANCY,69,false,Global,https://global-eng-portal.org
+agg_036,Unverified MBA Leaders Scholarship Entry,MBASearch Directory,BUSINESS,2.0,BOTH,Varies,2026-10-28,DISCREPANCY,68,false,USA,https://mbasearch-dir.com
+agg_037,Global Finance & Accounting Grant Listing,Finance Study Hub,BUSINESS,2.0,NEED,$8000 Waiver,2026-11-05,DISCREPANCY,71,false,UK,https://financestudy-hub.co.uk
+agg_038,International Business Management Registry,BizScholarships Portal,BUSINESS,2.0,MERIT,Varies,2026-10-22,DISCREPANCY,67,false,France,https://bizscholarships-portal.fr
+agg_039,Entrepreneurship Innovation Fellowship Aggregator,Startup Grants Hub,BUSINESS,2.0,BOTH,Partial Funding,2026-11-10,DISCREPANCY,70,false,Global,https://startupgrants-hub.org
+agg_040,Global Supply Chain Management Listing,Logistics Study Network,BUSINESS,2.0,NEED,Varies,2026-10-31,DISCREPANCY,66,false,Netherlands,https://logistics-study-net.nl
+agg_041,Humanities Research Fellowship Registry,Arts & Social Portal,HUMANITIES,2.0,MERIT,Partial Stipend,2026-10-26,DISCREPANCY,68,false,USA,https://arts-social-portal.org
+agg_042,Global Peace & Diplomacy Award Aggregator,Diplomacy Study Hub,HUMANITIES,2.0,BOTH,Varies,2026-11-08,DISCREPANCY,72,false,UK,https://diplomacy-study-hub.co.uk
+agg_043,International Public Policy Award Listing,Policy Grants Directory,HUMANITIES,2.0,NEED,Partial Tuition,2026-10-29,DISCREPANCY,67,false,Germany,https://policy-grants-dir.de
+agg_044,Social Sciences Overseas Award Registry,Global Humanities Net,HUMANITIES,2.0,MERIT,Varies,2026-11-12,DISCREPANCY,69,false,Canada,https://globalhumanities-net.ca
+agg_045,UK Software Architecture Award Listing,UK Tech Portal,COMPUTER SCIENCE,2.0,BOTH,$6000 Grant,2026-11-01,DISCREPANCY,70,false,UK,https://uktech-portal.co.uk
+agg_046,US Cyber Security Excellence Listing,US Edu Registry,COMPUTER SCIENCE,2.0,NEED,Varies,2026-10-28,DISCREPANCY,68,false,USA,https://useduregistry.org
+agg_047,Canada AI & Computing Fellowship Aggregator,Canada Tech Hub,COMPUTER SCIENCE,2.0,MERIT,Partial Stipend,2026-11-06,DISCREPANCY,72,false,Canada,https://canadatech-hub.ca
+agg_048,Australian IT Leadership Unverified Entry,Aussie Study Net,COMPUTER SCIENCE,2.0,BOTH,Varies,2026-10-24,DISCREPANCY,66,false,Australia,https://aussiestudynet.com
+agg_049,European Distributed Systems Award Registry,EuroTech Directory,COMPUTER SCIENCE,2.0,NEED,Partial Tuition,2026-11-14,DISCREPANCY,69,false,Sweden,https://eurotech-dir.se
+agg_050,Global High Performance Computing Listing,HPC Forum Portal,COMPUTER SCIENCE,2.0,MERIT,Varies,2026-10-30,DISCREPANCY,67,false,Global,https://hpcforum-portal.org
+agg_051,US Cloud Systems Research Grant Listing,US Grants Hub,COMPUTER SCIENCE,2.0,BOTH,$7500 Award,2026-11-03,DISCREPANCY,71,false,USA,https://usgrantshub.org
+agg_052,UK Open Source Software Grant Aggregator,UK Open Tech Portal,COMPUTER SCIENCE,2.0,NEED,Varies,2026-10-27,DISCREPANCY,65,false,UK,https://ukopentech.co.uk
+agg_053,German Software Engineering Award Listing,Deutsch Tech Net,COMPUTER SCIENCE,2.0,MERIT,Partial Waiver,2026-11-11,DISCREPANCY,70,false,Germany,https://deutschtechnet.de
+agg_054,Asian Data Engineering Fellowship Aggregator,Asia Data Hub,DATA SCIENCE,2.0,BOTH,Varies,2026-10-25,DISCREPANCY,68,false,Singapore,https://asiadatahub.sg
+agg_055,Global Predictive Analytics Award Registry,Analytics World Portal,DATA SCIENCE,2.0,NEED,Partial Stipend,2026-11-09,DISCREPANCY,72,false,Global,https://analyticsworld-portal.org
+agg_056,US Big Data Research Fellowship Entry,US Data Net,DATA SCIENCE,2.0,MERIT,Varies,2026-10-31,DISCREPANCY,66,false,USA,https://usdatanet.org
+agg_057,UK Business Analytics Grant Listing,UK Edu Network,DATA SCIENCE,2.0,BOTH,$5000 Waiver,2026-11-15,DISCREPANCY,69,false,UK,https://ukedunetwork.co.uk
+agg_058,Canada Data Visualization Award Aggregator,Canada Study Hub,DATA SCIENCE,2.0,NEED,Varies,2026-10-28,DISCREPANCY,67,false,Canada,https://canadastudyhub.ca
+agg_059,European Health Data Science Registry,Euro Med Data Net,DATA SCIENCE,2.0,MERIT,Partial Funding,2026-11-04,DISCREPANCY,71,false,Switzerland,https://euromeddatanet.ch
+agg_060,Global Reinforcement Learning Award Listing,AI World Network,AI,2.0,BOTH,Varies,2026-10-29,DISCREPANCY,68,false,USA,https://aiworldnet.org
+agg_061,UK Autonomous Systems Fellowship Aggregator,UK Robotics Net,AI,2.0,NEED,$9000 Grant,2026-11-07,DISCREPANCY,72,false,UK,https://ukroboticsnet.co.uk
+agg_062,German Computer Vision Fellowship Registry,German AI Hub,AI,2.0,MERIT,Varies,2026-10-26,DISCREPANCY,65,false,Germany,https://germanaihub.de
+agg_063,Japan Speech Recognition Award Listing,Japan AI Portal,AI,2.0,BOTH,Partial Stipend,2026-11-12,DISCREPANCY,70,false,Japan,https://japanaiportal.jp
+agg_064,US Neural Computation Award Aggregator,US AI Directory,AI,2.0,NEED,Varies,2026-10-23,DISCREPANCY,67,false,USA,https://usaidirectory.org
+agg_065,Global Generative AI Research Grant Registry,GenAI Portal,AI,2.0,MERIT,Partial Funding,2026-11-16,DISCREPANCY,73,false,Global,https://genaiportal.org
+agg_066,UK Biomedical Sciences Award Aggregator,UK Med Portal,MEDICAL,2.0,BOTH,Varies,2026-10-30,DISCREPANCY,68,false,UK,https://ukmedportal.co.uk
+agg_067,US Clinical Oncology Fellowship Listing,US Cancer Research Hub,MEDICAL,2.0,NEED,$10000 Research Grant,2026-11-05,DISCREPANCY,71,false,USA,https://uscancerresearchhub.org
+agg_068,European Neurological Research Registry,Euro Neuro Net,MEDICAL,2.0,MERIT,Varies,2026-10-27,DISCREPANCY,66,false,Sweden,https://euroneuronet.se
+agg_069,Global Infectious Diseases Award Listing,World Med Grants,MEDICAL,2.0,BOTH,Partial Waiver,2026-11-08,DISCREPANCY,69,false,Switzerland,https://worldmedgrants.org
+agg_070,Canada Health Informatics Grant Aggregator,Canada Med Hub,MEDICAL,2.0,NEED,Varies,2026-10-24,DISCREPANCY,67,false,Canada,https://canadamedhub.ca
+agg_071,German Renewable Energy Grant Listing,German Eng Directory,ENGINEERING,2.0,MERIT,$6000 Award,2026-11-10,DISCREPANCY,70,false,Germany,https://germanengdirectory.de
+agg_072,US Nano Technology Fellowship Aggregator,US Nano Tech Net,ENGINEERING,2.0,BOTH,Varies,2026-10-28,DISCREPANCY,68,false,USA,https://usnanotechnet.org
+agg_073,UK Structural Engineering Award Registry,UK Eng Network,ENGINEERING,2.0,NEED,Partial Waiver,2026-11-02,DISCREPANCY,71,false,UK,https://ukengnetwork.co.uk
+agg_074,Japan Mechatronics Leadership Listing,Japan Eng Hub,ENGINEERING,2.0,MERIT,Varies,2026-10-31,DISCREPANCY,66,false,Japan,https://japanenghub.jp
+agg_075,Global Environmental Eng Award Aggregator,Green Tech Portal,ENGINEERING,2.0,BOTH,Partial Stipend,2026-11-14,DISCREPANCY,72,false,Global,https://greentechportal.org
+agg_076,US Financial Engineering Fellowship Entry,US Business Net,BUSINESS,2.0,NEED,Varies,2026-10-26,DISCREPANCY,67,false,USA,https://usbusinessnet.org
+agg_077,UK Corporate Strategy Award Aggregator,UK Biz Directory,BUSINESS,2.0,MERIT,$7000 Waiver,2026-11-06,DISCREPANCY,70,false,UK,https://ukbizdirectory.co.uk
+agg_078,European Digital Marketing Grant Registry,Euro Biz Hub,BUSINESS,2.0,BOTH,Varies,2026-10-29,DISCREPANCY,65,false,France,https://eurobizhub.fr
+agg_079,Global Risk Management Award Listing,Risk Study Portal,BUSINESS,2.0,NEED,Partial Funding,2026-11-13,DISCREPANCY,69,false,Global,https://riskstudyportal.org
+agg_080,Canada FinTech Innovation Grant Aggregator,Canada Biz Net,BUSINESS,2.0,MERIT,Varies,2026-10-25,DISCREPANCY,68,false,Canada,https://canadabiznet.ca
+agg_081,US International Relations Award Listing,US Humanities Net,HUMANITIES,2.0,BOTH,Partial Stipend,2026-11-01,DISCREPANCY,71,false,USA,https://ushumanitiesnet.org
+agg_082,UK History & Heritage Grant Registry,UK Arts Hub,HUMANITIES,2.0,NEED,Varies,2026-10-28,DISCREPANCY,66,false,UK,https://ukartshub.co.uk
+agg_083,European Philosophy Research Award Listing,Euro Arts Directory,HUMANITIES,2.0,MERIT,$5000 Grant,2026-11-07,DISCREPANCY,70,false,Germany,https://euroartsdirectory.de
+agg_084,Global Journalism Fellowship Aggregator,World Press Network,HUMANITIES,2.0,BOTH,Varies,2026-10-23,DISCREPANCY,67,false,Global,https://worldpressnetwork.org
+agg_085,Canada Applied Linguistics Award Registry,Canada Arts Hub,HUMANITIES,2.0,NEED,Partial Tuition,2026-11-15,DISCREPANCY,69,false,Canada,https://canadaartshub.ca
+agg_086,US Software Systems Award Listing,US Tech Directory,COMPUTER SCIENCE,2.0,MERIT,Varies,2026-10-30,DISCREPANCY,68,false,USA,https://ustechdirectory.org
+agg_087,UK Game Development Grant Aggregator,UK Gaming Net,COMPUTER SCIENCE,2.0,BOTH,$8000 Stipend,2026-11-04,DISCREPANCY,72,false,UK,https://ukgamingnet.co.uk
+agg_088,Germany Embedded Systems Award Registry,German IT Network,COMPUTER SCIENCE,2.0,NEED,Varies,2026-10-27,DISCREPANCY,65,false,Germany,https://germanitnetwork.de
+agg_089,Japan Human Computer Interaction Listing,Japan Tech Hub,COMPUTER SCIENCE,2.0,MERIT,Partial Funding,2026-11-08,DISCREPANCY,71,false,Japan,https://japantechhub.jp
+agg_090,Global Quantum Computing Award Aggregator,Quantum Study Net,COMPUTER SCIENCE,2.0,BOTH,Varies,2026-10-24,DISCREPANCY,67,false,Global,https://quantumstudynet.org
+agg_091,US Data Mining Research Award Registry,US Analytics Hub,DATA SCIENCE,2.0,NEED,$6000 Grant,2026-11-12,DISCREPANCY,70,false,USA,https://usanalyticshub.org
+agg_092,UK Spatial Data Analytics Fellowship Entry,UK Data Portal,DATA SCIENCE,2.0,MERIT,Varies,2026-10-29,DISCREPANCY,66,false,UK,https://ukdataportal.co.uk
+agg_093,European Bioinformatics Grant Aggregator,Euro Bio Data Net,DATA SCIENCE,2.0,BOTH,Partial Waiver,2026-11-03,DISCREPANCY,69,false,Switzerland,https://eurobiodatanet.ch
+agg_094,Global Statistical Modeling Award Listing,Stats World Net,DATA SCIENCE,2.0,NEED,Varies,2026-10-26,DISCREPANCY,68,false,Global,https://statsworldnet.org
+agg_095,Canada Time Series Research Grant Registry,Canada Analytics Net,DATA SCIENCE,2.0,MERIT,Partial Stipend,2026-11-10,DISCREPANCY,71,false,Canada,https://canadaanalyticsnet.ca
+agg_096,US Deep Learning Vision Award Aggregator,US Vision Portal,AI,2.0,BOTH,Varies,2026-10-28,DISCREPANCY,67,false,USA,https://usvisionportal.org
+agg_097,UK Ethics in AI Research Grant Registry,UK AI Ethics Hub,AI,2.0,NEED,$7500 Award,2026-11-01,DISCREPANCY,73,false,UK,https://ukaiethics hub.co.uk
+agg_098,German Intelligent Systems Fellowship Entry,German Tech Portal,AI,2.0,MERIT,Varies,2026-10-25,DISCREPANCY,65,false,Germany,https://germantechportal.de
+agg_099,Global Cognitive Computing Award Aggregator,Cognitive Net,AI,2.0,BOTH,Partial Funding,2026-11-06,DISCREPANCY,70,false,Global,https://cognitivenet.org
+agg_100,Japan AI Robotics Leadership Listing,Japan Robotics Net,AI,2.0,NEED,Varies,2026-10-31,DISCREPANCY,68,false,Japan,https://japanroboticsnet.jp

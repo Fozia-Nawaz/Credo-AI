@@ -1,58 +1,58 @@
-id,title,provider,major,min_cgpa,funding,deadline,status,trust_score,is_scam,country,suspicious_url
-scam_001,Global Tech Fellowship Scam,Unknown Tech Hub,COMPUTER SCIENCE,2.0,$5000 Direct Cash,2026-10-01,SCAM_QUARANTINE,15,true,Global,http://pay-fee-get-scholarship.com
-scam_002,CS Computer Science Instant Cash Scheme,Unverified Registry,COMPUTER SCIENCE,2.0,Pay Processing Fee First,2026-10-08,SCAM_QUARANTINE,12,true,Global,http://instant-cs-bursary.net
-scam_003,Data Science Instant Cash Scheme,Unverified Registry,DATA SCIENCE,2.0,Pay Processing Fee First,2026-10-08,SCAM_QUARANTINE,12,true,Global,http://instant-ds-bursary.net
-scam_004,AI Direct Cash Bursary,Unknown Registry,AI,2.0,Pay $50 Registration Fee,2026-10-05,SCAM_QUARANTINE,10,true,Global,http://cash-ai-claim.org
-scam_005,Medical Overseas Education Portal Scam,Unverified Health Org,MEDICAL,2.0,Pay Application Advance,2026-10-12,SCAM_QUARANTINE,18,true,Global,http://medical-grant-direct.com
-scam_006,Engineering Guaranteed Grant Fraud,Fake Education Trust,ENGINEERING,2.0,Pay $100 Processing Fee,2026-10-15,SCAM_QUARANTINE,11,true,Global,http://engineering-grant-scam.com
-scam_007,Fake Overseas Education Fund,Unverified Portal,ANY,2.0,Pay Processing Fee First,2026-10-10,SCAM_QUARANTINE,10,true,Global,http://instant-approval-bursary.net
-scam_008,US CS Masters Instant Approval Bursary,Fake CS Portal,COMPUTER SCIENCE,2.0,Pay $75 Verification Fee,2026-10-03,SCAM_QUARANTINE,14,true,USA,http://us-cs-bursary-scam.com
-scam_009,UK Software Engineering Direct Cash Grant,Unverified UK Registry,COMPUTER SCIENCE,2.0,Pay £50 Processing Advance,2026-10-09,SCAM_QUARANTINE,12,true,UK,http://uk-cash-grant-claim.co.uk
-scam_010,Canada Computing Talent Fraud Bursary,Fake Canada Portal,COMPUTER SCIENCE,2.0,Pay $60 Registration Deposit,2026-10-06,SCAM_QUARANTINE,11,true,Canada,http://canada-tech-scam.ca
-scam_011,Australia CS Overseas Direct Grant,Unverified Aussie Trust,COMPUTER SCIENCE,2.0,Pay $80 Advance Processing,2026-10-14,SCAM_QUARANTINE,13,true,Australia,http://aussie-cs-grant-fake.com
-scam_012,Global Cloud Computing Cash Prize Scheme,Unknown Cloud Hub,COMPUTER SCIENCE,2.0,Pay $40 Entry Fee,2026-10-02,SCAM_QUARANTINE,15,true,Global,http://cloud-cash-prize-scam.org
-scam_013,European Cyber Security Guaranteed Scholarship,Fake Euro Portal,COMPUTER SCIENCE,2.0,Pay €65 Admin Fee,2026-10-11,SCAM_QUARANTINE,10,true,Germany,http://euro-cyber-grant-fake.de
-scam_014,Asian Tech Talent Instant Bursary,Unverified Asia Hub,COMPUTER SCIENCE,2.0,Pay $50 Registration,2026-10-07,SCAM_QUARANTINE,16,true,Singapore,http://asia-tech-bursary-scam.sg
-scam_015,Global Big Data Cash Allowance Fraud,Fake Data Trust,DATA SCIENCE,2.0,Pay $70 Fee First,2026-10-04,SCAM_QUARANTINE,12,true,Global,http://bigdata-cash-scam.org
-scam_016,US Data Analytics Guaranteed Grant,Unverified US Registry,DATA SCIENCE,2.0,Pay $85 Processing Charge,2026-10-13,SCAM_QUARANTINE,14,true,USA,http://us-data-grant-fake.com
-scam_017,UK Business Analytics Instant Cash Award,Fake UK Portal,DATA SCIENCE,2.0,Pay £45 Deposit,2026-10-05,SCAM_QUARANTINE,11,true,UK,http://uk-analytics-cash-scam.co.uk
-scam_018,Global Predictive AI Grant Scheme,Unknown AI Hub,AI,2.0,Pay $90 Advance Fee,2026-10-02,SCAM_QUARANTINE,10,true,Global,http://ai-predictive-scam.com
-scam_019,Neural Networks Direct Fellowship Fraud,Unverified AI Registry,AI,2.0,Pay $100 Verification Fee,2026-10-10,SCAM_QUARANTINE,13,true,USA,http://neural-grant-fake.org
-scam_020,Robotics Research Cash Grant Scheme,Fake Tech Trust,AI,2.0,Pay $55 Registration,2026-10-08,SCAM_QUARANTINE,15,true,Japan,http://robotics-cash-scam.jp
-scam_021,Generative AI Research Grant Scam,Unknown AI Portal,AI,2.0,Pay $60 Processing,2026-10-12,SCAM_QUARANTINE,12,true,Global,http://genai-grant-scam.net
-scam_022,US Medical Leadership Direct Bursary,Fake Health Trust,MEDICAL,2.0,Pay $120 Application Charge,2026-10-03,SCAM_QUARANTINE,11,true,USA,http://us-med-grant-scam.com
-scam_023,UK Clinical Research Guaranteed Fellowship,Unverified Med Registry,MEDICAL,2.0,Pay £80 Registration,2026-10-09,SCAM_QUARANTINE,10,true,UK,http://uk-clinical-scam.co.uk
-scam_024,Global Healthcare Direct Cash Award,Unknown Med Hub,MEDICAL,2.0,Pay $95 Verification Deposit,2026-10-06,SCAM_QUARANTINE,14,true,Global,http://globalhealth-cash-scam.org
-scam_025,German Engineering Direct Cash Bursary,Fake German Portal,ENGINEERING,2.0,Pay €70 Processing,2026-10-14,SCAM_QUARANTINE,12,true,Germany,http://german-eng-cash-fake.de
-scam_026,US Mechanical Engineering Guaranteed Grant,Unverified Eng Trust,ENGINEERING,2.0,Pay $80 Advance,2026-10-01,SCAM_QUARANTINE,13,true,USA,http://us-eng-grant-scam.com
-scam_027,Global Renewable Energy Cash Prize,Fake Green Portal,ENGINEERING,2.0,Pay $50 Entry Fee,2026-10-11,SCAM_QUARANTINE,15,true,Global,http://green-energy-scam.org
-scam_028,Global MBA Guaranteed Leadership Award,Fake MBA Registry,BUSINESS,2.0,Pay $150 Registration Fee,2026-10-04,SCAM_QUARANTINE,10,true,Global,http://mba-guaranteed-grant-scam.com
-scam_029,US Finance & Accounting Direct Grant,Unverified Biz Hub,BUSINESS,2.0,Pay $90 Processing,2026-10-07,SCAM_QUARANTINE,12,true,USA,http://us-finance-grant-fake.com
-scam_030,UK Business Leadership Instant Fellowship,Fake UK Biz Trust,BUSINESS,2.0,Pay £60 Verification Deposit,2026-10-13,SCAM_QUARANTINE,11,true,UK,http://uk-biz-cash-scam.co.uk
-scam_031,Global Peace & Humanities Direct Cash Award,Fake Arts Registry,HUMANITIES,2.0,Pay $45 Processing Fee,2026-10-05,SCAM_QUARANTINE,14,true,Global,http://arts-cash-grant-scam.org
-scam_032,US Social Sciences Guaranteed Bursary,Unverified Humanities Hub,HUMANITIES,2.0,Pay $65 Admin Charge,2026-10-10,SCAM_QUARANTINE,12,true,USA,http://us-arts-scam.com
-scam_033,UK Software Architecture Direct Cash Scheme,Fake CS Portal,COMPUTER SCIENCE,2.0,Pay £70 Advance,2026-10-02,SCAM_QUARANTINE,13,true,UK,http://uk-sw-arch-scam.co.uk
-scam_034,US Cyber Security Instant Allowance,Unverified Tech Trust,COMPUTER SCIENCE,2.0,Pay $85 Deposit,2026-10-08,SCAM_QUARANTINE,11,true,USA,http://us-cyber-cash-fake.com
-scam_035,Canada Software Systems Guaranteed Grant,Fake Canada Trust,COMPUTER SCIENCE,2.0,Pay $75 Registration,2026-10-12,SCAM_QUARANTINE,10,true,Canada,http://canada-sw-grant-scam.ca
-scam_036,Aussie Cloud Tech Direct Cash Scheme,Unverified Aussie Registry,COMPUTER SCIENCE,2.0,Pay $60 Processing,2026-10-06,SCAM_QUARANTINE,14,true,Australia,http://aussie-cloud-scam.com
-scam_037,Euro Embedded Systems Instant Grant,Fake Euro Tech Portal,COMPUTER SCIENCE,2.0,Pay €50 Admin Charge,2026-10-15,SCAM_QUARANTINE,12,true,Germany,http://euro-embedded-fake.de
-scam_038,Global Quantum Computing Cash Award Fraud,Unknown Quantum Hub,COMPUTER SCIENCE,2.0,Pay $100 Processing Deposit,2026-10-03,SCAM_QUARANTINE,15,true,Global,http://quantum-cash-scam.org
-scam_039,Global Big Data Direct Bursary Fraud,Fake Data Portal,DATA SCIENCE,2.0,Pay $80 Registration,2026-10-09,SCAM_QUARANTINE,11,true,Global,http://bigdata-bursary-scam.com
-scam_040,US Spatial Analytics Guaranteed Fellowship,Unverified US Data Hub,DATA SCIENCE,2.0,Pay $95 Advance,2026-10-01,SCAM_QUARANTINE,13,true,USA,http://us-spatial-data-fake.com
-scam_041,UK Health Analytics Direct Cash Grant,Fake UK Med Data Hub,DATA SCIENCE,2.0,Pay £55 Verification,2026-10-07,SCAM_QUARANTINE,10,true,UK,http://uk-health-data-scam.co.uk
-scam_042,Global Deep Learning Direct Cash Scheme,Unknown AI Registry,AI,2.0,Pay $110 Application Charge,2026-10-14,SCAM_QUARANTINE,12,true,Global,http://deeplearning-cash-scam.org
-scam_043,UK Autonomous AI Guaranteed Award,Fake UK AI Portal,AI,2.0,Pay £65 Registration,2026-10-04,SCAM_QUARANTINE,14,true,UK,http://uk-auto-ai-scam.co.uk
-scam_044,German Computer Vision Cash Grant Fraud,Unverified German AI Hub,AI,2.0,Pay €80 Processing,2026-10-10,SCAM_QUARANTINE,11,true,Germany,http://german-vision-scam.de
-scam_045,Japan Speech AI Direct Allowance,Fake Japan AI Trust,AI,2.0,Pay $70 Advance Deposit,2026-10-06,SCAM_QUARANTINE,13,true,Japan,http://japan-speech-ai-fake.jp
-scam_046,US Oncology Direct Research Bursary,Fake US Cancer Hub,MEDICAL,2.0,Pay $130 Admin Fee,2026-10-02,SCAM_QUARANTINE,10,true,USA,http://us-oncology-grant-scam.com
-scam_047,UK Neurological Guaranteed Grant,Unverified UK Health Registry,MEDICAL,2.0,Pay £90 Registration,2026-10-08,SCAM_QUARANTINE,12,true,UK,http://uk-neuro-grant-fake.co.uk
-scam_048,Global Infectious Disease Cash Prize Scheme,Unknown Med Registry,MEDICAL,2.0,Pay $100 Deposit,2026-10-13,SCAM_QUARANTINE,15,true,Global,http://med-cash-prize-scam.org
-scam_049,German Mechatronics Direct Cash Bursary,Fake German Eng Hub,ENGINEERING,2.0,Pay €75 Verification,2026-10-05,SCAM_QUARANTINE,11,true,Germany,http://german-mechatronics-scam.de
-scam_050,US Nano Tech Guaranteed Fellowship,Unverified US Eng Net,ENGINEERING,2.0,Pay $85 Admin Charge,2026-10-11,SCAM_QUARANTINE,13,true,USA,http://us-nano-eng-fake.com
-scam_051,UK Structural Eng Direct Cash Scheme,Fake UK Eng Trust,ENGINEERING,2.0,Pay £60 Advance,2026-10-03,SCAM_QUARANTINE,10,true,UK,http://uk-struct-eng-scam.co.uk
-scam_052,Global Risk Management Direct Cash Award,Fake Risk Portal,BUSINESS,2.0,Pay $95 Registration Fee,2026-10-09,SCAM_QUARANTINE,14,true,Global,http://risk-cash-grant-scam.org
-scam_053,US FinTech Guaranteed Leadership Bursary,Unverified US Biz Net,BUSINESS,2.0,Pay $110 Verification,2026-10-01,SCAM_QUARANTINE,12,true,USA,http://us-fintech-grant-scam.com
-scam_054,UK Corporate Strategy Cash Grant Scheme,Fake UK Biz Registry,BUSINESS,2.0,Pay £75 Admin Charge,2026-10-07,SCAM_QUARANTINE,11,true,UK,http://uk-strategy-scam.co.uk
-scam_055,US Public Diplomacy Guaranteed Award,Unverified US Arts Hub,HUMANITIES,2.0,Pay $55 Deposit,2026-10-12,SCAM_QUARANTINE,13,true,USA,http://us-diplomacy-scam.com
-scam_056,UK Philosophy Research Direct Cash Scheme,Fake UK Arts Trust,HUMANITIES,2.0,Pay £50 Processing,2026-10-04,SCAM_QUARANTINE,10,true,UK,http://uk-philo-cash-scam.co.uk
-scam_057,Global Journalism Cash Allowance Fraud,Unknown Media Net,HUMANITIES,2.0,Pay $65 Admin Charge,2026-10-10,SCAM_QUARANTINE,15,true,Global,http://journalism-cash-scam.org
+id,title,provider,major,min_cgpa,funding_category,funding,deadline,status,trust_score,is_scam,country,suspicious_url
+scam_001,Global Tech Fellowship Scam,Unknown Tech Hub,COMPUTER SCIENCE,2.0,NEED,$5000 Direct Cash,2026-10-01,SCAM_QUARANTINE,15,true,Global,http://pay-fee-get-scholarship.com
+scam_002,CS Computer Science Instant Cash Scheme,Unverified Registry,COMPUTER SCIENCE,2.0,MERIT,Pay Processing Fee First,2026-10-08,SCAM_QUARANTINE,12,true,Global,http://instant-cs-bursary.net
+scam_003,Data Science Instant Cash Scheme,Unverified Registry,DATA SCIENCE,2.0,BOTH,Pay Processing Fee First,2026-10-08,SCAM_QUARANTINE,12,true,Global,http://instant-ds-bursary.net
+scam_004,AI Direct Cash Bursary,Unknown Registry,AI,2.0,NEED,Pay $50 Registration Fee,2026-10-05,SCAM_QUARANTINE,10,true,Global,http://cash-ai-claim.org
+scam_005,Medical Overseas Education Portal Scam,Unverified Health Org,MEDICAL,2.0,MERIT,Pay Application Advance,2026-10-12,SCAM_QUARANTINE,18,true,Global,http://medical-grant-direct.com
+scam_006,Engineering Guaranteed Grant Fraud,Fake Education Trust,ENGINEERING,2.0,BOTH,Pay $100 Processing Fee,2026-10-15,SCAM_QUARANTINE,11,true,Global,http://engineering-grant-scam.com
+scam_007,Fake Overseas Education Fund,Unverified Portal,ANY,2.0,NEED,Pay Processing Fee First,2026-10-10,SCAM_QUARANTINE,10,true,Global,http://instant-approval-bursary.net
+scam_008,US CS Masters Instant Approval Bursary,Fake CS Portal,COMPUTER SCIENCE,2.0,MERIT,Pay $75 Verification Fee,2026-10-03,SCAM_QUARANTINE,14,true,USA,http://us-cs-bursary-scam.com
+scam_009,UK Software Engineering Direct Cash Grant,Unverified UK Registry,COMPUTER SCIENCE,2.0,BOTH,Pay £50 Processing Advance,2026-10-09,SCAM_QUARANTINE,12,true,UK,http://uk-cash-grant-claim.co.uk
+scam_010,Canada Computing Talent Fraud Bursary,Fake Canada Portal,COMPUTER SCIENCE,2.0,NEED,Pay $60 Registration Deposit,2026-10-06,SCAM_QUARANTINE,11,true,Canada,http://canada-tech-scam.ca
+scam_011,Australia CS Overseas Direct Grant,Unverified Aussie Trust,COMPUTER SCIENCE,2.0,MERIT,Pay $80 Advance Processing,2026-10-14,SCAM_QUARANTINE,13,true,Australia,http://aussie-cs-grant-fake.com
+scam_012,Global Cloud Computing Cash Prize Scheme,Unknown Cloud Hub,COMPUTER SCIENCE,2.0,BOTH,Pay $40 Entry Fee,2026-10-02,SCAM_QUARANTINE,15,true,Global,http://cloud-cash-prize-scam.org
+scam_013,European Cyber Security Guaranteed Scholarship,Fake Euro Portal,COMPUTER SCIENCE,2.0,NEED,Pay €65 Admin Fee,2026-10-11,SCAM_QUARANTINE,10,true,Germany,http://euro-cyber-grant-fake.de
+scam_014,Asian Tech Talent Instant Bursary,Unverified Asia Hub,COMPUTER SCIENCE,2.0,MERIT,Pay $50 Registration,2026-10-07,SCAM_QUARANTINE,16,true,Singapore,http://asia-tech-bursary-scam.sg
+scam_015,Global Big Data Cash Allowance Fraud,Fake Data Trust,DATA SCIENCE,2.0,BOTH,Pay $70 Fee First,2026-10-04,SCAM_QUARANTINE,12,true,Global,http://bigdata-cash-scam.org
+scam_016,US Data Analytics Guaranteed Grant,Unverified US Registry,DATA SCIENCE,2.0,NEED,Pay $85 Processing Charge,2026-10-13,SCAM_QUARANTINE,14,true,USA,http://us-data-grant-fake.com
+scam_017,UK Business Analytics Instant Cash Award,Fake UK Portal,DATA SCIENCE,2.0,MERIT,Pay £45 Deposit,2026-10-05,SCAM_QUARANTINE,11,true,UK,http://uk-analytics-cash-scam.co.uk
+scam_018,Global Predictive AI Grant Scheme,Unknown AI Hub,AI,2.0,BOTH,Pay $90 Advance Fee,2026-10-02,SCAM_QUARANTINE,10,true,Global,http://ai-predictive-scam.com
+scam_019,Neural Networks Direct Fellowship Fraud,Unverified AI Registry,AI,2.0,NEED,Pay $100 Verification Fee,2026-10-10,SCAM_QUARANTINE,13,true,USA,http://neural-grant-fake.org
+scam_020,Robotics Research Cash Grant Scheme,Fake Tech Trust,AI,2.0,MERIT,Pay $55 Registration,2026-10-08,SCAM_QUARANTINE,15,true,Japan,http://robotics-cash-scam.jp
+scam_021,Generative AI Research Grant Scam,Unknown AI Portal,AI,2.0,BOTH,Pay $60 Processing,2026-10-12,SCAM_QUARANTINE,12,true,Global,http://genai-grant-scam.net
+scam_022,US Medical Leadership Direct Bursary,Fake Health Trust,MEDICAL,2.0,NEED,Pay $120 Application Charge,2026-10-03,SCAM_QUARANTINE,11,true,USA,http://us-med-grant-scam.com
+scam_023,UK Clinical Research Guaranteed Fellowship,Unverified Med Registry,MEDICAL,2.0,MERIT,Pay £80 Registration,2026-10-09,SCAM_QUARANTINE,10,true,UK,http://uk-clinical-scam.co.uk
+scam_024,Global Healthcare Direct Cash Award,Unknown Med Hub,MEDICAL,2.0,BOTH,Pay $95 Verification Deposit,2026-10-06,SCAM_QUARANTINE,14,true,Global,http://globalhealth-cash-scam.org
+scam_025,German Engineering Direct Cash Bursary,Fake German Portal,ENGINEERING,2.0,NEED,Pay €70 Processing,2026-10-14,SCAM_QUARANTINE,12,true,Germany,http://german-eng-cash-fake.de
+scam_026,US Mechanical Engineering Guaranteed Grant,Unverified Eng Trust,ENGINEERING,2.0,MERIT,Pay $80 Advance,2026-10-01,SCAM_QUARANTINE,13,true,USA,http://us-eng-grant-scam.com
+scam_027,Global Renewable Energy Cash Prize,Fake Green Portal,ENGINEERING,2.0,BOTH,Pay $50 Entry Fee,2026-10-11,SCAM_QUARANTINE,15,true,Global,http://green-energy-scam.org
+scam_028,Global MBA Guaranteed Leadership Award,Fake MBA Registry,BUSINESS,2.0,NEED,Pay $150 Registration Fee,2026-10-04,SCAM_QUARANTINE,10,true,Global,http://mba-guaranteed-grant-scam.com
+scam_029,US Finance & Accounting Direct Grant,Unverified Biz Hub,BUSINESS,2.0,MERIT,Pay $90 Processing,2026-10-07,SCAM_QUARANTINE,12,true,USA,http://us-finance-grant-fake.com
+scam_030,UK Business Leadership Instant Fellowship,Fake UK Biz Trust,BUSINESS,2.0,BOTH,Pay £60 Verification Deposit,2026-10-13,SCAM_QUARANTINE,11,true,UK,http://uk-biz-cash-scam.co.uk
+scam_031,Global Peace & Humanities Direct Cash Award,Fake Arts Registry,HUMANITIES,2.0,NEED,Pay $45 Processing Fee,2026-10-05,SCAM_QUARANTINE,14,true,Global,http://arts-cash-grant-scam.org
+scam_032,US Social Sciences Guaranteed Bursary,Unverified Humanities Hub,HUMANITIES,2.0,MERIT,Pay $65 Admin Charge,2026-10-10,SCAM_QUARANTINE,12,true,USA,http://us-arts-scam.com
+scam_033,UK Software Architecture Direct Cash Scheme,Fake CS Portal,COMPUTER SCIENCE,2.0,BOTH,Pay £70 Advance,2026-10-02,SCAM_QUARANTINE,13,true,UK,http://uk-sw-arch-scam.co.uk
+scam_034,US Cyber Security Instant Allowance,Unverified Tech Trust,COMPUTER SCIENCE,2.0,NEED,Pay $85 Deposit,2026-10-08,SCAM_QUARANTINE,11,true,USA,http://us-cyber-cash-fake.com
+scam_035,Canada Software Systems Guaranteed Grant,Fake Canada Trust,COMPUTER SCIENCE,2.0,MERIT,Pay $75 Registration,2026-10-12,SCAM_QUARANTINE,10,true,Canada,http://canada-sw-grant-scam.ca
+scam_036,Aussie Cloud Tech Direct Cash Scheme,Unverified Aussie Registry,COMPUTER SCIENCE,2.0,BOTH,Pay $60 Processing,2026-10-06,SCAM_QUARANTINE,14,true,Australia,http://aussie-cloud-scam.com
+scam_037,Euro Embedded Systems Instant Grant,Fake Euro Tech Portal,COMPUTER SCIENCE,2.0,NEED,Pay €50 Admin Charge,2026-10-15,SCAM_QUARANTINE,12,true,Germany,http://euro-embedded-fake.de
+scam_038,Global Quantum Computing Cash Award Fraud,Unknown Quantum Hub,COMPUTER SCIENCE,2.0,MERIT,Pay $100 Processing Deposit,2026-10-03,SCAM_QUARANTINE,15,true,Global,http://quantum-cash-scam.org
+scam_039,Global Big Data Direct Bursary Fraud,Fake Data Portal,DATA SCIENCE,2.0,BOTH,Pay $80 Registration,2026-10-09,SCAM_QUARANTINE,11,true,Global,http://bigdata-bursary-scam.com
+scam_040,US Spatial Analytics Guaranteed Fellowship,Unverified US Data Hub,DATA SCIENCE,2.0,NEED,Pay $95 Advance,2026-10-01,SCAM_QUARANTINE,13,true,USA,http://us-spatial-data-fake.com
+scam_041,UK Health Analytics Direct Cash Grant,Fake UK Med Data Hub,DATA SCIENCE,2.0,MERIT,Pay £55 Verification,2026-10-07,SCAM_QUARANTINE,10,true,UK,http://uk-health-data-scam.co.uk
+scam_042,Global Deep Learning Direct Cash Scheme,Unknown AI Registry,AI,2.0,BOTH,Pay $110 Application Charge,2026-10-14,SCAM_QUARANTINE,12,true,Global,http://deeplearning-cash-scam.org
+scam_043,UK Autonomous AI Guaranteed Award,Fake UK AI Portal,AI,2.0,NEED,Pay £65 Registration,2026-10-04,SCAM_QUARANTINE,14,true,UK,http://uk-auto-ai-scam.co.uk
+scam_044,German Computer Vision Cash Grant Fraud,Unverified German AI Hub,AI,2.0,MERIT,Pay €80 Processing,2026-10-10,SCAM_QUARANTINE,11,true,Germany,http://german-vision-scam.de
+scam_045,Japan Speech AI Direct Allowance,Fake Japan AI Trust,AI,2.0,BOTH,Pay $70 Advance Deposit,2026-10-06,SCAM_QUARANTINE,13,true,Japan,http://japan-speech-ai-fake.jp
+scam_046,US Oncology Direct Research Bursary,Fake US Cancer Hub,MEDICAL,2.0,NEED,Pay $130 Admin Fee,2026-10-02,SCAM_QUARANTINE,10,true,USA,http://us-oncology-grant-scam.com
+scam_047,UK Neurological Guaranteed Grant,Unverified UK Health Registry,MEDICAL,2.0,MERIT,Pay £90 Registration,2026-10-08,SCAM_QUARANTINE,12,true,UK,http://uk-neuro-grant-fake.co.uk
+scam_048,Global Infectious Disease Cash Prize Scheme,Unknown Med Registry,MEDICAL,2.0,BOTH,Pay $100 Deposit,2026-10-13,SCAM_QUARANTINE,15,true,Global,http://med-cash-prize-scam.org
+scam_049,German Mechatronics Direct Cash Bursary,Fake German Eng Hub,ENGINEERING,2.0,NEED,Pay €75 Verification,2026-10-05,SCAM_QUARANTINE,11,true,Germany,http://german-mechatronics-scam.de
+scam_050,US Nano Tech Guaranteed Fellowship,Unverified US Eng Net,ENGINEERING,2.0,MERIT,Pay $85 Admin Charge,2026-10-11,SCAM_QUARANTINE,13,true,USA,http://us-nano-eng-fake.com
+scam_051,UK Structural Eng Direct Cash Scheme,Fake UK Eng Trust,ENGINEERING,2.0,BOTH,Pay £60 Advance,2026-10-03,SCAM_QUARANTINE,10,true,UK,http://uk-struct-eng-scam.co.uk
+scam_052,Global Risk Management Direct Cash Award,Fake Risk Portal,BUSINESS,2.0,NEED,Pay $95 Registration Fee,2026-10-09,SCAM_QUARANTINE,14,true,Global,http://risk-cash-grant-scam.org
+scam_053,US FinTech Guaranteed Leadership Bursary,Unverified US Biz Net,BUSINESS,2.0,MERIT,Pay $110 Verification,2026-10-01,SCAM_QUARANTINE,12,true,USA,http://us-fintech-grant-scam.com
+scam_054,UK Corporate Strategy Cash Grant Scheme,Fake UK Biz Registry,BUSINESS,2.0,BOTH,Pay £75 Admin Charge,2026-10-07,SCAM_QUARANTINE,11,true,UK,http://uk-strategy-scam.co.uk
+scam_055,US Public Diplomacy Guaranteed Award,Unverified US Arts Hub,HUMANITIES,2.0,NEED,Pay $55 Deposit,2026-10-12,SCAM_QUARANTINE,13,true,USA,http://us-diplomacy-scam.com
+scam_056,UK Philosophy Research Direct Cash Scheme,Fake UK Arts Trust,HUMANITIES,2.0,MERIT,Pay £50 Processing,2026-10-04,SCAM_QUARANTINE,10,true,UK,http://uk-philo-cash-scam.co.uk
+scam_057,Global Journalism Cash Allowance Fraud,Unknown Media Net,HUMANITIES,2.0,BOTH,Pay $65 Admin Charge,2026-10-10,SCAM_QUARANTINE,15,true,Global,http://journalism-cash-scam.org
