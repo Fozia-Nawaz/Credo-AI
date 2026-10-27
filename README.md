@@ -1,3 +1,6 @@
+![alt text](<Credo AI README Banner – 27 Oct 2026, 2.02 pm-1.png>)
+
+
 # 🛡️ Credo AI — The Explainable Trust Engine
 
 ## 📌 Executive Summary & Core Mission
@@ -248,8 +251,7 @@ data: {"stage":"COMPLETE","message":"Pipeline execution complete.","final_data":
 
 The UI/UX architecture and agent interaction flows were fully prototyped in Figma prior to production deployment:
 
-* 🎨 **Figma Interactive Prototype and wireframe:** [View Interactive Figma Prototype](https://www.figma.com/design/mNv9LKeJIxUUYSalfR0FKA/credo-ai--copy---prototype-?node-id=0-1&t=qSqPwigR6p2rofeT-1)
-* **View copy DEV mode:**  [View Interactive Figma dev mode](https://www.figma.com/design/mNv9LKeJIxUUYSalfR0FKA/credo-ai--copy---prototype-?node-id=0-1&m=dev&t=qSqPwigR6p2rofeT-1)
+* 🎨 **Figma Interactive Prototype:** [View Interactive Figma Prototype](https://www.figma.com) *(Update with your production share link)*
 
 * 🖼️ **Design Mockups:** Stored under `docs/assets/` or `assets/figma/` in this repository.
 
@@ -406,6 +408,6 @@ Credo-AI/
 
 ## 📜 License & Acknowledgments
 
-Distributed under the **MIT License**. All rights reserved.
+Distributed under the **MIT License**. See `LICENSE` for details.
 
 *Special thanks to the organizers of Hackathon Track 02, Zetaris Data Platform, NVIDIA Nemotron, and Meterless Nightshift for providing the infrastructure powering CREDO AI.*
