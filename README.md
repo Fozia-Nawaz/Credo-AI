@@ -1,5 +1,6 @@
-![alt text](<Credo AI README Banner – 27 Oct 2026, 2.02 pm-1.png>)
-
+<p align="center">
+  <img src="assets/Credo AI README Banner.png" alt="Credo AI Banner" width="100%">
+</p>
 
 # 🛡️ Credo AI — The Explainable Trust Engine
 
