@@ -41,10 +41,16 @@ export default function OpportunityCard({ item, onOpen }) {
   const funding = item.funding_amount || item.funding || "Not listed";
   const tag = TAG[item.badge];
   const id = item.scholarship_id || item.official_record?.scholarship_id;
+
+  // Key Fallback Fix for Domain
+  const resolvedDomain = item.domain || item.source_domain || item.source || (Array.isArray(item.sources) ? item.sources[0] : null) || "Unknown";
+
   const conflictText =
     Array.isArray(item.conflict_details) && item.conflict_details.length > 0
       ? item.conflict_details[0]
-      : item.audit_proof;
+      : item.audit_proof || item.discrepancy_details || item.reconciliation_verdict;
+
+  const verdictText = item.audit_proof || item.reconciliation_verdict || item.discrepancy_details;
 
   return (
     <button
@@ -87,7 +93,7 @@ export default function OpportunityCard({ item, onOpen }) {
           </Field>
           <Field label="Source">
             <span className="inline-flex items-center gap-1.5 break-all text-trust">
-              <Globe size={13} className="shrink-0" /> {item.domain || "Unknown"}
+              <Globe size={13} className="shrink-0" /> {resolvedDomain}
             </span>
           </Field>
           <Field label="Application fee" className={fee > 0 ? "text-scam" : "text-trust"}>
@@ -110,7 +116,7 @@ export default function OpportunityCard({ item, onOpen }) {
             <p className="flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-wider text-scam">
               <Globe size={12} /> Flagged domain
             </p>
-            <p className="mt-1 break-all text-sm font-semibold text-white">{item.domain || "Unknown"}</p>
+            <p className="mt-1 break-all text-sm font-semibold text-white">{resolvedDomain}</p>
           </div>
         </div>
       )}
@@ -142,12 +148,12 @@ export default function OpportunityCard({ item, onOpen }) {
         )}
       </div>
 
-      {verified && item.audit_proof && (
+      {verified && verdictText && (
         <div className="mt-4 flex items-start gap-2 rounded-lg border border-trust/30 bg-trust/10 p-3 text-sm text-slate-200">
           <CheckCircle2 size={16} className="mt-0.5 shrink-0 text-trust" />
           <p>
             <span className="font-semibold text-trust">Reconciliation verdict: </span>
-            {item.audit_proof}
+            {verdictText}
           </p>
         </div>
       )}
@@ -162,12 +168,12 @@ export default function OpportunityCard({ item, onOpen }) {
         </div>
       )}
 
-      {excluded && item.audit_proof && (
+      {excluded && verdictText && (
         <div className="mt-4 flex items-start gap-2 rounded-lg border border-scam/30 bg-scam/10 p-3 text-sm text-slate-200">
           <XCircle size={16} className="mt-0.5 shrink-0 text-scam" />
           <p>
             <span className="font-semibold text-scam">Trust Critic: automatic exclusion. </span>
-            {item.audit_proof}
+            {verdictText}
           </p>
         </div>
       )}

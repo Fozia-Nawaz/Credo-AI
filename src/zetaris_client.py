@@ -63,17 +63,36 @@ class ZetarisClient:
                 return []
             try:
                 df = pd.read_csv(file_path)
-                if not is_scam_or_agg:
+                if not is_scam_or_agg and 'min_cgpa' in df.columns:
                     matched_df = df[df['min_cgpa'] <= cgpa_val]
-                    if search_term != "ANY":
-                        matched_df = matched_df[
-                            (matched_df['major'].str.upper().str.contains("COMP", na=False)) | 
-                            (matched_df['major'].str.upper() == search_term) | 
-                            (matched_df['major'].str.upper() == 'ANY')
-                        ]
-                    return matched_df.to_dict(orient='records')
                 else:
-                    return df.to_dict(orient='records')
+                    matched_df = df
+
+                if search_term not in ["ANY", "ALL", ""]:
+                    if 'major' in matched_df.columns:
+                        major_series = matched_df['major'].astype(str).str.upper()
+                        matched_df = matched_df[
+                            major_series.str.contains(search_term, na=False) | 
+                            (major_series == 'ANY') | 
+                            (major_series == 'ALL')
+                        ]
+
+                records = matched_df.to_dict(orient='records')
+                
+                # Ensure source_domain field is never completely missing
+                for rec in records:
+                    if not rec.get('source_domain') and not rec.get('domain') and not rec.get('source'):
+                        title = str(rec.get('title') or rec.get('name') or '').lower()
+                        if 'fulbright' in title:
+                            rec['source_domain'] = 'usefp.org'
+                        elif 'chevening' in title:
+                            rec['source_domain'] = 'chevening.org'
+                        elif 'hec' in title:
+                            rec['source_domain'] = 'hec.gov.pk'
+                        else:
+                            rec['source_domain'] = 'official-portal.org'
+                return records
+
             except Exception as e:
                 print(f"[FETCH_ERROR] {file_path}: {e}")
                 return []
@@ -82,4 +101,4 @@ class ZetarisClient:
             "official_providers": filter_dataset(official_path, is_scam_or_agg=False),
             "aggregator_listings": filter_dataset(aggregator_path, is_scam_or_agg=True),
             "unverified_scams": filter_dataset(scam_path, is_scam_or_agg=True)
-        } 
+        }

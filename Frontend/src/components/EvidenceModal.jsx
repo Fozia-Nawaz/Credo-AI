@@ -33,7 +33,6 @@ function deadlineText(d) {
   return !d || d === "N/A" ? "Not listed" : d;
 }
 
-// "15 days earlier" / "5 days later", or null if the dates can't be compared.
 function dayDiff(officialDate, other) {
   const a = Date.parse(officialDate);
   const b = Date.parse(other);
@@ -66,30 +65,40 @@ export default function EvidenceModal({ item, official = null, events = [], onCl
 
   if (!item) return null;
 
-  const rec = item.official_record || {};
+  const rec = item.official_record || item.official_provider_record || {};
   const aggregators = Array.isArray(item.aggregator_matches) ? item.aggregator_matches : [];
   const scam = item.badge === "SCAM_REJECTED";
   const conflict = item.badge === "CONFLICTING_DATES";
   const banner = BANNER[item.badge];
   const fee = Number(item.application_fee) || 0;
 
-  const officialDomain = rec.official_domain || (scam ? "" : item.domain) || "";
-  const officialDeadline = rec.deadline || (scam ? "" : item.deadline) || "";
+  // Domain Mapping Fixes
+  const itemDomain = item.domain || item.source_domain || item.source || (Array.isArray(item.sources) ? item.sources[0] : "");
+  const officialDomain = rec.official_domain || rec.source_domain || rec.domain || (scam ? "" : itemDomain) || "";
+  const officialDeadline = rec.deadline || rec.stated_deadline || (scam ? "" : item.deadline) || "";
   const officialFee = rec.application_fee ?? (scam ? null : item.application_fee);
 
   const funding = item.funding_amount || item.funding;
   const match = typeof item.eligibility_match === "number" ? item.eligibility_match : null;
 
-  const reasons = Array.isArray(item.conflict_details) ? item.conflict_details : [];
-  const baseLines = reasons.length > 0 ? reasons : item.audit_proof ? [item.audit_proof] : [];
+  const reasons = Array.isArray(item.conflict_details)
+    ? item.conflict_details
+    : item.audit_proof
+    ? [item.audit_proof]
+    : item.why_verified
+    ? [item.why_verified]
+    : item.discrepancy_details
+    ? [item.discrepancy_details]
+    : [];
+
+  const baseLines = reasons;
   const whyLines = scam ? [...baseLines, ...riskSignals(item, official)] : baseLines;
 
-  // Real trace events that mention this listing.
   const related = events
     .filter(
       (e) =>
         e.message &&
-        (e.message.includes(item.title) || (item.domain && e.message.includes(item.domain)))
+        (e.message.includes(item.title) || (itemDomain && e.message.includes(itemDomain)))
     )
     .slice(-6);
 
@@ -152,7 +161,6 @@ export default function EvidenceModal({ item, official = null, events = [], onCl
           </div>
         )}
 
-        {/* Side-by-side source comparison */}
         {!scam && (
           <section className="mt-6">
             <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-400">
@@ -198,6 +206,7 @@ export default function EvidenceModal({ item, official = null, events = [], onCl
               {aggregators.map((a, i) => {
                 const differs = a.listed_deadline && officialDeadline && a.listed_deadline !== officialDeadline;
                 const diff = differs ? dayDiff(officialDeadline, a.listed_deadline) : null;
+                const aggDomain = a.source_domain || a.source_portal || a.domain || a.source || "Unknown";
                 return (
                   <div key={i} className="rounded-xl border border-warning/40 bg-warning/5 p-4">
                     <div className="flex items-start justify-between gap-2">
@@ -209,7 +218,7 @@ export default function EvidenceModal({ item, official = null, events = [], onCl
                       </span>
                     </div>
                     <Field label="Source domain" className="font-semibold text-warning">
-                      {a.source_domain || a.source_portal || "Unknown"}
+                      {aggDomain}
                     </Field>
                     <Field label="Stated deadline">
                       <span
@@ -244,7 +253,6 @@ export default function EvidenceModal({ item, official = null, events = [], onCl
           </section>
         )}
 
-        {/* Rejected listing: compare against the official record from the same run */}
         {scam && (
           <section className="mt-6 space-y-3">
             <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-400">Evidence comparison</h3>
@@ -256,7 +264,7 @@ export default function EvidenceModal({ item, official = null, events = [], onCl
               {official ? (
                 <>
                   <Field label="Matched official record">{official.title}</Field>
-                  <Field label="Official domain">{official.domain}</Field>
+                  <Field label="Official domain">{official.domain || official.source_domain}</Field>
                   <Field label="Application fee">
                     {Number(official.application_fee) > 0
                       ? `$${Number(official.application_fee)}`
@@ -273,7 +281,7 @@ export default function EvidenceModal({ item, official = null, events = [], onCl
             <div className="rounded-xl border border-scam/40 bg-scam/5 p-4">
               <p className="text-[11px] font-semibold uppercase tracking-wider text-slate-300">Suspicious listing</p>
               <Field label="Domain" className="font-semibold text-scam">
-                {item.domain || "Unknown"}
+                {itemDomain || "Unknown"}
               </Field>
               <Field label="Reported fee" className={fee > 0 ? "font-semibold text-scam" : undefined}>
                 {fee > 0 ? `$${fee}` : "None listed"}
@@ -283,7 +291,6 @@ export default function EvidenceModal({ item, official = null, events = [], onCl
           </section>
         )}
 
-        {/* Why this status */}
         <section className="mt-6">
           <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-400">
             {scam ? "Why this listing was rejected" : "Why this status? (explainable trust analysis)"}
