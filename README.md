@@ -1,6 +1,3 @@
-<p align="center">
-  <img src="D:\CredoAi\Credo-AI\assets" alt="Credo AI Banner" width="100%">
-</p>
 # 🛡️ Credo AI — The Explainable Trust Engine
 
 ## 📌 Executive Summary & Core Mission
