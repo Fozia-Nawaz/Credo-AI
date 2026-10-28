@@ -1,6 +1,6 @@
 import sampleEvents from "../mock/sampleStreamEvents.json";
 
-const BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://127.0.0.1:8000";
+const BASE_URL = import.meta.env.VITE_API_BASE_URL || "https://credoai-app.vercel.app/";
 const USE_MOCK = import.meta.env.VITE_USE_MOCK === "true";
 
 // The backend sends a heartbeat every 15 seconds, so 45 seconds of
